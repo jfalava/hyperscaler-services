@@ -72,9 +72,9 @@ The search is case-insensitive and updates in real-time.
 
 ## Adding New Services
 
-Edit `src/data/services.ts` and add new service mappings following the existing format:
+Edit `public/services.json` and add new service mappings following the existing format:
 
-```typescript
+```json
 {
   category: "compute",
   categoryName: {
@@ -89,11 +89,3 @@ Edit `src/data/services.ts` and add new service mappings following the existing 
   }
 }
 ```
-
-## Technologies
-
-- **Astro 5** - Static site generator with SSR
-- **Tailwind CSS v4** - Utility-first CSS framework
-- **Cloudflare Pages** - Deployment platform
-- **TypeScript** - Type safety
-- **Bun** - Fast JavaScript runtime and package manager

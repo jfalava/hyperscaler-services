@@ -13,19 +13,19 @@
  *
  * @example
  * // English version
- * http://localhost:4321/?lang=en
+ * http://hyperscalers.jfa.dev/?lang=en
  *
  * @example
  * // Spanish version
- * http://localhost:4321/?lang=es
+ * http://hyperscalers.jfa.dev/?lang=es
  */
 
 export const prerender = false;
 
-import Layout from '../layouts/Layout.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
+import Layout from '@/layouts/Layout.astro';
+import FloatingButtons from '@/components/FloatingButtons.astro';
 import { Icon } from 'astro-icon/components';
-import { fetchServices, type ServiceMapping } from '../data/services';
+import { fetchServices, type ServiceMapping } from '@/data/services';
 
 /**
  * Supported language codes for the application.
@@ -119,27 +119,13 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 	description={t.subtitle}
 	lang={currentLang}
 >
-	<div class="container mx-auto px-4 py-8 max-w-7xl">
-		<header class="mb-8">
-			<div class="flex justify-between items-start mb-4">
-				<div>
-					<h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">{t.title}</h1>
-					<p class="text-lg text-gray-600 dark:text-gray-400">{t.subtitle}</p>
-				</div>
-				<div class="flex gap-2">
-					<ThemeToggle />
-					<a
-						href="/?lang=en"
-						class={`px-4 py-2 rounded-lg font-medium transition-colors border ${currentLang === 'en' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
-					>
-						English
-					</a>
-					<a
-						href="/?lang=es"
-						class={`px-4 py-2 rounded-lg font-medium transition-colors border ${currentLang === 'es' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
-					>
-						Español
-					</a>
+	<div class="container mx-auto px-4 py-6 sm:py-8 max-w-7xl">
+		<FloatingButtons currentLang={currentLang} />
+		<header class="mb-6 sm:mb-8">
+			<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+				<div class="space-y-1">
+					<h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
+					<p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl">{t.subtitle}</p>
 				</div>
 			</div>
 
@@ -169,7 +155,7 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 						</tr>
 					</thead>
 					<tbody id="services-table">
-						{services.map((service, index) => (
+						{services.map((service) => (
 							<tr
 								class={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors service-row`}
 								data-category={service.categoryName[currentLang].toLowerCase()}
@@ -223,185 +209,19 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 		</div>
 	</div>
 
-	<script define:vars={{ showing: t.showing, of: t.of, services: t.services, previous: t.previous, next: t.next }}>
-		/**
-		 * Pagination state management.
-		 *
-		 * Tracks current page, items per page, and filtered results
-		 * to provide smooth pagination with search functionality.
-		 */
-		let currentPage = 1;
-		const itemsPerPage = 20;
-		let filteredRows = [];
+	<script>
+		import { PaginationManager, type PaginationTranslations } from '@/types/client';
 
-		/**
-		 * Get all visible (filtered) service rows.
-		 *
-		 * Returns only rows that match the current search query
-		 * and are not hidden by the filter function.
-		 *
-		 * @returns Array of visible HTMLElement rows
-		 */
-		function getFilteredRows() {
-			const rows = document.querySelectorAll('.service-row');
-			return Array.from(rows).filter((row) => {
-				const element = row;
-				return element.dataset.matches !== 'false';
-			});
-		}
+		const translations: PaginationTranslations = {
+			showing: '{t.showing}',
+			of: '{t.of}',
+			services: '{t.services}'
+		};
 
-		/**
-		 * Display services for the current page.
-		 *
-		 * Shows only the subset of services corresponding to the
-		 * current page number. Hides all other services and updates
-		 * the pagination UI (page numbers, buttons, info text).
-		 *
-		 * @param page - Page number to display (1-indexed)
-		 */
-		function showPage(page) {
-			const allRows = document.querySelectorAll('.service-row');
-			filteredRows = getFilteredRows();
-			const totalPages = Math.max(1, Math.ceil(filteredRows.length / itemsPerPage));
-
-			currentPage = Math.max(1, Math.min(page, totalPages));
-
-			allRows.forEach((row) => {
-				row.style.display = 'none';
-			});
-
-			const start = (currentPage - 1) * itemsPerPage;
-			const end = start + itemsPerPage;
-
-			filteredRows.forEach((row, index) => {
-				if (index >= start && index < end) {
-					row.style.display = '';
-				}
-			});
-
-			updatePaginationUI(totalPages);
-		}
-
-		/**
-		 * Update pagination UI elements.
-		 *
-		 * Updates page number buttons, previous/next button states,
-		 * and the information text showing current range of items.
-		 * Creates clickable page number buttons with proper styling.
-		 *
-		 * @param totalPages - Total number of pages available
-		 */
-		function updatePaginationUI(totalPages) {
-			const prevButton = document.getElementById('prev-page');
-			const nextButton = document.getElementById('next-page');
-			const pageNumbers = document.getElementById('page-numbers');
-			const paginationInfo = document.getElementById('pagination-info');
-			const pagination = document.getElementById('pagination');
-
-			if (filteredRows.length === 0 || totalPages <= 1) {
-				pagination.style.display = 'none';
-				return;
-			}
-
-			pagination.style.display = 'flex';
-
-			prevButton.disabled = currentPage === 1;
-			nextButton.disabled = currentPage === totalPages;
-
-			const start = (currentPage - 1) * itemsPerPage + 1;
-			const end = Math.min(currentPage * itemsPerPage, filteredRows.length);
-			paginationInfo.textContent = `${showing} ${start}-${end} ${of} ${filteredRows.length} ${services}`;
-
-			pageNumbers.innerHTML = '';
-			const maxButtons = 5;
-			let startPage = Math.max(1, currentPage - 2);
-			let endPage = Math.min(totalPages, startPage + maxButtons - 1);
-
-			if (endPage - startPage < maxButtons - 1) {
-				startPage = Math.max(1, endPage - maxButtons + 1);
-			}
-
-			for (let i = startPage; i <= endPage; i++) {
-				const button = document.createElement('button');
-				button.textContent = i.toString();
-				button.className = `px-4 py-2 rounded-lg border transition-colors ${
-					i === currentPage
-						? 'bg-blue-600 text-white border-blue-600'
-						: 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'
-				}`;
-				button.addEventListener('click', () => showPage(i));
-				pageNumbers.appendChild(button);
-			}
-		}
-
-		/**
-		 * Filter service table rows based on search query.
-		 *
-		 * Performs case-insensitive matching against category name,
-		 * AWS service name, Azure service name, and description.
-		 * After filtering, resets to page 1 and updates pagination.
-		 *
-		 * @param search - User's search query string
-		 */
-		function filterServices(search) {
-			const rows = document.querySelectorAll('.service-row');
-			const noResults = document.getElementById('no-results');
-			const searchLower = search.toLowerCase().trim();
-
-			rows.forEach((row) => {
-				const element = row;
-				const category = element.dataset.category || '';
-				const aws = element.dataset.aws || '';
-				const azure = element.dataset.azure || '';
-				const description = element.dataset.description || '';
-
-				const matches =
-					searchLower === '' ||
-					category.includes(searchLower) ||
-					aws.includes(searchLower) ||
-					azure.includes(searchLower) ||
-					description.includes(searchLower);
-
-				// store match state; display is controlled by showPage
-				if (matches) {
-					delete element.dataset.matches;
-				} else {
-					element.dataset.matches = 'false';
-				}
-			});
-
-			filteredRows = getFilteredRows();
-			const hasResults = filteredRows.length > 0;
-
-			noResults.style.display = hasResults ? 'none' : 'block';
-
-			showPage(1);
-		}
-
-		/**
-		 * Initialize pagination and search functionality.
-		 *
-		 * Sets up event listeners for search input and pagination buttons.
-		 * Displays the first page of results on initial load.
-		 */
-		const searchInput = document.getElementById('search');
-		const prevButton = document.getElementById('prev-page');
-		const nextButton = document.getElementById('next-page');
-
-		if (searchInput) {
-			searchInput.addEventListener('input', (e) => {
-				filterServices(e.target.value);
-			});
-		}
-
-		if (prevButton) {
-			prevButton.addEventListener('click', () => showPage(currentPage - 1));
-		}
-
-		if (nextButton) {
-			nextButton.addEventListener('click', () => showPage(currentPage + 1));
-		}
-
-		showPage(1);
+		const paginationManager = new PaginationManager(translations);
+		
+		document.addEventListener('DOMContentLoaded', () => {
+			paginationManager.initialize();
+		});
 	</script>
 </Layout>
