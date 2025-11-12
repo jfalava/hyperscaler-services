@@ -1,3 +1,5 @@
+import { paginationState } from '@/stores/pagination-state';
+
 /**
  * HTMLElement with dataset properties for service rows.
  */
@@ -12,13 +14,6 @@ export interface HTMLElementWithDataset extends HTMLElement {
 }
 
 /**
- * HTMLButtonElement with disabled property.
- */
-export interface HTMLButtonElementWithDisabled extends HTMLButtonElement {
-	disabled: boolean;
-}
-
-/**
  * Pagination text translations.
  */
 export interface PaginationTranslations {
@@ -28,20 +23,23 @@ export interface PaginationTranslations {
 }
 
 /**
- * Pagination state management.
+ * Service manager with pagination using custom state.
  */
-export class PaginationManager {
-	private currentPage = 1;
+export class ServiceManager {
 	private readonly itemsPerPage = 20;
 	private filteredRows: HTMLElementWithDataset[] = [];
 
+	/**
+	 * Creates a new ServiceManager instance.
+	 * @param onFilterChange - Optional callback for filter changes
+	 */
 	constructor(
-		private translations: PaginationTranslations,
 		private onFilterChange?: (filteredCount: number) => void
 	) {}
 
 	/**
-	 * Get all visible (filtered) service rows.
+	 * Gets all visible (filtered) service rows.
+	 * @returns Array of filtered service row elements
 	 */
 	getFilteredRows(): HTMLElementWithDataset[] {
 		const rows = document.querySelectorAll('.service-row');
@@ -52,20 +50,32 @@ export class PaginationManager {
 	}
 
 	/**
-	 * Display services for the current page.
+	 * Displays services for the specified page.
+	 * @param page - Page number to display
 	 */
 	showPage(page: number): void {
 		const allRows = document.querySelectorAll('.service-row');
 		this.filteredRows = this.getFilteredRows();
 		const totalPages = Math.max(1, Math.ceil(this.filteredRows.length / this.itemsPerPage));
 
-		this.currentPage = Math.max(1, Math.min(page, totalPages));
+		const currentPage = Math.max(1, Math.min(page, totalPages));
 
-		allRows.forEach((row) => {
+		paginationState.setCurrentPage(currentPage);
+		paginationState.setTotalItems(this.filteredRows.length);
+
+		this.displayRows(currentPage);
+	}
+
+	/**
+	 * Displays rows for a specific page without updating state.
+	 * @param currentPage - Page number to display
+	 */
+	private displayRows(currentPage: number): void {
+		document.querySelectorAll('.service-row').forEach((row) => {
 			(row as HTMLElement).style.display = 'none';
 		});
 
-		const start = (this.currentPage - 1) * this.itemsPerPage;
+		const start = (currentPage - 1) * this.itemsPerPage;
 		const end = start + this.itemsPerPage;
 
 		this.filteredRows.forEach((row, index) => {
@@ -73,78 +83,11 @@ export class PaginationManager {
 				row.style.display = '';
 			}
 		});
-
-		this.updatePaginationUI(totalPages);
 	}
 
 	/**
-	 * Update pagination UI elements.
-	 */
-	private updatePaginationUI(totalPages: number): void {
-		const prevButton = document.getElementById('prev-page') as HTMLButtonElementWithDisabled | null;
-		const nextButton = document.getElementById('next-page') as HTMLButtonElementWithDisabled | null;
-		const pageNumbers = document.getElementById('page-numbers');
-		const paginationInfo = document.getElementById('pagination-info');
-		const pagination = document.getElementById('pagination');
-
-		if (this.filteredRows.length === 0 || totalPages <= 1) {
-			if (pagination) {
-				pagination.style.display = 'none';
-			}
-			return;
-		}
-
-		if (pagination) {
-			pagination.style.display = 'flex';
-		}
-
-		if (prevButton) {
-			prevButton.disabled = this.currentPage === 1;
-		}
-		if (nextButton) {
-			nextButton.disabled = this.currentPage === totalPages;
-		}
-
-		const start = (this.currentPage - 1) * this.itemsPerPage + 1;
-		const end = Math.min(this.currentPage * this.itemsPerPage, this.filteredRows.length);
-		
-		if (paginationInfo) {
-			paginationInfo.textContent = `${this.translations.showing} ${start}-${end} ${this.translations.of} ${this.filteredRows.length} ${this.translations.services}`;
-		}
-
-		if (pageNumbers) {
-			this.createPageNumberButtons(pageNumbers, totalPages);
-		}
-	}
-
-	/**
-	 * Create clickable page number buttons.
-	 */
-	private createPageNumberButtons(container: HTMLElement, totalPages: number): void {
-		container.innerHTML = '';
-		const maxButtons = 5;
-		let startPage = Math.max(1, this.currentPage - 2);
-		let endPage = Math.min(totalPages, startPage + maxButtons - 1);
-
-		if (endPage - startPage < maxButtons - 1) {
-			startPage = Math.max(1, endPage - maxButtons + 1);
-		}
-
-		for (let i = startPage; i <= endPage; i++) {
-			const button = document.createElement('button');
-			button.textContent = i.toString();
-			button.className = `px-4 py-2 rounded-lg border transition-colors ${
-				i === this.currentPage
-					? 'bg-primary text-primary-foreground border-primary'
-					: 'bg-secondary text-secondary-foreground border-border hover:bg-accent'
-			}`;
-			button.addEventListener('click', () => this.showPage(i));
-			container.appendChild(button);
-		}
-	}
-
-	/**
-	 * Filter service table rows based on search query.
+	 * Filters service table rows based on search query.
+	 * @param search - Search query string
 	 */
 	filterServices(search: string): void {
 		const rows = document.querySelectorAll('.service-row');
@@ -187,12 +130,10 @@ export class PaginationManager {
 	}
 
 	/**
-	 * Initialize pagination and search functionality.
+	 * Initializes service management and pagination functionality.
 	 */
 	initialize(): void {
 		const searchInput = document.getElementById('search') as HTMLInputElement | null;
-		const prevButton = document.getElementById('prev-page') as HTMLButtonElementWithDisabled | null;
-		const nextButton = document.getElementById('next-page') as HTMLButtonElementWithDisabled | null;
 
 		if (searchInput) {
 			searchInput.addEventListener('input', (e: Event) => {
@@ -203,13 +144,16 @@ export class PaginationManager {
 			});
 		}
 
-		if (prevButton) {
-			prevButton.addEventListener('click', () => this.showPage(this.currentPage - 1));
-		}
+		(window as any).onPageChangeCallback = (page: number) => {
+			this.displayRows(page);
+		};
 
-		if (nextButton) {
-			nextButton.addEventListener('click', () => this.showPage(this.currentPage + 1));
-		}
+		paginationState.subscribe((state) => {
+			const currentPage = paginationState.getCurrentPage();
+			if (currentPage !== state.currentPage) {
+				this.displayRows(state.currentPage);
+			}
+		});
 
 		this.showPage(1);
 	}
