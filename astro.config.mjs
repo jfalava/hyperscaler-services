@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 
 export default defineConfig({
-  output: 'server',
+  output: "server",
   integrations: [icon()],
   vite: {
     plugins: [tailwindcss()],
