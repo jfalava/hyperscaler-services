@@ -195,15 +195,9 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 	</div>
 
 	<script>
-		import { ServiceManager, type PaginationTranslations } from '../types/client';
+		import { ServiceManager } from '../types/client';
 
-		const translations: PaginationTranslations = {
-			showing: '{t.showing}',
-			of: '{t.of}',
-			services: '{t.services}'
-		};
-
-		const serviceManager = new ServiceManager(translations);
+		const serviceManager = new ServiceManager();
 		
 		document.addEventListener('DOMContentLoaded', () => {
 			serviceManager.initialize();

@@ -86,27 +86,41 @@ export class ServiceManager {
   }
 
   /**
+   * Normalizes string by removing accents and converting to lowercase.
+   * @param str - String to normalize
+   * @returns Normalized string
+   */
+  private normalizeString(str: string): string {
+    return str
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  /**
    * Filters service table rows based on search query.
    * @param search - Search query string
    */
   filterServices(search: string): void {
     const rows = document.querySelectorAll(".service-row");
     const noResults = document.getElementById("no-results");
-    const searchLower = search.toLowerCase().trim();
+    const searchNormalized = this.normalizeString(search.trim());
 
     rows.forEach((row) => {
       const element = row as HTMLElementWithDataset;
-      const category = element.dataset.category || "";
-      const aws = element.dataset.aws || "";
-      const azure = element.dataset.azure || "";
-      const description = element.dataset.description || "";
+      const category = this.normalizeString(element.dataset.category || "");
+      const aws = this.normalizeString(element.dataset.aws || "");
+      const azure = this.normalizeString(element.dataset.azure || "");
+      const description = this.normalizeString(
+        element.dataset.description || "",
+      );
 
       const matches =
-        searchLower === "" ||
-        category.includes(searchLower) ||
-        aws.includes(searchLower) ||
-        azure.includes(searchLower) ||
-        description.includes(searchLower);
+        searchNormalized === "" ||
+        category.includes(searchNormalized) ||
+        aws.includes(searchNormalized) ||
+        azure.includes(searchNormalized) ||
+        description.includes(searchNormalized);
 
       if (matches) {
         delete element.dataset.matches;
