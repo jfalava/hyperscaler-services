@@ -13,7 +13,7 @@
   },
   "routes": [
     {
-      "pattern": "hyperscalers.jfa.devapll",
+      "pattern": "hyperscalers.jfa.dev",
       "custom_domain": true,
     },
   ],
