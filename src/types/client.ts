@@ -54,7 +54,6 @@ export class ServiceManager {
 	 * @param page - Page number to display
 	 */
 	showPage(page: number): void {
-		const allRows = document.querySelectorAll('.service-row');
 		this.filteredRows = this.getFilteredRows();
 		const totalPages = Math.max(1, Math.ceil(this.filteredRows.length / this.itemsPerPage));
 

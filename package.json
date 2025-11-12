@@ -4,12 +4,14 @@
   "version": "0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "bun run cf-typegen && astro build",
     "preview": "astro build && wrangler dev",
     "astro": "astro",
-    "deploy": "astro build && wrangler deploy",
+    "deploy": "bun run lint:fix && astro build && wrangler deploy",
     "cf-typegen": "wrangler types",
     "format": "prettier --write .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "typecheck": "bun run cf-typegen && bun tsgo --noEmit"
   },
   "dependencies": {
