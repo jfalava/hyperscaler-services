@@ -1,0 +1,39 @@
+---
+/**
+ * Footer component with branding and source link.
+ *
+ * Displays a minimal footer with site branding, current year,
+ * and GitHub source link. Uses the shadcn/ui design system
+ * with semantic color variables.
+ */
+
+import { Icon } from "astro-icon/components";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full select-none border-t border-border">
+  <div class="flex items-center justify-center py-4 md:py-6 max-w-7xl mx-auto px-4">
+    <div class="grid place-items-center border-r border-border pr-3">
+      <span class="font-bold opacity-80 flex items-center tracking-tight">
+        Hyperscaler Services
+      </span>
+            <span class="text-sm font-semibold opacity-80 flex items-center tracking-tight">
+        by JFA
+      </span>
+      <span class="font-mono opacity-85">
+        {currentYear}
+      </span>
+    </div>
+    <a 
+      href="https://github.com/jfalava/hyperscaler-services"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors ml-3"
+      aria-label="View source code on GitHub"
+    >
+      <Icon name="mdi:github" class="w-4 h-4" />
+      <span>Source</span>
+    </a>
+  </div>
+</footer>

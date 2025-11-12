@@ -12,7 +12,7 @@ A bilingual (English/Spanish) comparison tool for AWS and Azure cloud services e
 
 ## Project Structure
 
-```
+```txt
 src/
 ├── data/
 │   └── services.ts           # AWS/Azure service mappings with bilingual content
@@ -57,12 +57,14 @@ bun run deploy
 ### Language Switching
 
 Toggle between English and Spanish using the language buttons in the top-right corner:
+
 - `/?lang=en` - English version
 - `/?lang=es` - Spanish version
 
 ### Search
 
 Use the search bar to filter services by:
+
 - Category name
 - AWS service name
 - Azure service name
@@ -76,16 +78,16 @@ Edit `public/services.json` and add new service mappings following the existing 
 
 ```json
 {
-  category: "compute",
-  categoryName: {
-    en: "Compute",
-    es: "Cómputo"
+  "category": "compute",
+  "categoryName": {
+    "en": "Compute",
+    "es": "Cómputo"
   },
-  aws: "EC2",
-  azure: "Virtual Machines",
-  description: {
-    en: "Virtual servers in the cloud",
-    es: "Servidores virtuales en la nube"
+  "aws": "EC2",
+  "azure": "Virtual Machines",
+  "description": {
+    "en": "Virtual servers in the cloud",
+    "es": "Servidores virtuales en la nube"
   }
 }
 ```

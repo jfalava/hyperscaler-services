@@ -8,13 +8,13 @@ const { currentLang, variant = 'desktop' } = Astro.props;
 ---
 
 {variant === 'mobile' ? (
-  <div class="inline-flex items-center rounded-full bg-gray-100/95 dark:bg-gray-800/95 px-2 py-0.5 text-[10px] shadow-sm">
+  <div class="inline-flex items-center rounded-full bg-secondary/95 px-2 py-0.5 text-[10px] shadow-sm">
     <a
       href="/?lang=en"
       class={`px-2 py-0.5 rounded-full font-medium transition-colors ${
         currentLang === 'en'
-          ? 'bg-blue-600 text-white'
-          : 'text-gray-700 dark:text-gray-200'
+          ? 'bg-primary text-primary-foreground'
+          : 'text-secondary-foreground'
       }`}
     >
       EN
@@ -23,21 +23,21 @@ const { currentLang, variant = 'desktop' } = Astro.props;
       href="/?lang=es"
       class={`px-2 py-0.5 rounded-full font-medium transition-colors ${
         currentLang === 'es'
-          ? 'bg-blue-600 text-white'
-          : 'text-gray-700 dark:text-gray-200'
+          ? 'bg-primary text-primary-foreground'
+          : 'text-secondary-foreground'
       }`}
     >
       ES
     </a>
   </div>
 ) : (
-  <div class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-700 px-1 py-0.5 text-xs sm:text-sm">
+  <div class="inline-flex items-center rounded-full bg-secondary px-1 py-0.5 text-xs sm:text-sm">
     <a
       href="/?lang=en"
       class={`px-3 py-1 rounded-full font-medium transition-colors ${
         currentLang === 'en'
-          ? 'bg-blue-600 text-white shadow-sm'
-          : 'text-gray-700 dark:text-gray-200'
+          ? 'bg-primary text-primary-foreground shadow-sm'
+          : 'text-secondary-foreground'
       }`}
     >
       EN
@@ -46,8 +46,8 @@ const { currentLang, variant = 'desktop' } = Astro.props;
       href="/?lang=es"
       class={`px-3 py-1 rounded-full font-medium transition-colors ${
         currentLang === 'es'
-          ? 'bg-blue-600 text-white shadow-sm'
-          : 'text-gray-700 dark:text-gray-200'
+          ? 'bg-primary text-primary-foreground shadow-sm'
+          : 'text-secondary-foreground'
       }`}
     >
       ES

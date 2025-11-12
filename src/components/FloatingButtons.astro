@@ -10,13 +10,13 @@ import ThemeToggle from './ThemeToggle.astro';
 <div class="fixed top-3 right-3 sm:right-6 md:right-8 lg:right-[max(1rem,calc((100vw-80rem)/2+2rem))] z-50 flex flex-col items-end gap-2 pointer-events-none">
   <div class="pointer-events-auto flex flex-col items-end gap-2">
   <ThemeToggle />
-  <div class="inline-flex items-center rounded-full bg-gray-100/95 dark:bg-gray-800/95 px-2 py-0.5 text-[10px] shadow-sm">
+  <div class="inline-flex items-center rounded-full bg-secondary/95 px-2 py-0.5 text-[10px] shadow-sm">
     <a
       href="/?lang=en"
       class={`px-2 py-0.5 rounded-full font-medium transition-colors ${
         currentLang === 'en'
-          ? 'bg-blue-600 text-white'
-          : 'text-gray-700 dark:text-gray-200'
+          ? 'bg-primary text-primary-foreground'
+          : 'text-secondary-foreground'
       }`}
     >
       EN
@@ -25,8 +25,8 @@ import ThemeToggle from './ThemeToggle.astro';
       href="/?lang=es"
       class={`px-2 py-0.5 rounded-full font-medium transition-colors ${
         currentLang === 'es'
-          ? 'bg-blue-600 text-white'
-          : 'text-gray-700 dark:text-gray-200'
+          ? 'bg-primary text-primary-foreground'
+          : 'text-secondary-foreground'
       }`}
     >
       ES

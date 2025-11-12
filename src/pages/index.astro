@@ -124,8 +124,8 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 		<header class="mb-6 sm:mb-8">
 			<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 				<div class="space-y-1">
-					<h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
-					<p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl">{t.subtitle}</p>
+					<h1 class="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">{t.title}</h1>
+					<p class="text-base sm:text-lg text-muted-foreground max-w-2xl">{t.subtitle}</p>
 				</div>
 			</div>
 
@@ -134,45 +134,45 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 					type="text"
 					id="search"
 					placeholder={t.searchPlaceholder}
-					class="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+					class="w-full mt-1 px-4 py-2 pl-12 border border-input rounded-lg bg-background text-foreground placeholder-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-colors"
 				/>
 				<Icon
 					name="mdi:magnify"
-					class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500"
+					class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground"
 				/>
 			</div>
 		</header>
 
-		<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/50 overflow-hidden border border-gray-200 dark:border-gray-700">
+		<div class="bg-card rounded-lg shadow-md overflow-hidden border border-border">
 			<div class="overflow-x-auto">
 				<table class="w-full">
-					<thead class="bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+					<thead class="bg-muted border-b border-border">
 						<tr>
-							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.categoryColumn}</th>
-							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.awsColumn}</th>
-							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.azureColumn}</th>
-							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.descriptionColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.categoryColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.awsColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.azureColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.descriptionColumn}</th>
 						</tr>
 					</thead>
 					<tbody id="services-table">
 						{services.map((service) => (
 							<tr
-								class={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors service-row`}
+								class={`border-b border-border hover:bg-accent/50 transition-colors service-row`}
 								data-category={service.categoryName[currentLang].toLowerCase()}
 								data-aws={service.aws.toLowerCase()}
 								data-azure={service.azure.toLowerCase()}
 								data-description={service.description[currentLang].toLowerCase()}
 							>
-								<td class="px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+								<td class="px-6 py-4 text-sm font-medium text-muted-foreground">
 									{service.categoryName[currentLang]}
 								</td>
-								<td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">
+								<td class="px-6 py-4 text-sm text-foreground font-medium">
 									{service.aws}
 								</td>
-								<td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">
+								<td class="px-6 py-4 text-sm text-foreground font-medium">
 									{service.azure}
 								</td>
-								<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+								<td class="px-6 py-4 text-sm text-muted-foreground">
 									{service.description[currentLang]}
 								</td>
 							</tr>
@@ -180,28 +180,25 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 					</tbody>
 				</table>
 			</div>
-			<div id="no-results" class="hidden p-8 text-center text-gray-500 dark:text-gray-400">
+			<div id="no-results" class="hidden p-8 text-center text-muted-foreground">
 				{t.noResults}
 			</div>
 		</div>
 
-		<div id="pagination" class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-			<div class="text-sm text-gray-600 dark:text-gray-400">
-				<span id="pagination-info">{t.showing} 1-20 {t.of} {services.length} {t.services}</span>
-			</div>
+		<div id="pagination" class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
 			<div class="flex gap-2">
 				<button
 					id="prev-page"
-					class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+					class="px-4 py-2 cursor-pointer rounded-lg bg-secondary text-secondary-foreground border border-border hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
 					disabled
 				>
 					<Icon name="mdi:chevron-left" class="w-5 h-5" />
 				</button>
-				<div id="page-numbers" class="flex gap-1">
+				<div id="page-numbers" class="flex gap-1 cursor-pointer">
 				</div>
 				<button
 					id="next-page"
-					class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+					class="px-4 py-2 cursor-pointer rounded-lg bg-secondary text-secondary-foreground border border-border hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
 				>
 					<Icon name="mdi:chevron-right" class="w-5 h-5" />
 				</button>

@@ -28,7 +28,7 @@ type ThemeMode = "light" | "dark" | "system";
   <button
     type="button"
     id="theme-button"
-    class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border border-gray-300 dark:border-gray-600"
+    class="flex items-center gap-2 px-4 py-2 rounded-lg bg-popover text-popover-foreground hover:bg-accent transition-colors border border-border"
     aria-label="Toggle theme"
     aria-expanded="false"
   >
@@ -47,13 +47,13 @@ type ThemeMode = "light" | "dark" | "system";
 
   <div
     id="theme-menu"
-    class="absolute right-0 mt-2 w-40 rounded-lg bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 hidden z-10"
+    class="absolute right-0 mt-2 w-40 rounded-lg bg-popover shadow-lg border border-border hidden z-10"
     role="menu"
   >
     <button
       type="button"
       data-theme="light"
-      class="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-t-lg transition-colors"
+      class="w-full flex items-center gap-2 px-4 py-2 text-sm text-popover-foreground hover:bg-accent rounded-t-lg transition-colors"
       role="menuitem"
     >
       <Icon name="mdi:white-balance-sunny" class="w-4 h-4" />
@@ -63,7 +63,7 @@ type ThemeMode = "light" | "dark" | "system";
     <button
       type="button"
       data-theme="dark"
-      class="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+      class="w-full flex items-center gap-2 px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
       role="menuitem"
     >
       <Icon name="mdi:moon-waning-crescent" class="w-4 h-4" />
@@ -73,7 +73,7 @@ type ThemeMode = "light" | "dark" | "system";
     <button
       type="button"
       data-theme="system"
-      class="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg transition-colors"
+      class="w-full flex items-center gap-2 px-4 py-2 text-sm text-popover-foreground hover:bg-accent rounded-b-lg transition-colors"
       role="menuitem"
     >
       <Icon name="mdi:monitor" class="w-4 h-4" />
