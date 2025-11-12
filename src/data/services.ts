@@ -43,7 +43,9 @@ export interface ServiceMapping {
  * const services = await fetchServices(Astro.url.origin);
  * console.log(services.find(s => s.aws === 'EC2'));
  */
-export async function fetchServices(baseUrl: string): Promise<ServiceMapping[]> {
+export async function fetchServices(
+  baseUrl: string,
+): Promise<ServiceMapping[]> {
   const response = await fetch(`${baseUrl}/services.json`);
   if (!response.ok) {
     throw new Error(`Failed to fetch services: ${response.statusText}`);

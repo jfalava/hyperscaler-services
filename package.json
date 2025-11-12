@@ -7,7 +7,7 @@
     "build": "bun run cf-typegen && astro build",
     "preview": "astro build && wrangler dev",
     "astro": "astro",
-    "deploy": "bun run lint:fix && astro build && wrangler deploy",
+    "deploy": "bun run lint:fix && bun run format && astro build && wrangler deploy",
     "cf-typegen": "wrangler types",
     "format": "prettier --write .",
     "lint": "oxlint",
@@ -26,6 +26,7 @@
     "@types/node": "^24.10.1",
     "@typescript/native-preview": "^7.0.0-dev.20251112.1",
     "oxlint": "^1.28.0",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.17",
     "wrangler": "^4.47.0"
   }
