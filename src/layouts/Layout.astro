@@ -1,0 +1,86 @@
+---
+/**
+ * Base layout component for all pages.
+ *
+ * Provides the HTML document structure with proper meta tags,
+ * SEO configuration, and Tailwind CSS styling. Accepts optional
+ * props to customize the page title, description, and language.
+ *
+ * The layout uses a slot to inject page-specific content while
+ * maintaining consistent structure and styling across the site.
+ *
+ * @example
+ * <Layout title="Services" description="Compare cloud services" lang="es">
+ *   <div>Page content here</div>
+ * </Layout>
+ */
+
+import '../styles/global.css';
+
+/**
+ * Props for the main layout component.
+ *
+ * Controls page metadata and HTML lang attribute for proper
+ * SEO and internationalization support.
+ */
+interface Props {
+	title?: string;
+	description?: string;
+	lang?: string;
+}
+
+/**
+ * Extract props with fallback defaults.
+ *
+ * Provides sensible defaults for SEO metadata when not explicitly
+ * provided by the page component.
+ */
+const {
+	title = 'Hyperscaler Services',
+	description = 'Compare AWS and Azure cloud services equivalents',
+	lang = 'en'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script is:inline>
+			/**
+			 * Theme initialization script to prevent flash of incorrect theme.
+			 *
+			 * This script runs synchronously before page render to apply the
+			 * correct theme class to the HTML element. It checks localStorage
+			 * for saved preference, falling back to system preference if set
+			 * to 'system' or not yet configured.
+			 *
+			 * Running inline and synchronously (no async/defer) ensures the
+			 * theme is applied before any content renders, preventing the
+			 * jarring flash of light mode on dark mode preference.
+			 *
+			 * Theme preference is stored in localStorage as:
+			 * - 'light': Force light mode
+			 * - 'dark': Force dark mode
+			 * - 'system': Follow OS/browser preference
+			 */
+			(function() {
+				const theme = localStorage.getItem('theme') || 'system';
+
+				if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			})();
+		</script>
+	</head>
+	<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+		<slot />
+	</body>
+</html>

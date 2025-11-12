@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/**
+ * Pretendard Variable Font.
+ *
+ * A modern, versatile Korean and Latin typeface with excellent
+ * readability. The variable font format allows dynamic weight
+ * adjustment (100-900) with a single file, reducing load times
+ * and providing design flexibility.
+ *
+ * Font weights available:
+ * - 100 (Thin) to 900 (Black)
+ * - Variable weight axis for smooth interpolation
+ */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/pretendard/pretendard-variable.woff2') format('woff2-variations');
+}
+
+/**
+ * Apply Pretendard as the default font with system fallbacks.
+ *
+ * The font stack ensures optimal rendering across platforms:
+ * - Pretendard Variable: Primary font
+ * - System fonts: Fallbacks for immediate rendering
+ * - sans-serif: Generic fallback
+ */
+body {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}

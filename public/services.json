@@ -1,0 +1,702 @@
+[
+  {
+    "category": "account-management",
+    "categoryName": {"en": "Account Management", "es": "Gestión de Cuentas"},
+    "aws": "AWS Organization Root",
+    "azure": "Azure Tenant (Microsoft Entra)",
+    "description": {"en": "Top-level organizational structure for managing users, groups, and applications", "es": "Estructura organizacional de nivel superior para administrar usuarios, grupos y aplicaciones"}
+  },
+  {
+    "category": "account-management",
+    "categoryName": {"en": "Account Management", "es": "Gestión de Cuentas"},
+    "aws": "AWS Account",
+    "azure": "Azure Subscription",
+    "description": {"en": "Logical unit for services linked to billing and resource management boundaries", "es": "Unidad lógica para servicios vinculados a límites de facturación y administración de recursos"}
+  },
+  {
+    "category": "account-management",
+    "categoryName": {"en": "Account Management", "es": "Gestión de Cuentas"},
+    "aws": "Organizational Units (OUs)",
+    "azure": "Management Groups",
+    "description": {"en": "Hierarchical structures for organizing and managing resources across multiple accounts/subscriptions", "es": "Estructuras jerárquicas para organizar y administrar recursos en múltiples cuentas/suscripciones"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "IAM Roles & Resource-Based Policies",
+    "azure": "Azure RBAC",
+    "description": {"en": "Cross-account/subscription access management", "es": "Gestión de acceso entre cuentas/suscripciones"}
+  },
+  {
+    "category": "governance",
+    "categoryName": {"en": "Governance", "es": "Gobernanza"},
+    "aws": "Service Control Policies (SCPs)",
+    "azure": "Azure Policy",
+    "description": {"en": "Governance enforcement for compliance standards", "es": "Aplicación de gobernanza para estándares de cumplimiento"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "EC2",
+    "azure": "Virtual Machines",
+    "description": {"en": "On-demand virtual machines billed per second", "es": "Máquinas virtuales a petición facturadas por segundo"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "VMware Cloud on AWS",
+    "azure": "Azure VMware Solution",
+    "description": {"en": "Enables migration of VMware vSphere environments", "es": "Permite la migración de entornos VMware vSphere"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "AWS ParallelCluster",
+    "azure": "Azure CycleCloud",
+    "description": {"en": "Facilitates creation and management of HPC clusters", "es": "Facilita la creación y gestión de clústeres de HPC"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "AWS Auto Scaling",
+    "azure": "Virtual Machine Scale Sets",
+    "description": {"en": "Automatic scaling of compute resources", "es": "Escalado automático de recursos de cómputo"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "AWS Batch",
+    "azure": "Azure Batch",
+    "description": {"en": "Managed batch processing service", "es": "Servicio de procesamiento por lotes administrado"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "Lambda",
+    "azure": "Functions",
+    "description": {"en": "Serverless compute service", "es": "Servicio de cómputo sin servidor"}
+  },
+  {
+    "category": "compute",
+    "categoryName": {"en": "Compute", "es": "Cómputo"},
+    "aws": "Elastic Beanstalk",
+    "azure": "App Service",
+    "description": {"en": "Platform as a Service for web apps", "es": "Plataforma como servicio para aplicaciones web"}
+  },
+  {
+    "category": "containers",
+    "categoryName": {"en": "Containers", "es": "Contenedores"},
+    "aws": "ECS / EKS",
+    "azure": "Container Instances / AKS",
+    "description": {"en": "Container orchestration services", "es": "Servicios de orquestación de contenedores"}
+  },
+  {
+    "category": "containers",
+    "categoryName": {"en": "Containers", "es": "Contenedores"},
+    "aws": "ECR",
+    "azure": "Container Registry",
+    "description": {"en": "Managed container image registry", "es": "Registro de imágenes de contenedores administrado"}
+  },
+  {
+    "category": "containers",
+    "categoryName": {"en": "Containers", "es": "Contenedores"},
+    "aws": "EKS",
+    "azure": "AKS",
+    "description": {"en": "Managed Kubernetes service", "es": "Servicio de Kubernetes administrado"}
+  },
+  {
+    "category": "containers",
+    "categoryName": {"en": "Containers", "es": "Contenedores"},
+    "aws": "App Mesh",
+    "azure": "Istio add-on for AKS",
+    "description": {"en": "Service mesh for microservices", "es": "Malla de servicios para microservicios"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "S3",
+    "azure": "Blob Storage",
+    "description": {"en": "Object storage service", "es": "Servicio de almacenamiento de objetos"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "EBS",
+    "azure": "Managed Disks",
+    "description": {"en": "Block storage for virtual machines", "es": "Almacenamiento en bloques para máquinas virtuales"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "EFS",
+    "azure": "Files",
+    "description": {"en": "Managed file storage service", "es": "Servicio de almacenamiento de archivos administrado"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "Glacier",
+    "azure": "Archive Storage",
+    "description": {"en": "Long-term archive storage", "es": "Almacenamiento de archivo a largo plazo"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "FSX for NetApp ONTAP",
+    "azure": "Elastic SAN",
+    "description": {"en": "Cloud-based storage area network", "es": "Red de área de almacenamiento basada en la nube"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "FSX for Windows File Server",
+    "azure": "Azure Files",
+    "description": {"en": "Managed SMB file share", "es": "Recurso compartido de archivos SMB administrado"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "FSX for Lustre",
+    "azure": "Azure Managed Lustre",
+    "description": {"en": "Managed Lustre file system for HPC", "es": "Sistema de archivos Lustre administrado para HPC"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "FSX for NetApp ONTAP",
+    "azure": "Azure NetApp Files",
+    "description": {"en": "Managed NetApp capabilities", "es": "Capacidades de NetApp administradas"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "S3 Infrequent Access",
+    "azure": "Cool Blob Storage",
+    "description": {"en": "Lower-cost tier for infrequent data", "es": "Nivel de menor costo para datos poco frecuentes"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "S3 Glacier Deep Archive",
+    "azure": "Archive Access Tier",
+    "description": {"en": "Lowest storage cost with extended recovery", "es": "Costo de almacenamiento más bajo con recuperación extendida"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "AWS Backup",
+    "azure": "Azure Backup",
+    "description": {"en": "Backup and recovery service", "es": "Servicio de copia de seguridad y recuperación"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "DataSync",
+    "azure": "File Sync",
+    "description": {"en": "Data synchronization service", "es": "Servicio de sincronización de datos"}
+  },
+  {
+    "category": "storage",
+    "categoryName": {"en": "Storage", "es": "Almacenamiento"},
+    "aws": "Snowball Edge",
+    "azure": "Data Box",
+    "description": {"en": "Petabyte-scale data transport", "es": "Transporte de datos a escala de petabytes"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "RDS",
+    "azure": "SQL Database",
+    "description": {"en": "Managed relational database service", "es": "Servicio de base de datos relacional administrado"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "RDS for MySQL",
+    "azure": "Database for MySQL",
+    "description": {"en": "Managed MySQL database", "es": "Base de datos MySQL administrada"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "RDS for PostgreSQL",
+    "azure": "Database for PostgreSQL",
+    "description": {"en": "Managed PostgreSQL database", "es": "Base de datos PostgreSQL administrada"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "Aurora Serverless",
+    "azure": "SQL Database Serverless",
+    "description": {"en": "Auto-scales compute based on demand", "es": "Escala automáticamente el proceso según la demanda"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "DynamoDB",
+    "azure": "Cosmos DB",
+    "description": {"en": "Multi-model NoSQL database", "es": "Base de datos NoSQL multimodelo"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "DocumentDB",
+    "azure": "Cosmos DB",
+    "description": {"en": "Document database service", "es": "Servicio de base de datos de documentos"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "Neptune",
+    "azure": "Cosmos DB",
+    "description": {"en": "Graph database service", "es": "Servicio de base de datos de grafos"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "ElastiCache",
+    "azure": "Cache for Redis",
+    "description": {"en": "In-memory caching service", "es": "Servicio de caché en memoria"}
+  },
+  {
+    "category": "database",
+    "categoryName": {"en": "Database", "es": "Base de Datos"},
+    "aws": "MemoryDB for Redis",
+    "azure": "Cache for Redis",
+    "description": {"en": "High-performance Redis-compatible store", "es": "Almacén compatible con Redis de alto rendimiento"}
+  },
+  {
+    "category": "data-warehouse",
+    "categoryName": {"en": "Data Warehousing", "es": "Almacenamiento de Datos"},
+    "aws": "Redshift",
+    "azure": "Synapse Analytics",
+    "description": {"en": "Petabyte-scale data warehouse", "es": "Almacén de datos a escala de petabytes"}
+  },
+  {
+    "category": "data-warehouse",
+    "categoryName": {"en": "Data Warehousing", "es": "Almacenamiento de Datos"},
+    "aws": "Redshift Spectrum",
+    "azure": "OneLake Shortcuts",
+    "description": {"en": "Query external data without movement", "es": "Consulta de datos externos sin movimiento"}
+  },
+  {
+    "category": "data-lake",
+    "categoryName": {"en": "Data Lakes", "es": "Lagos de Datos"},
+    "aws": "Lake Formation",
+    "azure": "OneLake",
+    "description": {"en": "Data lake governance and security", "es": "Gobernanza y seguridad de lagos de datos"}
+  },
+  {
+    "category": "data-lake",
+    "categoryName": {"en": "Data Lakes", "es": "Lagos de Datos"},
+    "aws": "Athena",
+    "azure": "Fabric Lakehouse",
+    "description": {"en": "Serverless query engine", "es": "Motor de consulta sin servidor"}
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {"en": "Data Integration", "es": "Integración de Datos"},
+    "aws": "Glue",
+    "azure": "Data Factory",
+    "description": {"en": "Managed ETL service", "es": "Servicio ETL administrado"}
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {"en": "Data Integration", "es": "Integración de Datos"},
+    "aws": "MWAA",
+    "azure": "Fabric Apache Airflow",
+    "description": {"en": "Managed workflow orchestration", "es": "Orquestación de flujos de trabajo administrados"}
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {"en": "Data Integration", "es": "Integración de Datos"},
+    "aws": "AppFlow",
+    "azure": "Logic Apps",
+    "description": {"en": "Low-code data flow automation", "es": "Automatización de flujos de datos de bajo código"}
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {"en": "Data Integration", "es": "Integración de Datos"},
+    "aws": "Step Functions",
+    "azure": "Logic Apps",
+    "description": {"en": "Workflow orchestration service", "es": "Servicio de orquestación de flujos de trabajo"}
+  },
+  {
+    "category": "data-migration",
+    "categoryName": {"en": "Data Migration", "es": "Migración de Datos"},
+    "aws": "DMS",
+    "azure": "Database Migration Service",
+    "description": {"en": "Cloud migration service", "es": "Servicio de migración en la nube"}
+  },
+  {
+    "category": "data-governance",
+    "categoryName": {"en": "Data Governance", "es": "Gobernanza de Datos"},
+    "aws": "Glue Data Catalog",
+    "azure": "Microsoft Purview",
+    "description": {"en": "Unified data governance solution", "es": "Solución unificada de gobernanza de datos"}
+  },
+  {
+    "category": "big-data",
+    "categoryName": {"en": "Big Data", "es": "Big Data"},
+    "aws": "EMR",
+    "azure": "HDInsight",
+    "description": {"en": "Managed Hadoop and Spark service", "es": "Servicio administrado de Hadoop y Spark"}
+  },
+  {
+    "category": "big-data",
+    "categoryName": {"en": "Big Data", "es": "Big Data"},
+    "aws": "Kinesis",
+    "azure": "Event Hubs / Stream Analytics",
+    "description": {"en": "Real-time data streaming", "es": "Transmisión de datos en tiempo real"}
+  },
+  {
+    "category": "big-data",
+    "categoryName": {"en": "Big Data", "es": "Big Data"},
+    "aws": "MSK",
+    "azure": "Event Hubs",
+    "description": {"en": "Managed Kafka clusters", "es": "Clústeres de Kafka administrados"}
+  },
+  {
+    "category": "business-intelligence",
+    "categoryName": {"en": "Business Intelligence", "es": "Inteligencia de Negocios"},
+    "aws": "QuickSight",
+    "azure": "Power BI",
+    "description": {"en": "Analytics and visualization tools", "es": "Herramientas de análisis y visualización"}
+  },
+  {
+    "category": "machine-learning",
+    "categoryName": {"en": "Machine Learning", "es": "Aprendizaje Automático"},
+    "aws": "SageMaker",
+    "azure": "Machine Learning",
+    "description": {"en": "End-to-end ML platform", "es": "Plataforma de ML de extremo a extremo"}
+  },
+  {
+    "category": "machine-learning",
+    "categoryName": {"en": "Machine Learning", "es": "Aprendizaje Automático"},
+    "aws": "SageMaker Autopilot",
+    "azure": "Automated ML",
+    "description": {"en": "Automated machine learning", "es": "Aprendizaje automático automatizado"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Rekognition",
+    "azure": "Computer Vision",
+    "description": {"en": "Image and video analysis", "es": "Análisis de imágenes y video"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Polly",
+    "azure": "Speech (Text-to-Speech)",
+    "description": {"en": "Neural voice conversion", "es": "Conversión de voz neuronal"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Transcribe",
+    "azure": "Speech (Speech-to-Text)",
+    "description": {"en": "Audio transcription service", "es": "Servicio de transcripción de audio"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Translate",
+    "azure": "Translator",
+    "description": {"en": "Neural machine translation", "es": "Traducción automática neuronal"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Comprehend",
+    "azure": "Text Analytics",
+    "description": {"en": "Natural language processing", "es": "Procesamiento de lenguaje natural"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Lex",
+    "azure": "Conversational Language Understanding",
+    "description": {"en": "Conversational interfaces", "es": "Interfaces conversacionales"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "Textract",
+    "azure": "Document Intelligence",
+    "description": {"en": "Document data extraction", "es": "Extracción de datos de documentos"}
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {"en": "AI Services", "es": "Servicios de IA"},
+    "aws": "OpenSearch Service",
+    "azure": "AI Search",
+    "description": {"en": "Enterprise search service", "es": "Servicio de búsqueda empresarial"}
+  },
+  {
+    "category": "generative-ai",
+    "categoryName": {"en": "Generative AI", "es": "IA Generativa"},
+    "aws": "Bedrock",
+    "azure": "AI Foundry",
+    "description": {"en": "Foundation model platform", "es": "Plataforma de modelos fundamentales"}
+  },
+  {
+    "category": "messaging",
+    "categoryName": {"en": "Messaging", "es": "Mensajería"},
+    "aws": "SQS",
+    "azure": "Queue Storage / Service Bus",
+    "description": {"en": "Message queue service", "es": "Servicio de cola de mensajes"}
+  },
+  {
+    "category": "messaging",
+    "categoryName": {"en": "Messaging", "es": "Mensajería"},
+    "aws": "SNS",
+    "azure": "Service Bus / Event Grid",
+    "description": {"en": "Pub/sub messaging service", "es": "Servicio de mensajería pub/sub"}
+  },
+  {
+    "category": "messaging",
+    "categoryName": {"en": "Messaging", "es": "Mensajería"},
+    "aws": "EventBridge",
+    "azure": "Event Grid",
+    "description": {"en": "Event routing service", "es": "Servicio de enrutamiento de eventos"}
+  },
+  {
+    "category": "messaging",
+    "categoryName": {"en": "Messaging", "es": "Mensajería"},
+    "aws": "MQ",
+    "azure": "Service Bus",
+    "description": {"en": "JMS 2.0 API compatible messaging", "es": "Mensajería compatible con API JMS 2.0"}
+  },
+  {
+    "category": "communication",
+    "categoryName": {"en": "Communication", "es": "Comunicación"},
+    "aws": "SES",
+    "azure": "Communication Services",
+    "description": {"en": "Email sending service", "es": "Servicio de envío de correos electrónicos"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "VPC",
+    "azure": "Virtual Network",
+    "description": {"en": "Private network in the cloud", "es": "Red privada en la nube"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "NAT Gateway",
+    "azure": "NAT Gateway",
+    "description": {"en": "Outbound Internet connectivity", "es": "Conectividad de Internet de salida"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Route Tables",
+    "azure": "User Defined Routes",
+    "description": {"en": "Custom network routing", "es": "Enrutamiento de red personalizado"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Site-to-Site VPN",
+    "azure": "VPN Gateway",
+    "description": {"en": "VPN connectivity up to 10 Gbps", "es": "Conectividad VPN de hasta 10 Gbps"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Direct Connect",
+    "azure": "ExpressRoute",
+    "description": {"en": "Dedicated private network connections", "es": "Conexiones de red privadas dedicadas"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Network Load Balancer",
+    "azure": "Load Balancer",
+    "description": {"en": "Layer 4 TCP/UDP load balancing", "es": "Equilibrio de carga TCP/UDP de capa 4"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Application Load Balancer",
+    "azure": "Application Gateway",
+    "description": {"en": "Layer 7 application load balancing", "es": "Equilibrio de carga de aplicaciones de capa 7"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Route 53",
+    "azure": "DNS",
+    "description": {"en": "Domain name system service", "es": "Servicio de sistema de nombres de dominio"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Route 53",
+    "azure": "Traffic Manager",
+    "description": {"en": "DNS-level traffic routing", "es": "Enrutamiento de tráfico a nivel de DNS"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Global Accelerator",
+    "azure": "Traffic Manager",
+    "description": {"en": "Global routing and performance", "es": "Enrutamiento global y rendimiento"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "CloudFront",
+    "azure": "CDN",
+    "description": {"en": "Content delivery network", "es": "Red de distribución de contenido"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "PrivateLink",
+    "azure": "Private Link",
+    "description": {"en": "Private connectivity to PaaS", "es": "Conectividad privada a PaaS"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "VPC Endpoints",
+    "azure": "Private Endpoint",
+    "description": {"en": "Private endpoint connectivity", "es": "Conectividad de punto final privado"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "VPC Peering",
+    "azure": "Virtual Network Peering",
+    "description": {"en": "Connect virtual networks", "es": "Conectar redes virtuales"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "Transit Gateway",
+    "azure": "Virtual WAN",
+    "description": {"en": "Multi-environment network connectivity", "es": "Conectividad de red de múltiples entornos"}
+  },
+  {
+    "category": "networking",
+    "categoryName": {"en": "Networking", "es": "Redes"},
+    "aws": "VPC Flow Logs",
+    "azure": "Network Watcher",
+    "description": {"en": "Network traffic monitoring", "es": "Monitoreo de tráfico de red"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "IAM",
+    "azure": "Active Directory / Entra ID",
+    "description": {"en": "Identity and access management", "es": "Gestión de identidad y acceso"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "IAM Identity Center",
+    "azure": "Microsoft Entra ID",
+    "description": {"en": "Centralized identity management with SSO", "es": "Gestión de identidades centralizada con SSO"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "Organizations",
+    "azure": "Management Groups",
+    "description": {"en": "Hierarchical account management", "es": "Gestión jerárquica de cuentas"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "Directory Service",
+    "azure": "Entra Domain Services",
+    "description": {"en": "Managed directory services", "es": "Servicios de directorio administrados"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "MFA",
+    "azure": "Entra MFA",
+    "description": {"en": "Multi-factor authentication", "es": "Autenticación multifactor"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "KMS",
+    "azure": "Key Vault",
+    "description": {"en": "Key management service", "es": "Servicio de gestión de claves"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "WAF",
+    "azure": "Web Application Firewall",
+    "description": {"en": "Web application firewall", "es": "Cortafuegos de aplicaciones web"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "Secrets Manager",
+    "azure": "Key Vault Secrets",
+    "description": {"en": "Secrets management service", "es": "Servicio de gestión de secretos"}
+  },
+  {
+    "category": "security",
+    "categoryName": {"en": "Security & Identity", "es": "Seguridad e Identidad"},
+    "aws": "Cognito",
+    "azure": "Microsoft Identity Platform",
+    "description": {"en": "Complete identity platform", "es": "Plataforma de identidad completa"}
+  },
+  {
+    "category": "monitoring",
+    "categoryName": {"en": "Monitoring", "es": "Monitoreo"},
+    "aws": "CloudWatch",
+    "azure": "Monitor",
+    "description": {"en": "Monitoring and observability service", "es": "Servicio de monitoreo y observabilidad"}
+  },
+  {
+    "category": "monitoring",
+    "categoryName": {"en": "Monitoring", "es": "Monitoreo"},
+    "aws": "CloudTrail",
+    "azure": "Activity Log",
+    "description": {"en": "Audit and compliance logging", "es": "Registro de auditoría y cumplimiento"}
+  },
+  {
+    "category": "monitoring",
+    "categoryName": {"en": "Monitoring", "es": "Monitoreo"},
+    "aws": "Systems Manager",
+    "azure": "Automation",
+    "description": {"en": "Operations management service", "es": "Servicio de gestión de operaciones"}
+  },
+  {
+    "category": "infrastructure",
+    "categoryName": {"en": "Infrastructure", "es": "Infraestructura"},
+    "aws": "CloudFormation",
+    "azure": "ARM Templates",
+    "description": {"en": "Infrastructure as code templates", "es": "Plantillas de infraestructura como código"}
+  },
+  {
+    "category": "infrastructure",
+    "categoryName": {"en": "Infrastructure", "es": "Infraestructura"},
+    "aws": "Management Console",
+    "azure": "Portal",
+    "description": {"en": "Web-based management interface", "es": "Interfaz de gestión basada en web"}
+  },
+  {
+    "category": "infrastructure",
+    "categoryName": {"en": "Infrastructure", "es": "Infraestructura"},
+    "aws": "CLI",
+    "azure": "CLI",
+    "description": {"en": "Command-line interface", "es": "Interfaz de línea de comandos"}
+  },
+  {
+    "category": "iot",
+    "categoryName": {"en": "IoT", "es": "IoT"},
+    "aws": "IoT Analytics",
+    "azure": "Event Streams + KQL Database",
+    "description": {"en": "IoT data collection and analysis", "es": "Recopilación y análisis de datos de IoT"}
+  }
+]

@@ -1,0 +1,407 @@
+---
+/**
+ * Main page displaying AWS and Azure service comparisons.
+ *
+ * Renders a bilingual (English/Spanish) table of cloud service
+ * equivalents between AWS and Azure. Users can:
+ * - Switch languages via URL parameter (?lang=en or ?lang=es)
+ * - Search/filter services in real-time using the search bar
+ * - Browse services organized by category
+ *
+ * The page is server-side rendered dynamically on each request
+ * to support language switching via query parameters.
+ *
+ * @example
+ * // English version
+ * http://localhost:4321/?lang=en
+ *
+ * @example
+ * // Spanish version
+ * http://localhost:4321/?lang=es
+ */
+
+export const prerender = false;
+
+import Layout from '../layouts/Layout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { Icon } from 'astro-icon/components';
+import { fetchServices, type ServiceMapping } from '../data/services';
+
+/**
+ * Supported language codes for the application.
+ */
+type LanguageCode = 'en' | 'es';
+
+/**
+ * UI text translations for the main page.
+ *
+ * Contains all user-facing strings used in the interface,
+ * allowing the page to be displayed in multiple languages.
+ */
+interface PageTranslations {
+	title: string;
+	subtitle: string;
+	searchPlaceholder: string;
+	awsColumn: string;
+	azureColumn: string;
+	categoryColumn: string;
+	descriptionColumn: string;
+	noResults: string;
+	showing: string;
+	of: string;
+	services: string;
+	previous: string;
+	next: string;
+}
+
+/**
+ * Extract language preference from URL query parameter.
+ *
+ * The language is controlled via ?lang=en or ?lang=es in the URL,
+ * allowing users to switch languages and share links in their
+ * preferred language. Defaults to English if not specified.
+ */
+const url = new URL(Astro.request.url);
+const lang = url.searchParams.get('lang') || 'en';
+
+/**
+ * Get localized UI strings based on the current language.
+ *
+ * Returns all text content for the page in the appropriate language,
+ * including headings, button labels, and table column headers.
+ *
+ * @param currentLang - The language code to use for translations
+ * @returns Object containing all translated strings for the UI
+ *
+ * @example
+ * const t = getTranslations('es');
+ * console.log(t.title); // "Servicios de Hyperscalers"
+ */
+const getTranslations = (currentLang: string): PageTranslations => {
+	return {
+		title: currentLang === 'es' ? 'Servicios de Hyperscalers' : 'Hyperscaler Services',
+		subtitle: currentLang === 'es'
+			? 'Compara servicios equivalentes entre AWS y Azure'
+			: 'Compare equivalent services between AWS and Azure',
+		searchPlaceholder: currentLang === 'es'
+			? 'Buscar servicios...'
+			: 'Search services...',
+		awsColumn: 'AWS',
+		azureColumn: 'Azure',
+		categoryColumn: currentLang === 'es' ? 'Categoría' : 'Category',
+		descriptionColumn: currentLang === 'es' ? 'Descripción' : 'Description',
+		noResults: currentLang === 'es'
+			? 'No se encontraron servicios'
+			: 'No services found',
+		showing: currentLang === 'es' ? 'Mostrando' : 'Showing',
+		of: currentLang === 'es' ? 'de' : 'of',
+		services: currentLang === 'es' ? 'servicios' : 'services',
+		previous: currentLang === 'es' ? 'Anterior' : 'Previous',
+		next: currentLang === 'es' ? 'Siguiente' : 'Next'
+	};
+};
+
+const t = getTranslations(lang);
+const currentLang = lang as LanguageCode;
+
+/**
+ * Load service data from JSON file.
+ *
+ * Services are fetched from /public/services.json during SSR.
+ * This approach allows the data source to be easily swapped to
+ * a database API endpoint in the future.
+ */
+const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
+---
+
+<Layout
+	title={t.title}
+	description={t.subtitle}
+	lang={currentLang}
+>
+	<div class="container mx-auto px-4 py-8 max-w-7xl">
+		<header class="mb-8">
+			<div class="flex justify-between items-start mb-4">
+				<div>
+					<h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">{t.title}</h1>
+					<p class="text-lg text-gray-600 dark:text-gray-400">{t.subtitle}</p>
+				</div>
+				<div class="flex gap-2">
+					<ThemeToggle />
+					<a
+						href="/?lang=en"
+						class={`px-4 py-2 rounded-lg font-medium transition-colors border ${currentLang === 'en' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+					>
+						English
+					</a>
+					<a
+						href="/?lang=es"
+						class={`px-4 py-2 rounded-lg font-medium transition-colors border ${currentLang === 'es' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+					>
+						Español
+					</a>
+				</div>
+			</div>
+
+			<div class="relative">
+				<input
+					type="text"
+					id="search"
+					placeholder={t.searchPlaceholder}
+					class="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+				/>
+				<Icon
+					name="mdi:magnify"
+					class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500"
+				/>
+			</div>
+		</header>
+
+		<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/50 overflow-hidden border border-gray-200 dark:border-gray-700">
+			<div class="overflow-x-auto">
+				<table class="w-full">
+					<thead class="bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+						<tr>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.categoryColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.awsColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.azureColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">{t.descriptionColumn}</th>
+						</tr>
+					</thead>
+					<tbody id="services-table">
+						{services.map((service, index) => (
+							<tr
+								class={`border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors service-row`}
+								data-category={service.categoryName[currentLang].toLowerCase()}
+								data-aws={service.aws.toLowerCase()}
+								data-azure={service.azure.toLowerCase()}
+								data-description={service.description[currentLang].toLowerCase()}
+							>
+								<td class="px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">
+									{service.categoryName[currentLang]}
+								</td>
+								<td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">
+									{service.aws}
+								</td>
+								<td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 font-medium">
+									{service.azure}
+								</td>
+								<td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+									{service.description[currentLang]}
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+			<div id="no-results" class="hidden p-8 text-center text-gray-500 dark:text-gray-400">
+				{t.noResults}
+			</div>
+		</div>
+
+		<div id="pagination" class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+			<div class="text-sm text-gray-600 dark:text-gray-400">
+				<span id="pagination-info">{t.showing} 1-20 {t.of} {services.length} {t.services}</span>
+			</div>
+			<div class="flex gap-2">
+				<button
+					id="prev-page"
+					class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+					disabled
+				>
+					<Icon name="mdi:chevron-left" class="w-5 h-5" />
+				</button>
+				<div id="page-numbers" class="flex gap-1">
+				</div>
+				<button
+					id="next-page"
+					class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+				>
+					<Icon name="mdi:chevron-right" class="w-5 h-5" />
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script define:vars={{ showing: t.showing, of: t.of, services: t.services, previous: t.previous, next: t.next }}>
+		/**
+		 * Pagination state management.
+		 *
+		 * Tracks current page, items per page, and filtered results
+		 * to provide smooth pagination with search functionality.
+		 */
+		let currentPage = 1;
+		const itemsPerPage = 20;
+		let filteredRows = [];
+
+		/**
+		 * Get all visible (filtered) service rows.
+		 *
+		 * Returns only rows that match the current search query
+		 * and are not hidden by the filter function.
+		 *
+		 * @returns Array of visible HTMLElement rows
+		 */
+		function getFilteredRows() {
+			const rows = document.querySelectorAll('.service-row');
+			return Array.from(rows).filter((row) => {
+				const element = row;
+				return element.dataset.matches !== 'false';
+			});
+		}
+
+		/**
+		 * Display services for the current page.
+		 *
+		 * Shows only the subset of services corresponding to the
+		 * current page number. Hides all other services and updates
+		 * the pagination UI (page numbers, buttons, info text).
+		 *
+		 * @param page - Page number to display (1-indexed)
+		 */
+		function showPage(page) {
+			const allRows = document.querySelectorAll('.service-row');
+			filteredRows = getFilteredRows();
+			const totalPages = Math.max(1, Math.ceil(filteredRows.length / itemsPerPage));
+
+			currentPage = Math.max(1, Math.min(page, totalPages));
+
+			allRows.forEach((row) => {
+				row.style.display = 'none';
+			});
+
+			const start = (currentPage - 1) * itemsPerPage;
+			const end = start + itemsPerPage;
+
+			filteredRows.forEach((row, index) => {
+				if (index >= start && index < end) {
+					row.style.display = '';
+				}
+			});
+
+			updatePaginationUI(totalPages);
+		}
+
+		/**
+		 * Update pagination UI elements.
+		 *
+		 * Updates page number buttons, previous/next button states,
+		 * and the information text showing current range of items.
+		 * Creates clickable page number buttons with proper styling.
+		 *
+		 * @param totalPages - Total number of pages available
+		 */
+		function updatePaginationUI(totalPages) {
+			const prevButton = document.getElementById('prev-page');
+			const nextButton = document.getElementById('next-page');
+			const pageNumbers = document.getElementById('page-numbers');
+			const paginationInfo = document.getElementById('pagination-info');
+			const pagination = document.getElementById('pagination');
+
+			if (filteredRows.length === 0 || totalPages <= 1) {
+				pagination.style.display = 'none';
+				return;
+			}
+
+			pagination.style.display = 'flex';
+
+			prevButton.disabled = currentPage === 1;
+			nextButton.disabled = currentPage === totalPages;
+
+			const start = (currentPage - 1) * itemsPerPage + 1;
+			const end = Math.min(currentPage * itemsPerPage, filteredRows.length);
+			paginationInfo.textContent = `${showing} ${start}-${end} ${of} ${filteredRows.length} ${services}`;
+
+			pageNumbers.innerHTML = '';
+			const maxButtons = 5;
+			let startPage = Math.max(1, currentPage - 2);
+			let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+			if (endPage - startPage < maxButtons - 1) {
+				startPage = Math.max(1, endPage - maxButtons + 1);
+			}
+
+			for (let i = startPage; i <= endPage; i++) {
+				const button = document.createElement('button');
+				button.textContent = i.toString();
+				button.className = `px-4 py-2 rounded-lg border transition-colors ${
+					i === currentPage
+						? 'bg-blue-600 text-white border-blue-600'
+						: 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700'
+				}`;
+				button.addEventListener('click', () => showPage(i));
+				pageNumbers.appendChild(button);
+			}
+		}
+
+		/**
+		 * Filter service table rows based on search query.
+		 *
+		 * Performs case-insensitive matching against category name,
+		 * AWS service name, Azure service name, and description.
+		 * After filtering, resets to page 1 and updates pagination.
+		 *
+		 * @param search - User's search query string
+		 */
+		function filterServices(search) {
+			const rows = document.querySelectorAll('.service-row');
+			const noResults = document.getElementById('no-results');
+			const searchLower = search.toLowerCase().trim();
+
+			rows.forEach((row) => {
+				const element = row;
+				const category = element.dataset.category || '';
+				const aws = element.dataset.aws || '';
+				const azure = element.dataset.azure || '';
+				const description = element.dataset.description || '';
+
+				const matches =
+					searchLower === '' ||
+					category.includes(searchLower) ||
+					aws.includes(searchLower) ||
+					azure.includes(searchLower) ||
+					description.includes(searchLower);
+
+				// store match state; display is controlled by showPage
+				if (matches) {
+					delete element.dataset.matches;
+				} else {
+					element.dataset.matches = 'false';
+				}
+			});
+
+			filteredRows = getFilteredRows();
+			const hasResults = filteredRows.length > 0;
+
+			noResults.style.display = hasResults ? 'none' : 'block';
+
+			showPage(1);
+		}
+
+		/**
+		 * Initialize pagination and search functionality.
+		 *
+		 * Sets up event listeners for search input and pagination buttons.
+		 * Displays the first page of results on initial load.
+		 */
+		const searchInput = document.getElementById('search');
+		const prevButton = document.getElementById('prev-page');
+		const nextButton = document.getElementById('next-page');
+
+		if (searchInput) {
+			searchInput.addEventListener('input', (e) => {
+				filterServices(e.target.value);
+			});
+		}
+
+		if (prevButton) {
+			prevButton.addEventListener('click', () => showPage(currentPage - 1));
+		}
+
+		if (nextButton) {
+			nextButton.addEventListener('click', () => showPage(currentPage + 1));
+		}
+
+		showPage(1);
+	</script>
+</Layout>
