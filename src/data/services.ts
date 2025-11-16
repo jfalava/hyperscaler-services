@@ -15,9 +15,9 @@ export interface ServiceTranslations {
 }
 
 /**
- * Represents a mapping between equivalent AWS and Azure services.
+ * Represents a mapping between equivalent AWS, Azure, and GCP services.
  *
- * Each service includes category information, service names from both
+ * Each service includes category information, service names from all three
  * providers, and localized descriptions to help users understand
  * the purpose and equivalence of the services.
  */
@@ -26,6 +26,7 @@ export interface ServiceMapping {
   categoryName: ServiceTranslations;
   aws: string;
   azure: string;
+  gcp: string;
   description: ServiceTranslations;
 }
 

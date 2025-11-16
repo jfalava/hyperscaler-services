@@ -8,6 +8,7 @@ export interface HTMLElementWithDataset extends HTMLElement {
     category: string;
     aws: string;
     azure: string;
+    gcp: string;
     description: string;
     matches?: string;
   };
@@ -111,6 +112,7 @@ export class ServiceManager {
       const category = this.normalizeString(element.dataset.category || "");
       const aws = this.normalizeString(element.dataset.aws || "");
       const azure = this.normalizeString(element.dataset.azure || "");
+      const gcp = this.normalizeString(element.dataset.gcp || "");
       const description = this.normalizeString(
         element.dataset.description || "",
       );
@@ -120,6 +122,7 @@ export class ServiceManager {
         category.includes(searchNormalized) ||
         aws.includes(searchNormalized) ||
         azure.includes(searchNormalized) ||
+        gcp.includes(searchNormalized) ||
         description.includes(searchNormalized);
 
       if (matches) {
