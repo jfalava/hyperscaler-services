@@ -4,6 +4,7 @@
     "categoryName": { "en": "Account Management", "es": "Gestión de Cuentas" },
     "aws": "AWS Organization Root",
     "azure": "Azure Tenant (Microsoft Entra)",
+    "gcp": "Google Cloud Organization",
     "description": {
       "en": "Top-level organizational structure for managing users, groups, and applications",
       "es": "Estructura organizacional de nivel superior para administrar usuarios, grupos y aplicaciones"
@@ -14,6 +15,7 @@
     "categoryName": { "en": "Account Management", "es": "Gestión de Cuentas" },
     "aws": "AWS Account",
     "azure": "Azure Subscription",
+    "gcp": "Google Cloud Project",
     "description": {
       "en": "Logical unit for services linked to billing and resource management boundaries",
       "es": "Unidad lógica para servicios vinculados a límites de facturación y administración de recursos"
@@ -24,6 +26,7 @@
     "categoryName": { "en": "Account Management", "es": "Gestión de Cuentas" },
     "aws": "Organizational Units (OUs)",
     "azure": "Management Groups",
+    "gcp": "Folders",
     "description": {
       "en": "Hierarchical structures for organizing and managing resources across multiple accounts/subscriptions",
       "es": "Estructuras jerárquicas para organizar y administrar recursos en múltiples cuentas/suscripciones"
@@ -37,6 +40,7 @@
     },
     "aws": "IAM Roles & Resource-Based Policies",
     "azure": "Azure RBAC",
+    "gcp": "IAM & Service Accounts",
     "description": {
       "en": "Cross-account/subscription access management",
       "es": "Gestión de acceso entre cuentas/suscripciones"
@@ -47,6 +51,7 @@
     "categoryName": { "en": "Governance", "es": "Gobernanza" },
     "aws": "Service Control Policies (SCPs)",
     "azure": "Azure Policy",
+    "gcp": "Organization Policies",
     "description": {
       "en": "Governance enforcement for compliance standards",
       "es": "Aplicación de gobernanza para estándares de cumplimiento"
@@ -57,6 +62,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "EC2",
     "azure": "Virtual Machines",
+    "gcp": "Compute Engine",
     "description": {
       "en": "On-demand virtual machines billed per second",
       "es": "Máquinas virtuales a petición facturadas por segundo"
@@ -67,6 +73,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "VMware Cloud on AWS",
     "azure": "Azure VMware Solution",
+    "gcp": "Google Cloud VMware Engine",
     "description": {
       "en": "Enables migration of VMware vSphere environments",
       "es": "Permite la migración de entornos VMware vSphere"
@@ -77,6 +84,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "AWS ParallelCluster",
     "azure": "Azure CycleCloud",
+    "gcp": "HPC Toolkit",
     "description": {
       "en": "Facilitates creation and management of HPC clusters",
       "es": "Facilita la creación y gestión de clústeres de HPC"
@@ -87,6 +95,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "AWS Auto Scaling",
     "azure": "Virtual Machine Scale Sets",
+    "gcp": "Managed Instance Groups",
     "description": {
       "en": "Automatic scaling of compute resources",
       "es": "Escalado automático de recursos de cómputo"
@@ -97,6 +106,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "AWS Batch",
     "azure": "Azure Batch",
+    "gcp": "Batch",
     "description": {
       "en": "Managed batch processing service",
       "es": "Servicio de procesamiento por lotes administrado"
@@ -107,6 +117,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "Lambda",
     "azure": "Functions",
+    "gcp": "Cloud Functions",
     "description": {
       "en": "Serverless compute service",
       "es": "Servicio de cómputo sin servidor"
@@ -117,6 +128,7 @@
     "categoryName": { "en": "Compute", "es": "Cómputo" },
     "aws": "Elastic Beanstalk",
     "azure": "App Service",
+    "gcp": "App Engine",
     "description": {
       "en": "Platform as a Service for web apps",
       "es": "Plataforma como servicio para aplicaciones web"
@@ -127,6 +139,7 @@
     "categoryName": { "en": "Containers", "es": "Contenedores" },
     "aws": "ECS / EKS",
     "azure": "Container Instances / AKS",
+    "gcp": "Cloud Run / GKE",
     "description": {
       "en": "Container orchestration services",
       "es": "Servicios de orquestación de contenedores"
@@ -137,6 +150,7 @@
     "categoryName": { "en": "Containers", "es": "Contenedores" },
     "aws": "ECR",
     "azure": "Container Registry",
+    "gcp": "Artifact Registry",
     "description": {
       "en": "Managed container image registry",
       "es": "Registro de imágenes de contenedores administrado"
@@ -147,6 +161,7 @@
     "categoryName": { "en": "Containers", "es": "Contenedores" },
     "aws": "EKS",
     "azure": "AKS",
+    "gcp": "GKE",
     "description": {
       "en": "Managed Kubernetes service",
       "es": "Servicio de Kubernetes administrado"
@@ -157,6 +172,7 @@
     "categoryName": { "en": "Containers", "es": "Contenedores" },
     "aws": "App Mesh",
     "azure": "Istio add-on for AKS",
+    "gcp": "Anthos Service Mesh",
     "description": {
       "en": "Service mesh for microservices",
       "es": "Malla de servicios para microservicios"
@@ -167,6 +183,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "S3",
     "azure": "Blob Storage",
+    "gcp": "Cloud Storage",
     "description": {
       "en": "Object storage service",
       "es": "Servicio de almacenamiento de objetos"
@@ -177,6 +194,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "EBS",
     "azure": "Managed Disks",
+    "gcp": "Persistent Disk",
     "description": {
       "en": "Block storage for virtual machines",
       "es": "Almacenamiento en bloques para máquinas virtuales"
@@ -187,6 +205,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "EFS",
     "azure": "Files",
+    "gcp": "Filestore",
     "description": {
       "en": "Managed file storage service",
       "es": "Servicio de almacenamiento de archivos administrado"
@@ -197,6 +216,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "Glacier",
     "azure": "Archive Storage",
+    "gcp": "Cloud Storage Archive",
     "description": {
       "en": "Long-term archive storage",
       "es": "Almacenamiento de archivo a largo plazo"
@@ -207,6 +227,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "FSX for NetApp ONTAP",
     "azure": "Elastic SAN",
+    "gcp": "Hyperdisk",
     "description": {
       "en": "Cloud-based storage area network",
       "es": "Red de área de almacenamiento basada en la nube"
@@ -217,6 +238,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "FSX for Windows File Server",
     "azure": "Azure Files",
+    "gcp": "Filestore",
     "description": {
       "en": "Managed SMB file share",
       "es": "Recurso compartido de archivos SMB administrado"
@@ -227,6 +249,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "FSX for Lustre",
     "azure": "Azure Managed Lustre",
+    "gcp": "Parallelstore",
     "description": {
       "en": "Managed Lustre file system for HPC",
       "es": "Sistema de archivos Lustre administrado para HPC"
@@ -237,6 +260,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "FSX for NetApp ONTAP",
     "azure": "Azure NetApp Files",
+    "gcp": "NetApp Volumes",
     "description": {
       "en": "Managed NetApp capabilities",
       "es": "Capacidades de NetApp administradas"
@@ -247,6 +271,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "S3 Infrequent Access",
     "azure": "Cool Blob Storage",
+    "gcp": "Cloud Storage Nearline",
     "description": {
       "en": "Lower-cost tier for infrequent data",
       "es": "Nivel de menor costo para datos poco frecuentes"
@@ -257,6 +282,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "S3 Glacier Deep Archive",
     "azure": "Archive Access Tier",
+    "gcp": "Cloud Storage Archive",
     "description": {
       "en": "Lowest storage cost with extended recovery",
       "es": "Costo de almacenamiento más bajo con recuperación extendida"
@@ -267,6 +293,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "AWS Backup",
     "azure": "Azure Backup",
+    "gcp": "Backup and DR Service",
     "description": {
       "en": "Backup and recovery service",
       "es": "Servicio de copia de seguridad y recuperación"
@@ -277,6 +304,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "DataSync",
     "azure": "File Sync",
+    "gcp": "Storage Transfer Service",
     "description": {
       "en": "Data synchronization service",
       "es": "Servicio de sincronización de datos"
@@ -287,6 +315,7 @@
     "categoryName": { "en": "Storage", "es": "Almacenamiento" },
     "aws": "Snowball Edge",
     "azure": "Data Box",
+    "gcp": "Transfer Appliance",
     "description": {
       "en": "Petabyte-scale data transport",
       "es": "Transporte de datos a escala de petabytes"
@@ -297,6 +326,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "RDS",
     "azure": "SQL Database",
+    "gcp": "Cloud SQL",
     "description": {
       "en": "Managed relational database service",
       "es": "Servicio de base de datos relacional administrado"
@@ -307,6 +337,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "RDS for MySQL",
     "azure": "Database for MySQL",
+    "gcp": "Cloud SQL for MySQL",
     "description": {
       "en": "Managed MySQL database",
       "es": "Base de datos MySQL administrada"
@@ -317,6 +348,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "RDS for PostgreSQL",
     "azure": "Database for PostgreSQL",
+    "gcp": "Cloud SQL for PostgreSQL",
     "description": {
       "en": "Managed PostgreSQL database",
       "es": "Base de datos PostgreSQL administrada"
@@ -327,6 +359,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "Aurora Serverless",
     "azure": "SQL Database Serverless",
+    "gcp": "AlloyDB",
     "description": {
       "en": "Auto-scales compute based on demand",
       "es": "Escala automáticamente el proceso según la demanda"
@@ -337,6 +370,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "DynamoDB",
     "azure": "Cosmos DB",
+    "gcp": "Firestore",
     "description": {
       "en": "Multi-model NoSQL database",
       "es": "Base de datos NoSQL multimodelo"
@@ -347,6 +381,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "DocumentDB",
     "azure": "Cosmos DB",
+    "gcp": "Firestore",
     "description": {
       "en": "Document database service",
       "es": "Servicio de base de datos de documentos"
@@ -357,6 +392,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "Neptune",
     "azure": "Cosmos DB",
+    "gcp": "Neo4j (on GCP)",
     "description": {
       "en": "Graph database service",
       "es": "Servicio de base de datos de grafos"
@@ -367,6 +403,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "ElastiCache",
     "azure": "Cache for Redis",
+    "gcp": "Memorystore",
     "description": {
       "en": "In-memory caching service",
       "es": "Servicio de caché en memoria"
@@ -377,6 +414,7 @@
     "categoryName": { "en": "Database", "es": "Base de Datos" },
     "aws": "MemoryDB for Redis",
     "azure": "Cache for Redis",
+    "gcp": "Memorystore for Redis",
     "description": {
       "en": "High-performance Redis-compatible store",
       "es": "Almacén compatible con Redis de alto rendimiento"
@@ -390,6 +428,7 @@
     },
     "aws": "Redshift",
     "azure": "Synapse Analytics",
+    "gcp": "BigQuery",
     "description": {
       "en": "Petabyte-scale data warehouse",
       "es": "Almacén de datos a escala de petabytes"
@@ -403,6 +442,7 @@
     },
     "aws": "Redshift Spectrum",
     "azure": "OneLake Shortcuts",
+    "gcp": "BigLake",
     "description": {
       "en": "Query external data without movement",
       "es": "Consulta de datos externos sin movimiento"
@@ -413,6 +453,7 @@
     "categoryName": { "en": "Data Lakes", "es": "Lagos de Datos" },
     "aws": "Lake Formation",
     "azure": "OneLake",
+    "gcp": "Dataplex",
     "description": {
       "en": "Data lake governance and security",
       "es": "Gobernanza y seguridad de lagos de datos"
@@ -423,6 +464,7 @@
     "categoryName": { "en": "Data Lakes", "es": "Lagos de Datos" },
     "aws": "Athena",
     "azure": "Fabric Lakehouse",
+    "gcp": "BigQuery",
     "description": {
       "en": "Serverless query engine",
       "es": "Motor de consulta sin servidor"
@@ -433,6 +475,7 @@
     "categoryName": { "en": "Data Integration", "es": "Integración de Datos" },
     "aws": "Glue",
     "azure": "Data Factory",
+    "gcp": "Dataflow",
     "description": {
       "en": "Managed ETL service",
       "es": "Servicio ETL administrado"
@@ -443,6 +486,7 @@
     "categoryName": { "en": "Data Integration", "es": "Integración de Datos" },
     "aws": "MWAA",
     "azure": "Fabric Apache Airflow",
+    "gcp": "Cloud Composer",
     "description": {
       "en": "Managed workflow orchestration",
       "es": "Orquestación de flujos de trabajo administrados"
@@ -453,6 +497,7 @@
     "categoryName": { "en": "Data Integration", "es": "Integración de Datos" },
     "aws": "AppFlow",
     "azure": "Logic Apps",
+    "gcp": "Application Integration",
     "description": {
       "en": "Low-code data flow automation",
       "es": "Automatización de flujos de datos de bajo código"
@@ -463,6 +508,7 @@
     "categoryName": { "en": "Data Integration", "es": "Integración de Datos" },
     "aws": "Step Functions",
     "azure": "Logic Apps",
+    "gcp": "Workflows",
     "description": {
       "en": "Workflow orchestration service",
       "es": "Servicio de orquestación de flujos de trabajo"
@@ -473,6 +519,7 @@
     "categoryName": { "en": "Data Migration", "es": "Migración de Datos" },
     "aws": "DMS",
     "azure": "Database Migration Service",
+    "gcp": "Database Migration Service",
     "description": {
       "en": "Cloud migration service",
       "es": "Servicio de migración en la nube"
@@ -483,6 +530,7 @@
     "categoryName": { "en": "Data Governance", "es": "Gobernanza de Datos" },
     "aws": "Glue Data Catalog",
     "azure": "Microsoft Purview",
+    "gcp": "Dataplex",
     "description": {
       "en": "Unified data governance solution",
       "es": "Solución unificada de gobernanza de datos"
@@ -493,6 +541,7 @@
     "categoryName": { "en": "Big Data", "es": "Big Data" },
     "aws": "EMR",
     "azure": "HDInsight",
+    "gcp": "Dataproc",
     "description": {
       "en": "Managed Hadoop and Spark service",
       "es": "Servicio administrado de Hadoop y Spark"
@@ -503,6 +552,7 @@
     "categoryName": { "en": "Big Data", "es": "Big Data" },
     "aws": "Kinesis",
     "azure": "Event Hubs / Stream Analytics",
+    "gcp": "Pub/Sub + Dataflow",
     "description": {
       "en": "Real-time data streaming",
       "es": "Transmisión de datos en tiempo real"
@@ -513,6 +563,7 @@
     "categoryName": { "en": "Big Data", "es": "Big Data" },
     "aws": "MSK",
     "azure": "Event Hubs",
+    "gcp": "Pub/Sub",
     "description": {
       "en": "Managed Kafka clusters",
       "es": "Clústeres de Kafka administrados"
@@ -526,6 +577,7 @@
     },
     "aws": "QuickSight",
     "azure": "Power BI",
+    "gcp": "Looker",
     "description": {
       "en": "Analytics and visualization tools",
       "es": "Herramientas de análisis y visualización"
@@ -539,6 +591,7 @@
     },
     "aws": "SageMaker",
     "azure": "Machine Learning",
+    "gcp": "Vertex AI",
     "description": {
       "en": "End-to-end ML platform",
       "es": "Plataforma de ML de extremo a extremo"
@@ -552,6 +605,7 @@
     },
     "aws": "SageMaker Autopilot",
     "azure": "Automated ML",
+    "gcp": "Vertex AI AutoML",
     "description": {
       "en": "Automated machine learning",
       "es": "Aprendizaje automático automatizado"
@@ -562,6 +616,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Rekognition",
     "azure": "Computer Vision",
+    "gcp": "Vision AI",
     "description": {
       "en": "Image and video analysis",
       "es": "Análisis de imágenes y video"
@@ -572,6 +627,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Polly",
     "azure": "Speech (Text-to-Speech)",
+    "gcp": "Text-to-Speech",
     "description": {
       "en": "Neural voice conversion",
       "es": "Conversión de voz neuronal"
@@ -582,6 +638,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Transcribe",
     "azure": "Speech (Speech-to-Text)",
+    "gcp": "Speech-to-Text",
     "description": {
       "en": "Audio transcription service",
       "es": "Servicio de transcripción de audio"
@@ -592,6 +649,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Translate",
     "azure": "Translator",
+    "gcp": "Translation AI",
     "description": {
       "en": "Neural machine translation",
       "es": "Traducción automática neuronal"
@@ -602,6 +660,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Comprehend",
     "azure": "Text Analytics",
+    "gcp": "Natural Language AI",
     "description": {
       "en": "Natural language processing",
       "es": "Procesamiento de lenguaje natural"
@@ -612,6 +671,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Lex",
     "azure": "Conversational Language Understanding",
+    "gcp": "Dialogflow",
     "description": {
       "en": "Conversational interfaces",
       "es": "Interfaces conversacionales"
@@ -622,6 +682,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "Textract",
     "azure": "Document Intelligence",
+    "gcp": "Document AI",
     "description": {
       "en": "Document data extraction",
       "es": "Extracción de datos de documentos"
@@ -632,6 +693,7 @@
     "categoryName": { "en": "AI Services", "es": "Servicios de IA" },
     "aws": "OpenSearch Service",
     "azure": "AI Search",
+    "gcp": "Vertex AI Search",
     "description": {
       "en": "Enterprise search service",
       "es": "Servicio de búsqueda empresarial"
@@ -642,6 +704,7 @@
     "categoryName": { "en": "Generative AI", "es": "IA Generativa" },
     "aws": "Bedrock",
     "azure": "AI Foundry",
+    "gcp": "Vertex AI (Model Garden)",
     "description": {
       "en": "Foundation model platform",
       "es": "Plataforma de modelos fundamentales"
@@ -652,6 +715,7 @@
     "categoryName": { "en": "Messaging", "es": "Mensajería" },
     "aws": "SQS",
     "azure": "Queue Storage / Service Bus",
+    "gcp": "Pub/Sub",
     "description": {
       "en": "Message queue service",
       "es": "Servicio de cola de mensajes"
@@ -662,6 +726,7 @@
     "categoryName": { "en": "Messaging", "es": "Mensajería" },
     "aws": "SNS",
     "azure": "Service Bus / Event Grid",
+    "gcp": "Pub/Sub",
     "description": {
       "en": "Pub/sub messaging service",
       "es": "Servicio de mensajería pub/sub"
@@ -672,6 +737,7 @@
     "categoryName": { "en": "Messaging", "es": "Mensajería" },
     "aws": "EventBridge",
     "azure": "Event Grid",
+    "gcp": "Eventarc",
     "description": {
       "en": "Event routing service",
       "es": "Servicio de enrutamiento de eventos"
@@ -682,6 +748,7 @@
     "categoryName": { "en": "Messaging", "es": "Mensajería" },
     "aws": "MQ",
     "azure": "Service Bus",
+    "gcp": "Cloud Tasks",
     "description": {
       "en": "JMS 2.0 API compatible messaging",
       "es": "Mensajería compatible con API JMS 2.0"
@@ -692,6 +759,7 @@
     "categoryName": { "en": "Communication", "es": "Comunicación" },
     "aws": "SES",
     "azure": "Communication Services",
+    "gcp": "SendGrid (third-party)",
     "description": {
       "en": "Email sending service",
       "es": "Servicio de envío de correos electrónicos"
@@ -702,6 +770,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "VPC",
     "azure": "Virtual Network",
+    "gcp": "VPC",
     "description": {
       "en": "Private network in the cloud",
       "es": "Red privada en la nube"
@@ -712,6 +781,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "NAT Gateway",
     "azure": "NAT Gateway",
+    "gcp": "Cloud NAT",
     "description": {
       "en": "Outbound Internet connectivity",
       "es": "Conectividad de Internet de salida"
@@ -722,6 +792,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Route Tables",
     "azure": "User Defined Routes",
+    "gcp": "Routes",
     "description": {
       "en": "Custom network routing",
       "es": "Enrutamiento de red personalizado"
@@ -732,6 +803,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Site-to-Site VPN",
     "azure": "VPN Gateway",
+    "gcp": "Cloud VPN",
     "description": {
       "en": "VPN connectivity up to 10 Gbps",
       "es": "Conectividad VPN de hasta 10 Gbps"
@@ -742,6 +814,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Direct Connect",
     "azure": "ExpressRoute",
+    "gcp": "Cloud Interconnect",
     "description": {
       "en": "Dedicated private network connections",
       "es": "Conexiones de red privadas dedicadas"
@@ -752,6 +825,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Network Load Balancer",
     "azure": "Load Balancer",
+    "gcp": "Network Load Balancing",
     "description": {
       "en": "Layer 4 TCP/UDP load balancing",
       "es": "Equilibrio de carga TCP/UDP de capa 4"
@@ -762,6 +836,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Application Load Balancer",
     "azure": "Application Gateway",
+    "gcp": "Cloud Load Balancing",
     "description": {
       "en": "Layer 7 application load balancing",
       "es": "Equilibrio de carga de aplicaciones de capa 7"
@@ -772,6 +847,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Route 53",
     "azure": "DNS",
+    "gcp": "Cloud DNS",
     "description": {
       "en": "Domain name system service",
       "es": "Servicio de sistema de nombres de dominio"
@@ -782,6 +858,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Route 53",
     "azure": "Traffic Manager",
+    "gcp": "Cloud DNS",
     "description": {
       "en": "DNS-level traffic routing",
       "es": "Enrutamiento de tráfico a nivel de DNS"
@@ -792,6 +869,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Global Accelerator",
     "azure": "Traffic Manager",
+    "gcp": "Cloud Load Balancing",
     "description": {
       "en": "Global routing and performance",
       "es": "Enrutamiento global y rendimiento"
@@ -802,6 +880,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "CloudFront",
     "azure": "CDN",
+    "gcp": "Cloud CDN",
     "description": {
       "en": "Content delivery network",
       "es": "Red de distribución de contenido"
@@ -812,6 +891,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "PrivateLink",
     "azure": "Private Link",
+    "gcp": "Private Service Connect",
     "description": {
       "en": "Private connectivity to PaaS",
       "es": "Conectividad privada a PaaS"
@@ -822,6 +902,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "VPC Endpoints",
     "azure": "Private Endpoint",
+    "gcp": "Private Service Connect",
     "description": {
       "en": "Private endpoint connectivity",
       "es": "Conectividad de punto final privado"
@@ -832,6 +913,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "VPC Peering",
     "azure": "Virtual Network Peering",
+    "gcp": "VPC Peering",
     "description": {
       "en": "Connect virtual networks",
       "es": "Conectar redes virtuales"
@@ -842,6 +924,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "Transit Gateway",
     "azure": "Virtual WAN",
+    "gcp": "Network Connectivity Center",
     "description": {
       "en": "Multi-environment network connectivity",
       "es": "Conectividad de red de múltiples entornos"
@@ -852,6 +935,7 @@
     "categoryName": { "en": "Networking", "es": "Redes" },
     "aws": "VPC Flow Logs",
     "azure": "Network Watcher",
+    "gcp": "VPC Flow Logs",
     "description": {
       "en": "Network traffic monitoring",
       "es": "Monitoreo de tráfico de red"
@@ -865,6 +949,7 @@
     },
     "aws": "IAM",
     "azure": "Active Directory / Entra ID",
+    "gcp": "Cloud Identity / IAM",
     "description": {
       "en": "Identity and access management",
       "es": "Gestión de identidad y acceso"
@@ -878,6 +963,7 @@
     },
     "aws": "IAM Identity Center",
     "azure": "Microsoft Entra ID",
+    "gcp": "Cloud Identity",
     "description": {
       "en": "Centralized identity management with SSO",
       "es": "Gestión de identidades centralizada con SSO"
@@ -891,6 +977,7 @@
     },
     "aws": "Organizations",
     "azure": "Management Groups",
+    "gcp": "Resource Manager",
     "description": {
       "en": "Hierarchical account management",
       "es": "Gestión jerárquica de cuentas"
@@ -904,6 +991,7 @@
     },
     "aws": "Directory Service",
     "azure": "Entra Domain Services",
+    "gcp": "Managed Service for Microsoft AD",
     "description": {
       "en": "Managed directory services",
       "es": "Servicios de directorio administrados"
@@ -917,6 +1005,7 @@
     },
     "aws": "MFA",
     "azure": "Entra MFA",
+    "gcp": "2-Step Verification",
     "description": {
       "en": "Multi-factor authentication",
       "es": "Autenticación multifactor"
@@ -930,6 +1019,7 @@
     },
     "aws": "KMS",
     "azure": "Key Vault",
+    "gcp": "Cloud KMS",
     "description": {
       "en": "Key management service",
       "es": "Servicio de gestión de claves"
@@ -943,6 +1033,7 @@
     },
     "aws": "WAF",
     "azure": "Web Application Firewall",
+    "gcp": "Cloud Armor",
     "description": {
       "en": "Web application firewall",
       "es": "Cortafuegos de aplicaciones web"
@@ -956,6 +1047,7 @@
     },
     "aws": "Secrets Manager",
     "azure": "Key Vault Secrets",
+    "gcp": "Secret Manager",
     "description": {
       "en": "Secrets management service",
       "es": "Servicio de gestión de secretos"
@@ -969,6 +1061,7 @@
     },
     "aws": "Cognito",
     "azure": "Microsoft Identity Platform",
+    "gcp": "Identity Platform",
     "description": {
       "en": "Complete identity platform",
       "es": "Plataforma de identidad completa"
@@ -979,6 +1072,7 @@
     "categoryName": { "en": "Monitoring", "es": "Monitoreo" },
     "aws": "CloudWatch",
     "azure": "Monitor",
+    "gcp": "Cloud Monitoring",
     "description": {
       "en": "Monitoring and observability service",
       "es": "Servicio de monitoreo y observabilidad"
@@ -989,6 +1083,7 @@
     "categoryName": { "en": "Monitoring", "es": "Monitoreo" },
     "aws": "CloudTrail",
     "azure": "Activity Log",
+    "gcp": "Cloud Logging",
     "description": {
       "en": "Audit and compliance logging",
       "es": "Registro de auditoría y cumplimiento"
@@ -999,6 +1094,7 @@
     "categoryName": { "en": "Monitoring", "es": "Monitoreo" },
     "aws": "Systems Manager",
     "azure": "Automation",
+    "gcp": "Cloud Operations",
     "description": {
       "en": "Operations management service",
       "es": "Servicio de gestión de operaciones"
@@ -1009,6 +1105,7 @@
     "categoryName": { "en": "Infrastructure", "es": "Infraestructura" },
     "aws": "CloudFormation",
     "azure": "ARM Templates",
+    "gcp": "Deployment Manager",
     "description": {
       "en": "Infrastructure as code templates",
       "es": "Plantillas de infraestructura como código"
@@ -1019,6 +1116,7 @@
     "categoryName": { "en": "Infrastructure", "es": "Infraestructura" },
     "aws": "Management Console",
     "azure": "Portal",
+    "gcp": "Cloud Console",
     "description": {
       "en": "Web-based management interface",
       "es": "Interfaz de gestión basada en web"
@@ -1029,6 +1127,7 @@
     "categoryName": { "en": "Infrastructure", "es": "Infraestructura" },
     "aws": "CLI",
     "azure": "CLI",
+    "gcp": "gcloud CLI",
     "description": {
       "en": "Command-line interface",
       "es": "Interfaz de línea de comandos"
@@ -1039,6 +1138,7 @@
     "categoryName": { "en": "IoT", "es": "IoT" },
     "aws": "IoT Analytics",
     "azure": "Event Streams + KQL Database",
+    "gcp": "IoT Core + BigQuery",
     "description": {
       "en": "IoT data collection and analysis",
       "es": "Recopilación y análisis de datos de IoT"
