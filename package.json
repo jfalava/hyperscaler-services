@@ -1,7 +1,7 @@
 {
   "name": "hyperscaler-services",
   "type": "module",
-  "version": "0.1",
+  "version": "0.1.1",
   "scripts": {
     "dev": "astro dev",
     "build": "bun run cf-typegen && astro build",
@@ -19,12 +19,12 @@
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.15.5",
+    "astro": "^5.15.8",
     "astro-icon": "^1.1.5"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "@typescript/native-preview": "^7.0.0-dev.20251112.1",
+    "@typescript/native-preview": "^7.0.0-dev.20251116.1",
     "oxlint": "^1.28.0",
     "oxlint-tsgolint": "^0.6.0",
     "prettier": "^3.6.2",
