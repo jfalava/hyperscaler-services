@@ -1,9 +1,10 @@
 ---
 /**
- * Main page displaying AWS, Azure, and GCP service comparisons.
+ * Main page displaying multi-cloud service comparisons.
  *
  * Renders a bilingual (English/Spanish) table of cloud service
- * equivalents between AWS, Azure, and Google Cloud Platform. Users can:
+ * equivalents across AWS, Azure, Google Cloud, Oracle Cloud, and Cloudflare.
+ * Users can:
  * - Switch languages via URL parameter (?lang=en or ?lang=es)
  * - Search/filter services in real-time using the search bar
  * - Browse services organized by category
@@ -46,6 +47,8 @@ interface PageTranslations {
 	awsColumn: string;
 	azureColumn: string;
 	gcpColumn: string;
+	oracleColumn: string;
+	cloudflareColumn: string;
 	categoryColumn: string;
 	descriptionColumn: string;
 	noResults: string;
@@ -83,14 +86,16 @@ const getTranslations = (currentLang: string): PageTranslations => {
 	return {
 		title: currentLang === 'es' ? 'Servicios de Hyperscalers' : 'Hyperscaler Services',
 		subtitle: currentLang === 'es'
-			? 'Compara servicios equivalentes entre AWS, Azure y Google Cloud'
-			: 'Compare equivalent services between AWS, Azure, and Google Cloud',
+			? 'Compara servicios equivalentes entre AWS, Azure, Google Cloud, Oracle Cloud y Cloudflare'
+			: 'Compare equivalent services between AWS, Azure, Google Cloud, Oracle Cloud, and Cloudflare',
 		searchPlaceholder: currentLang === 'es'
 			? 'Buscar servicios...'
 			: 'Search services...',
 		awsColumn: 'AWS',
 		azureColumn: 'Azure',
 		gcpColumn: 'GCP',
+		oracleColumn: 'Oracle',
+		cloudflareColumn: 'Cloudflare',
 		categoryColumn: currentLang === 'es' ? 'Categoría' : 'Category',
 		descriptionColumn: currentLang === 'es' ? 'Descripción' : 'Description',
 		noResults: currentLang === 'es'
@@ -155,6 +160,8 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.awsColumn}</th>
 							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.azureColumn}</th>
 							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.gcpColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.oracleColumn}</th>
+							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.cloudflareColumn}</th>
 							<th class="px-6 py-4 text-left text-sm font-semibold text-foreground">{t.descriptionColumn}</th>
 						</tr>
 					</thead>
@@ -166,6 +173,8 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 								data-aws={service.aws.toLowerCase()}
 								data-azure={service.azure.toLowerCase()}
 								data-gcp={service.gcp.toLowerCase()}
+								data-oracle={service.oracle.toLowerCase()}
+								data-cloudflare={service.cloudflare.toLowerCase()}
 								data-description={service.description[currentLang].toLowerCase()}
 							>
 								<td class="px-6 py-4 text-sm font-medium text-muted-foreground">
@@ -179,6 +188,12 @@ const services: ServiceMapping[] = await fetchServices(Astro.url.origin);
 								</td>
 								<td class="px-6 py-4 text-sm text-foreground font-medium">
 									{service.gcp}
+								</td>
+								<td class="px-6 py-4 text-sm text-foreground font-medium">
+									{service.oracle}
+								</td>
+								<td class="px-6 py-4 text-sm text-foreground font-medium">
+									{service.cloudflare}
 								</td>
 								<td class="px-6 py-4 text-sm text-muted-foreground">
 									{service.description[currentLang]}

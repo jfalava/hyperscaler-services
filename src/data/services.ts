@@ -15,9 +15,9 @@ export interface ServiceTranslations {
 }
 
 /**
- * Represents a mapping between equivalent AWS, Azure, and GCP services.
+ * Represents a mapping between equivalent cloud services across providers.
  *
- * Each service includes category information, service names from all three
+ * Each service includes category information, service names from all
  * providers, and localized descriptions to help users understand
  * the purpose and equivalence of the services.
  */
@@ -27,6 +27,8 @@ export interface ServiceMapping {
   aws: string;
   azure: string;
   gcp: string;
+  oracle: string;
+  cloudflare: string;
   description: ServiceTranslations;
 }
 

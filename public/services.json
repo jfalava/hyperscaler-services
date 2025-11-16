@@ -5,6 +5,8 @@
     "aws": "AWS Organization Root",
     "azure": "Azure Tenant (Microsoft Entra)",
     "gcp": "Google Cloud Organization",
+    "oracle": "OCI Tenancy",
+    "cloudflare": "Cloudflare Account",
     "description": {
       "en": "Top-level organizational structure for managing users, groups, and applications",
       "es": "Estructura organizacional de nivel superior para administrar usuarios, grupos y aplicaciones"
@@ -16,6 +18,8 @@
     "aws": "AWS Account",
     "azure": "Azure Subscription",
     "gcp": "Google Cloud Project",
+    "oracle": "OCI Compartment",
+    "cloudflare": "Cloudflare Zone",
     "description": {
       "en": "Logical unit for services linked to billing and resource management boundaries",
       "es": "Unidad lógica para servicios vinculados a límites de facturación y administración de recursos"
@@ -27,6 +31,8 @@
     "aws": "Organizational Units (OUs)",
     "azure": "Management Groups",
     "gcp": "Folders",
+    "oracle": "Compartment Hierarchy",
+    "cloudflare": "Account Members",
     "description": {
       "en": "Hierarchical structures for organizing and managing resources across multiple accounts/subscriptions",
       "es": "Estructuras jerárquicas para organizar y administrar recursos en múltiples cuentas/suscripciones"
@@ -41,6 +47,8 @@
     "aws": "IAM Roles & Resource-Based Policies",
     "azure": "Azure RBAC",
     "gcp": "IAM & Service Accounts",
+    "oracle": "OCI IAM Policies",
+    "cloudflare": "Access Policies",
     "description": {
       "en": "Cross-account/subscription access management",
       "es": "Gestión de acceso entre cuentas/suscripciones"
@@ -52,6 +60,8 @@
     "aws": "Service Control Policies (SCPs)",
     "azure": "Azure Policy",
     "gcp": "Organization Policies",
+    "oracle": "OCI Governance Rules",
+    "cloudflare": "Page Rules",
     "description": {
       "en": "Governance enforcement for compliance standards",
       "es": "Aplicación de gobernanza para estándares de cumplimiento"
@@ -63,6 +73,8 @@
     "aws": "EC2",
     "azure": "Virtual Machines",
     "gcp": "Compute Engine",
+    "oracle": "OCI Compute",
+    "cloudflare": "—",
     "description": {
       "en": "On-demand virtual machines billed per second",
       "es": "Máquinas virtuales a petición facturadas por segundo"
@@ -74,6 +86,8 @@
     "aws": "VMware Cloud on AWS",
     "azure": "Azure VMware Solution",
     "gcp": "Google Cloud VMware Engine",
+    "oracle": "Oracle Cloud VMware Solution",
+    "cloudflare": "—",
     "description": {
       "en": "Enables migration of VMware vSphere environments",
       "es": "Permite la migración de entornos VMware vSphere"
@@ -85,6 +99,8 @@
     "aws": "AWS ParallelCluster",
     "azure": "Azure CycleCloud",
     "gcp": "HPC Toolkit",
+    "oracle": "OCI HPC",
+    "cloudflare": "—",
     "description": {
       "en": "Facilitates creation and management of HPC clusters",
       "es": "Facilita la creación y gestión de clústeres de HPC"
@@ -96,6 +112,8 @@
     "aws": "AWS Auto Scaling",
     "azure": "Virtual Machine Scale Sets",
     "gcp": "Managed Instance Groups",
+    "oracle": "Autoscaling",
+    "cloudflare": "Workers (auto-scale)",
     "description": {
       "en": "Automatic scaling of compute resources",
       "es": "Escalado automático de recursos de cómputo"
@@ -107,6 +125,8 @@
     "aws": "AWS Batch",
     "azure": "Azure Batch",
     "gcp": "Batch",
+    "oracle": "Resource Manager Jobs",
+    "cloudflare": "Queues",
     "description": {
       "en": "Managed batch processing service",
       "es": "Servicio de procesamiento por lotes administrado"
@@ -118,6 +138,8 @@
     "aws": "Lambda",
     "azure": "Functions",
     "gcp": "Cloud Functions",
+    "oracle": "OCI Functions",
+    "cloudflare": "Workers",
     "description": {
       "en": "Serverless compute service",
       "es": "Servicio de cómputo sin servidor"
@@ -129,6 +151,8 @@
     "aws": "Elastic Beanstalk",
     "azure": "App Service",
     "gcp": "App Engine",
+    "oracle": "OCI DevOps",
+    "cloudflare": "Pages",
     "description": {
       "en": "Platform as a Service for web apps",
       "es": "Plataforma como servicio para aplicaciones web"
@@ -140,6 +164,8 @@
     "aws": "ECS / EKS",
     "azure": "Container Instances / AKS",
     "gcp": "Cloud Run / GKE",
+    "oracle": "Container Instances / OKE",
+    "cloudflare": "—",
     "description": {
       "en": "Container orchestration services",
       "es": "Servicios de orquestación de contenedores"
@@ -151,6 +177,8 @@
     "aws": "ECR",
     "azure": "Container Registry",
     "gcp": "Artifact Registry",
+    "oracle": "Container Registry",
+    "cloudflare": "—",
     "description": {
       "en": "Managed container image registry",
       "es": "Registro de imágenes de contenedores administrado"
@@ -162,6 +190,8 @@
     "aws": "EKS",
     "azure": "AKS",
     "gcp": "GKE",
+    "oracle": "OKE",
+    "cloudflare": "—",
     "description": {
       "en": "Managed Kubernetes service",
       "es": "Servicio de Kubernetes administrado"
@@ -173,6 +203,8 @@
     "aws": "App Mesh",
     "azure": "Istio add-on for AKS",
     "gcp": "Anthos Service Mesh",
+    "oracle": "Service Mesh",
+    "cloudflare": "—",
     "description": {
       "en": "Service mesh for microservices",
       "es": "Malla de servicios para microservicios"
@@ -184,6 +216,8 @@
     "aws": "S3",
     "azure": "Blob Storage",
     "gcp": "Cloud Storage",
+    "oracle": "Object Storage",
+    "cloudflare": "R2",
     "description": {
       "en": "Object storage service",
       "es": "Servicio de almacenamiento de objetos"
@@ -195,6 +229,8 @@
     "aws": "EBS",
     "azure": "Managed Disks",
     "gcp": "Persistent Disk",
+    "oracle": "Block Volumes",
+    "cloudflare": "—",
     "description": {
       "en": "Block storage for virtual machines",
       "es": "Almacenamiento en bloques para máquinas virtuales"
@@ -206,6 +242,8 @@
     "aws": "EFS",
     "azure": "Files",
     "gcp": "Filestore",
+    "oracle": "File Storage",
+    "cloudflare": "—",
     "description": {
       "en": "Managed file storage service",
       "es": "Servicio de almacenamiento de archivos administrado"
@@ -217,6 +255,8 @@
     "aws": "Glacier",
     "azure": "Archive Storage",
     "gcp": "Cloud Storage Archive",
+    "oracle": "Archive Storage",
+    "cloudflare": "—",
     "description": {
       "en": "Long-term archive storage",
       "es": "Almacenamiento de archivo a largo plazo"
@@ -228,6 +268,8 @@
     "aws": "FSX for NetApp ONTAP",
     "azure": "Elastic SAN",
     "gcp": "Hyperdisk",
+    "oracle": "Ultra High Performance",
+    "cloudflare": "—",
     "description": {
       "en": "Cloud-based storage area network",
       "es": "Red de área de almacenamiento basada en la nube"
@@ -239,6 +281,8 @@
     "aws": "FSX for Windows File Server",
     "azure": "Azure Files",
     "gcp": "Filestore",
+    "oracle": "File Storage",
+    "cloudflare": "—",
     "description": {
       "en": "Managed SMB file share",
       "es": "Recurso compartido de archivos SMB administrado"
@@ -250,6 +294,8 @@
     "aws": "FSX for Lustre",
     "azure": "Azure Managed Lustre",
     "gcp": "Parallelstore",
+    "oracle": "File Storage (NFS)",
+    "cloudflare": "—",
     "description": {
       "en": "Managed Lustre file system for HPC",
       "es": "Sistema de archivos Lustre administrado para HPC"
@@ -261,6 +307,8 @@
     "aws": "FSX for NetApp ONTAP",
     "azure": "Azure NetApp Files",
     "gcp": "NetApp Volumes",
+    "oracle": "NetApp on OCI",
+    "cloudflare": "—",
     "description": {
       "en": "Managed NetApp capabilities",
       "es": "Capacidades de NetApp administradas"
@@ -272,6 +320,8 @@
     "aws": "S3 Infrequent Access",
     "azure": "Cool Blob Storage",
     "gcp": "Cloud Storage Nearline",
+    "oracle": "Infrequent Access",
+    "cloudflare": "—",
     "description": {
       "en": "Lower-cost tier for infrequent data",
       "es": "Nivel de menor costo para datos poco frecuentes"
@@ -283,6 +333,8 @@
     "aws": "S3 Glacier Deep Archive",
     "azure": "Archive Access Tier",
     "gcp": "Cloud Storage Archive",
+    "oracle": "Archive Storage",
+    "cloudflare": "—",
     "description": {
       "en": "Lowest storage cost with extended recovery",
       "es": "Costo de almacenamiento más bajo con recuperación extendida"
@@ -294,6 +346,8 @@
     "aws": "AWS Backup",
     "azure": "Azure Backup",
     "gcp": "Backup and DR Service",
+    "oracle": "Cloud Backup",
+    "cloudflare": "—",
     "description": {
       "en": "Backup and recovery service",
       "es": "Servicio de copia de seguridad y recuperación"
@@ -305,6 +359,8 @@
     "aws": "DataSync",
     "azure": "File Sync",
     "gcp": "Storage Transfer Service",
+    "oracle": "Data Transfer",
+    "cloudflare": "—",
     "description": {
       "en": "Data synchronization service",
       "es": "Servicio de sincronización de datos"
@@ -316,6 +372,8 @@
     "aws": "Snowball Edge",
     "azure": "Data Box",
     "gcp": "Transfer Appliance",
+    "oracle": "Data Transfer Appliance",
+    "cloudflare": "—",
     "description": {
       "en": "Petabyte-scale data transport",
       "es": "Transporte de datos a escala de petabytes"
@@ -327,6 +385,8 @@
     "aws": "RDS",
     "azure": "SQL Database",
     "gcp": "Cloud SQL",
+    "oracle": "Base Database Service",
+    "cloudflare": "D1",
     "description": {
       "en": "Managed relational database service",
       "es": "Servicio de base de datos relacional administrado"
@@ -338,6 +398,8 @@
     "aws": "RDS for MySQL",
     "azure": "Database for MySQL",
     "gcp": "Cloud SQL for MySQL",
+    "oracle": "MySQL Database Service",
+    "cloudflare": "D1",
     "description": {
       "en": "Managed MySQL database",
       "es": "Base de datos MySQL administrada"
@@ -349,6 +411,8 @@
     "aws": "RDS for PostgreSQL",
     "azure": "Database for PostgreSQL",
     "gcp": "Cloud SQL for PostgreSQL",
+    "oracle": "PostgreSQL Service",
+    "cloudflare": "D1",
     "description": {
       "en": "Managed PostgreSQL database",
       "es": "Base de datos PostgreSQL administrada"
@@ -360,6 +424,8 @@
     "aws": "Aurora Serverless",
     "azure": "SQL Database Serverless",
     "gcp": "AlloyDB",
+    "oracle": "Autonomous Database",
+    "cloudflare": "D1",
     "description": {
       "en": "Auto-scales compute based on demand",
       "es": "Escala automáticamente el proceso según la demanda"
@@ -371,6 +437,8 @@
     "aws": "DynamoDB",
     "azure": "Cosmos DB",
     "gcp": "Firestore",
+    "oracle": "NoSQL Database",
+    "cloudflare": "Workers KV",
     "description": {
       "en": "Multi-model NoSQL database",
       "es": "Base de datos NoSQL multimodelo"
@@ -382,6 +450,8 @@
     "aws": "DocumentDB",
     "azure": "Cosmos DB",
     "gcp": "Firestore",
+    "oracle": "NoSQL Database",
+    "cloudflare": "Durable Objects",
     "description": {
       "en": "Document database service",
       "es": "Servicio de base de datos de documentos"
@@ -393,6 +463,8 @@
     "aws": "Neptune",
     "azure": "Cosmos DB",
     "gcp": "Neo4j (on GCP)",
+    "oracle": "Graph Studio",
+    "cloudflare": "—",
     "description": {
       "en": "Graph database service",
       "es": "Servicio de base de datos de grafos"
@@ -404,6 +476,8 @@
     "aws": "ElastiCache",
     "azure": "Cache for Redis",
     "gcp": "Memorystore",
+    "oracle": "OCI Cache",
+    "cloudflare": "Workers KV",
     "description": {
       "en": "In-memory caching service",
       "es": "Servicio de caché en memoria"
@@ -415,6 +489,8 @@
     "aws": "MemoryDB for Redis",
     "azure": "Cache for Redis",
     "gcp": "Memorystore for Redis",
+    "oracle": "OCI Cache with Redis",
+    "cloudflare": "Workers KV",
     "description": {
       "en": "High-performance Redis-compatible store",
       "es": "Almacén compatible con Redis de alto rendimiento"
@@ -429,6 +505,8 @@
     "aws": "Redshift",
     "azure": "Synapse Analytics",
     "gcp": "BigQuery",
+    "oracle": "Autonomous Data Warehouse",
+    "cloudflare": "Analytics Engine",
     "description": {
       "en": "Petabyte-scale data warehouse",
       "es": "Almacén de datos a escala de petabytes"
@@ -443,6 +521,8 @@
     "aws": "Redshift Spectrum",
     "azure": "OneLake Shortcuts",
     "gcp": "BigLake",
+    "oracle": "Data Catalog",
+    "cloudflare": "—",
     "description": {
       "en": "Query external data without movement",
       "es": "Consulta de datos externos sin movimiento"
@@ -454,6 +534,8 @@
     "aws": "Lake Formation",
     "azure": "OneLake",
     "gcp": "Dataplex",
+    "oracle": "Data Lake",
+    "cloudflare": "—",
     "description": {
       "en": "Data lake governance and security",
       "es": "Gobernanza y seguridad de lagos de datos"
@@ -465,6 +547,8 @@
     "aws": "Athena",
     "azure": "Fabric Lakehouse",
     "gcp": "BigQuery",
+    "oracle": "Autonomous Database",
+    "cloudflare": "—",
     "description": {
       "en": "Serverless query engine",
       "es": "Motor de consulta sin servidor"
@@ -476,6 +560,8 @@
     "aws": "Glue",
     "azure": "Data Factory",
     "gcp": "Dataflow",
+    "oracle": "Data Integration",
+    "cloudflare": "—",
     "description": {
       "en": "Managed ETL service",
       "es": "Servicio ETL administrado"
@@ -487,6 +573,8 @@
     "aws": "MWAA",
     "azure": "Fabric Apache Airflow",
     "gcp": "Cloud Composer",
+    "oracle": "Data Flow",
+    "cloudflare": "—",
     "description": {
       "en": "Managed workflow orchestration",
       "es": "Orquestación de flujos de trabajo administrados"
@@ -498,6 +586,8 @@
     "aws": "AppFlow",
     "azure": "Logic Apps",
     "gcp": "Application Integration",
+    "oracle": "Integration Cloud",
+    "cloudflare": "Workers",
     "description": {
       "en": "Low-code data flow automation",
       "es": "Automatización de flujos de datos de bajo código"
@@ -509,6 +599,8 @@
     "aws": "Step Functions",
     "azure": "Logic Apps",
     "gcp": "Workflows",
+    "oracle": "Process Automation",
+    "cloudflare": "Durable Objects",
     "description": {
       "en": "Workflow orchestration service",
       "es": "Servicio de orquestación de flujos de trabajo"
@@ -520,6 +612,8 @@
     "aws": "DMS",
     "azure": "Database Migration Service",
     "gcp": "Database Migration Service",
+    "oracle": "Zero Downtime Migration",
+    "cloudflare": "—",
     "description": {
       "en": "Cloud migration service",
       "es": "Servicio de migración en la nube"
@@ -531,6 +625,8 @@
     "aws": "Glue Data Catalog",
     "azure": "Microsoft Purview",
     "gcp": "Dataplex",
+    "oracle": "Data Catalog",
+    "cloudflare": "—",
     "description": {
       "en": "Unified data governance solution",
       "es": "Solución unificada de gobernanza de datos"
@@ -542,6 +638,8 @@
     "aws": "EMR",
     "azure": "HDInsight",
     "gcp": "Dataproc",
+    "oracle": "Big Data Service",
+    "cloudflare": "—",
     "description": {
       "en": "Managed Hadoop and Spark service",
       "es": "Servicio administrado de Hadoop y Spark"
@@ -553,6 +651,8 @@
     "aws": "Kinesis",
     "azure": "Event Hubs / Stream Analytics",
     "gcp": "Pub/Sub + Dataflow",
+    "oracle": "Streaming",
+    "cloudflare": "Stream",
     "description": {
       "en": "Real-time data streaming",
       "es": "Transmisión de datos en tiempo real"
@@ -564,6 +664,8 @@
     "aws": "MSK",
     "azure": "Event Hubs",
     "gcp": "Pub/Sub",
+    "oracle": "Streaming (Kafka)",
+    "cloudflare": "—",
     "description": {
       "en": "Managed Kafka clusters",
       "es": "Clústeres de Kafka administrados"
@@ -578,6 +680,8 @@
     "aws": "QuickSight",
     "azure": "Power BI",
     "gcp": "Looker",
+    "oracle": "Analytics Cloud",
+    "cloudflare": "Web Analytics",
     "description": {
       "en": "Analytics and visualization tools",
       "es": "Herramientas de análisis y visualización"
@@ -592,6 +696,8 @@
     "aws": "SageMaker",
     "azure": "Machine Learning",
     "gcp": "Vertex AI",
+    "oracle": "Data Science",
+    "cloudflare": "AI Gateway",
     "description": {
       "en": "End-to-end ML platform",
       "es": "Plataforma de ML de extremo a extremo"
@@ -606,6 +712,8 @@
     "aws": "SageMaker Autopilot",
     "azure": "Automated ML",
     "gcp": "Vertex AI AutoML",
+    "oracle": "AutoML",
+    "cloudflare": "Workers AI",
     "description": {
       "en": "Automated machine learning",
       "es": "Aprendizaje automático automatizado"
@@ -617,6 +725,8 @@
     "aws": "Rekognition",
     "azure": "Computer Vision",
     "gcp": "Vision AI",
+    "oracle": "Vision",
+    "cloudflare": "AI (Inference)",
     "description": {
       "en": "Image and video analysis",
       "es": "Análisis de imágenes y video"
@@ -628,6 +738,8 @@
     "aws": "Polly",
     "azure": "Speech (Text-to-Speech)",
     "gcp": "Text-to-Speech",
+    "oracle": "Speech",
+    "cloudflare": "—",
     "description": {
       "en": "Neural voice conversion",
       "es": "Conversión de voz neuronal"
@@ -639,6 +751,8 @@
     "aws": "Transcribe",
     "azure": "Speech (Speech-to-Text)",
     "gcp": "Speech-to-Text",
+    "oracle": "Speech",
+    "cloudflare": "—",
     "description": {
       "en": "Audio transcription service",
       "es": "Servicio de transcripción de audio"
@@ -650,6 +764,8 @@
     "aws": "Translate",
     "azure": "Translator",
     "gcp": "Translation AI",
+    "oracle": "Language",
+    "cloudflare": "—",
     "description": {
       "en": "Neural machine translation",
       "es": "Traducción automática neuronal"
@@ -661,6 +777,8 @@
     "aws": "Comprehend",
     "azure": "Text Analytics",
     "gcp": "Natural Language AI",
+    "oracle": "Language",
+    "cloudflare": "—",
     "description": {
       "en": "Natural language processing",
       "es": "Procesamiento de lenguaje natural"
@@ -672,6 +790,8 @@
     "aws": "Lex",
     "azure": "Conversational Language Understanding",
     "gcp": "Dialogflow",
+    "oracle": "Digital Assistant",
+    "cloudflare": "—",
     "description": {
       "en": "Conversational interfaces",
       "es": "Interfaces conversacionales"
@@ -683,6 +803,8 @@
     "aws": "Textract",
     "azure": "Document Intelligence",
     "gcp": "Document AI",
+    "oracle": "Document Understanding",
+    "cloudflare": "—",
     "description": {
       "en": "Document data extraction",
       "es": "Extracción de datos de documentos"
@@ -694,6 +816,8 @@
     "aws": "OpenSearch Service",
     "azure": "AI Search",
     "gcp": "Vertex AI Search",
+    "oracle": "Search",
+    "cloudflare": "Vectorize",
     "description": {
       "en": "Enterprise search service",
       "es": "Servicio de búsqueda empresarial"
@@ -705,6 +829,8 @@
     "aws": "Bedrock",
     "azure": "AI Foundry",
     "gcp": "Vertex AI (Model Garden)",
+    "oracle": "Generative AI",
+    "cloudflare": "Workers AI",
     "description": {
       "en": "Foundation model platform",
       "es": "Plataforma de modelos fundamentales"
@@ -716,6 +842,8 @@
     "aws": "SQS",
     "azure": "Queue Storage / Service Bus",
     "gcp": "Pub/Sub",
+    "oracle": "Queue",
+    "cloudflare": "Queues",
     "description": {
       "en": "Message queue service",
       "es": "Servicio de cola de mensajes"
@@ -727,6 +855,8 @@
     "aws": "SNS",
     "azure": "Service Bus / Event Grid",
     "gcp": "Pub/Sub",
+    "oracle": "Notifications",
+    "cloudflare": "Pub/Sub",
     "description": {
       "en": "Pub/sub messaging service",
       "es": "Servicio de mensajería pub/sub"
@@ -738,6 +868,8 @@
     "aws": "EventBridge",
     "azure": "Event Grid",
     "gcp": "Eventarc",
+    "oracle": "Events",
+    "cloudflare": "Workers (event-driven)",
     "description": {
       "en": "Event routing service",
       "es": "Servicio de enrutamiento de eventos"
@@ -749,6 +881,8 @@
     "aws": "MQ",
     "azure": "Service Bus",
     "gcp": "Cloud Tasks",
+    "oracle": "Advanced Queuing",
+    "cloudflare": "—",
     "description": {
       "en": "JMS 2.0 API compatible messaging",
       "es": "Mensajería compatible con API JMS 2.0"
@@ -760,6 +894,8 @@
     "aws": "SES",
     "azure": "Communication Services",
     "gcp": "SendGrid (third-party)",
+    "oracle": "Email Delivery",
+    "cloudflare": "Email Routing",
     "description": {
       "en": "Email sending service",
       "es": "Servicio de envío de correos electrónicos"
@@ -771,6 +907,8 @@
     "aws": "VPC",
     "azure": "Virtual Network",
     "gcp": "VPC",
+    "oracle": "VCN",
+    "cloudflare": "Magic WAN",
     "description": {
       "en": "Private network in the cloud",
       "es": "Red privada en la nube"
@@ -782,6 +920,8 @@
     "aws": "NAT Gateway",
     "azure": "NAT Gateway",
     "gcp": "Cloud NAT",
+    "oracle": "NAT Gateway",
+    "cloudflare": "—",
     "description": {
       "en": "Outbound Internet connectivity",
       "es": "Conectividad de Internet de salida"
@@ -793,6 +933,8 @@
     "aws": "Route Tables",
     "azure": "User Defined Routes",
     "gcp": "Routes",
+    "oracle": "Route Tables",
+    "cloudflare": "—",
     "description": {
       "en": "Custom network routing",
       "es": "Enrutamiento de red personalizado"
@@ -804,6 +946,8 @@
     "aws": "Site-to-Site VPN",
     "azure": "VPN Gateway",
     "gcp": "Cloud VPN",
+    "oracle": "Site-to-Site VPN",
+    "cloudflare": "Magic WAN",
     "description": {
       "en": "VPN connectivity up to 10 Gbps",
       "es": "Conectividad VPN de hasta 10 Gbps"
@@ -815,6 +959,8 @@
     "aws": "Direct Connect",
     "azure": "ExpressRoute",
     "gcp": "Cloud Interconnect",
+    "oracle": "FastConnect",
+    "cloudflare": "Network Interconnect",
     "description": {
       "en": "Dedicated private network connections",
       "es": "Conexiones de red privadas dedicadas"
@@ -826,6 +972,8 @@
     "aws": "Network Load Balancer",
     "azure": "Load Balancer",
     "gcp": "Network Load Balancing",
+    "oracle": "Network Load Balancer",
+    "cloudflare": "Load Balancing",
     "description": {
       "en": "Layer 4 TCP/UDP load balancing",
       "es": "Equilibrio de carga TCP/UDP de capa 4"
@@ -837,6 +985,8 @@
     "aws": "Application Load Balancer",
     "azure": "Application Gateway",
     "gcp": "Cloud Load Balancing",
+    "oracle": "Load Balancer",
+    "cloudflare": "Load Balancing",
     "description": {
       "en": "Layer 7 application load balancing",
       "es": "Equilibrio de carga de aplicaciones de capa 7"
@@ -848,6 +998,8 @@
     "aws": "Route 53",
     "azure": "DNS",
     "gcp": "Cloud DNS",
+    "oracle": "DNS",
+    "cloudflare": "DNS",
     "description": {
       "en": "Domain name system service",
       "es": "Servicio de sistema de nombres de dominio"
@@ -859,6 +1011,8 @@
     "aws": "Route 53",
     "azure": "Traffic Manager",
     "gcp": "Cloud DNS",
+    "oracle": "Traffic Management",
+    "cloudflare": "Traffic",
     "description": {
       "en": "DNS-level traffic routing",
       "es": "Enrutamiento de tráfico a nivel de DNS"
@@ -870,6 +1024,8 @@
     "aws": "Global Accelerator",
     "azure": "Traffic Manager",
     "gcp": "Cloud Load Balancing",
+    "oracle": "Traffic Management",
+    "cloudflare": "Argo Smart Routing",
     "description": {
       "en": "Global routing and performance",
       "es": "Enrutamiento global y rendimiento"
@@ -881,6 +1037,8 @@
     "aws": "CloudFront",
     "azure": "CDN",
     "gcp": "Cloud CDN",
+    "oracle": "CDN",
+    "cloudflare": "CDN",
     "description": {
       "en": "Content delivery network",
       "es": "Red de distribución de contenido"
@@ -892,6 +1050,8 @@
     "aws": "PrivateLink",
     "azure": "Private Link",
     "gcp": "Private Service Connect",
+    "oracle": "Private Endpoint",
+    "cloudflare": "—",
     "description": {
       "en": "Private connectivity to PaaS",
       "es": "Conectividad privada a PaaS"
@@ -903,6 +1063,8 @@
     "aws": "VPC Endpoints",
     "azure": "Private Endpoint",
     "gcp": "Private Service Connect",
+    "oracle": "Service Gateway",
+    "cloudflare": "—",
     "description": {
       "en": "Private endpoint connectivity",
       "es": "Conectividad de punto final privado"
@@ -914,6 +1076,8 @@
     "aws": "VPC Peering",
     "azure": "Virtual Network Peering",
     "gcp": "VPC Peering",
+    "oracle": "VCN Peering",
+    "cloudflare": "—",
     "description": {
       "en": "Connect virtual networks",
       "es": "Conectar redes virtuales"
@@ -925,6 +1089,8 @@
     "aws": "Transit Gateway",
     "azure": "Virtual WAN",
     "gcp": "Network Connectivity Center",
+    "oracle": "DRG (Dynamic Routing Gateway)",
+    "cloudflare": "—",
     "description": {
       "en": "Multi-environment network connectivity",
       "es": "Conectividad de red de múltiples entornos"
@@ -936,6 +1102,8 @@
     "aws": "VPC Flow Logs",
     "azure": "Network Watcher",
     "gcp": "VPC Flow Logs",
+    "oracle": "VCN Flow Logs",
+    "cloudflare": "Network Analytics",
     "description": {
       "en": "Network traffic monitoring",
       "es": "Monitoreo de tráfico de red"
@@ -950,6 +1118,8 @@
     "aws": "IAM",
     "azure": "Active Directory / Entra ID",
     "gcp": "Cloud Identity / IAM",
+    "oracle": "IAM",
+    "cloudflare": "Access",
     "description": {
       "en": "Identity and access management",
       "es": "Gestión de identidad y acceso"
@@ -964,6 +1134,8 @@
     "aws": "IAM Identity Center",
     "azure": "Microsoft Entra ID",
     "gcp": "Cloud Identity",
+    "oracle": "Identity Domains",
+    "cloudflare": "Zero Trust",
     "description": {
       "en": "Centralized identity management with SSO",
       "es": "Gestión de identidades centralizada con SSO"
@@ -978,6 +1150,8 @@
     "aws": "Organizations",
     "azure": "Management Groups",
     "gcp": "Resource Manager",
+    "oracle": "Tenancy",
+    "cloudflare": "Account",
     "description": {
       "en": "Hierarchical account management",
       "es": "Gestión jerárquica de cuentas"
@@ -992,6 +1166,8 @@
     "aws": "Directory Service",
     "azure": "Entra Domain Services",
     "gcp": "Managed Service for Microsoft AD",
+    "oracle": "Microsoft AD",
+    "cloudflare": "—",
     "description": {
       "en": "Managed directory services",
       "es": "Servicios de directorio administrados"
@@ -1006,6 +1182,8 @@
     "aws": "MFA",
     "azure": "Entra MFA",
     "gcp": "2-Step Verification",
+    "oracle": "MFA",
+    "cloudflare": "Access (MFA)",
     "description": {
       "en": "Multi-factor authentication",
       "es": "Autenticación multifactor"
@@ -1020,6 +1198,8 @@
     "aws": "KMS",
     "azure": "Key Vault",
     "gcp": "Cloud KMS",
+    "oracle": "Vault",
+    "cloudflare": "—",
     "description": {
       "en": "Key management service",
       "es": "Servicio de gestión de claves"
@@ -1034,6 +1214,8 @@
     "aws": "WAF",
     "azure": "Web Application Firewall",
     "gcp": "Cloud Armor",
+    "oracle": "WAF",
+    "cloudflare": "WAF",
     "description": {
       "en": "Web application firewall",
       "es": "Cortafuegos de aplicaciones web"
@@ -1048,6 +1230,8 @@
     "aws": "Secrets Manager",
     "azure": "Key Vault Secrets",
     "gcp": "Secret Manager",
+    "oracle": "Vault (Secrets)",
+    "cloudflare": "—",
     "description": {
       "en": "Secrets management service",
       "es": "Servicio de gestión de secretos"
@@ -1062,6 +1246,8 @@
     "aws": "Cognito",
     "azure": "Microsoft Identity Platform",
     "gcp": "Identity Platform",
+    "oracle": "Identity Cloud Service",
+    "cloudflare": "Access",
     "description": {
       "en": "Complete identity platform",
       "es": "Plataforma de identidad completa"
@@ -1073,6 +1259,8 @@
     "aws": "CloudWatch",
     "azure": "Monitor",
     "gcp": "Cloud Monitoring",
+    "oracle": "Monitoring",
+    "cloudflare": "Analytics",
     "description": {
       "en": "Monitoring and observability service",
       "es": "Servicio de monitoreo y observabilidad"
@@ -1084,6 +1272,8 @@
     "aws": "CloudTrail",
     "azure": "Activity Log",
     "gcp": "Cloud Logging",
+    "oracle": "Audit",
+    "cloudflare": "Audit Logs",
     "description": {
       "en": "Audit and compliance logging",
       "es": "Registro de auditoría y cumplimiento"
@@ -1095,6 +1285,8 @@
     "aws": "Systems Manager",
     "azure": "Automation",
     "gcp": "Cloud Operations",
+    "oracle": "OS Management",
+    "cloudflare": "—",
     "description": {
       "en": "Operations management service",
       "es": "Servicio de gestión de operaciones"
@@ -1106,6 +1298,8 @@
     "aws": "CloudFormation",
     "azure": "ARM Templates",
     "gcp": "Deployment Manager",
+    "oracle": "Resource Manager",
+    "cloudflare": "Terraform",
     "description": {
       "en": "Infrastructure as code templates",
       "es": "Plantillas de infraestructura como código"
@@ -1117,6 +1311,8 @@
     "aws": "Management Console",
     "azure": "Portal",
     "gcp": "Cloud Console",
+    "oracle": "Console",
+    "cloudflare": "Dashboard",
     "description": {
       "en": "Web-based management interface",
       "es": "Interfaz de gestión basada en web"
@@ -1128,6 +1324,8 @@
     "aws": "CLI",
     "azure": "CLI",
     "gcp": "gcloud CLI",
+    "oracle": "OCI CLI",
+    "cloudflare": "Wrangler CLI",
     "description": {
       "en": "Command-line interface",
       "es": "Interfaz de línea de comandos"
@@ -1139,6 +1337,8 @@
     "aws": "IoT Analytics",
     "azure": "Event Streams + KQL Database",
     "gcp": "IoT Core + BigQuery",
+    "oracle": "IoT Cloud Service",
+    "cloudflare": "Pub/Sub",
     "description": {
       "en": "IoT data collection and analysis",
       "es": "Recopilación y análisis de datos de IoT"

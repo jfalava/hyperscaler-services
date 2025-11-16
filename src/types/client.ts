@@ -9,6 +9,8 @@ export interface HTMLElementWithDataset extends HTMLElement {
     aws: string;
     azure: string;
     gcp: string;
+    oracle: string;
+    cloudflare: string;
     description: string;
     matches?: string;
   };
@@ -113,6 +115,8 @@ export class ServiceManager {
       const aws = this.normalizeString(element.dataset.aws || "");
       const azure = this.normalizeString(element.dataset.azure || "");
       const gcp = this.normalizeString(element.dataset.gcp || "");
+      const oracle = this.normalizeString(element.dataset.oracle || "");
+      const cloudflare = this.normalizeString(element.dataset.cloudflare || "");
       const description = this.normalizeString(
         element.dataset.description || "",
       );
@@ -123,6 +127,8 @@ export class ServiceManager {
         aws.includes(searchNormalized) ||
         azure.includes(searchNormalized) ||
         gcp.includes(searchNormalized) ||
+        oracle.includes(searchNormalized) ||
+        cloudflare.includes(searchNormalized) ||
         description.includes(searchNormalized);
 
       if (matches) {
