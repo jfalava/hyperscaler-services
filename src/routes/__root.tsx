@@ -6,8 +6,17 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/styles/global.css";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/layout/footer";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
 
 export const Route = createRootRoute({
   head: () => ({
@@ -35,14 +44,14 @@ export const Route = createRootRoute({
             try {
               const theme = localStorage.getItem('theme') || 'system';
               const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-              
+
               // Apply theme immediately to prevent flash
               if (isDark) {
                 document.documentElement.classList.add('dark');
               } else {
                 document.documentElement.classList.remove('dark');
               }
-              
+
               // Set initial CSS variables to prevent flash
               document.documentElement.style.setProperty('color-scheme', isDark ? 'dark' : 'light');
             } catch (e) {
@@ -94,8 +103,10 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body className="bg-background text-foreground min-h-screen flex flex-col transition-colors duration-200">
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </QueryClientProvider>
         <Scripts />
       </body>
     </html>

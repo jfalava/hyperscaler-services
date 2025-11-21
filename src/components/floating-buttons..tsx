@@ -1,5 +1,5 @@
-import { ThemeToggle } from "./ThemeToggle";
-import { LanguageToggle } from "./LanguageToggle";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageToggle } from "@/components/language-toggle";
 
 interface FloatingButtonsProps {
   currentLang: "en" | "es";

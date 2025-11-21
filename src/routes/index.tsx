@@ -1,11 +1,18 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState, useEffect, useMemo } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { importServices } from "@/data/services";
-import { FloatingButtons } from "@/components/FloatingButtons";
-import { ServicesTable } from "@/components/ServicesTable";
-import { CustomPagination } from "@/components/CustomPagination";
-import { usePaginationStore } from "@/stores/pagination-store";
+import { FloatingButtons } from "@/components/floating-buttons.";
+import { ServicesTable } from "@/components/services-table";
+import { usePaginationStore } from "@/hooks/use-pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 // Server function to load services
 const getServices = createServerFn({
@@ -92,8 +99,7 @@ function Home() {
   const t = getTranslations(currentLang);
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const pagination = usePaginationStore();
 
   // Filter services based on search query
   const filteredServices = useMemo(() => {
@@ -122,19 +128,27 @@ function Home() {
     });
   }, [services, searchQuery, currentLang]);
 
+  // Update total items when filtered services change
+  useEffect(() => {
+    pagination.setTotalItems(filteredServices.length);
+  }, [filteredServices.length]);
+
   // Reset to page 1 when search changes
   useEffect(() => {
-    setCurrentPage(1);
+    pagination.setCurrentPage(1);
   }, [searchQuery]);
 
   // Pagination
   const totalPages = Math.max(
     1,
-    Math.ceil(filteredServices.length / itemsPerPage),
+    Math.ceil(filteredServices.length / pagination.itemsPerPage),
   );
-  const currentPageClamped = Math.max(1, Math.min(currentPage, totalPages));
-  const startIndex = (currentPageClamped - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const currentPageClamped = Math.max(
+    1,
+    Math.min(pagination.currentPage, totalPages),
+  );
+  const startIndex = (currentPageClamped - 1) * pagination.itemsPerPage;
+  const endIndex = startIndex + pagination.itemsPerPage;
   const paginatedServices = filteredServices.slice(startIndex, endIndex);
 
   // Keyboard navigation
@@ -142,16 +156,126 @@ function Home() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft" && currentPageClamped > 1) {
         e.preventDefault();
-        setCurrentPage((prev) => Math.max(1, prev - 1));
+        pagination.previousPage();
       } else if (e.key === "ArrowRight" && currentPageClamped < totalPages) {
         e.preventDefault();
-        setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+        pagination.nextPage();
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [currentPageClamped, totalPages]);
+
+  const generatePaginationItems = () => {
+    const items = [];
+    const total = totalPages;
+    const current = currentPageClamped;
+
+    // Previous button
+    items.push(
+      <PaginationItem key="prev">
+        <PaginationLink
+          onClick={pagination.previousPage}
+          className={current === 1 ? "pointer-events-none opacity-50" : ""}
+        >
+          <ChevronLeftIcon />
+          <span className="hidden sm:block">{t.previous}</span>
+        </PaginationLink>
+      </PaginationItem>,
+    );
+
+    // Page numbers
+    if (total <= 7) {
+      for (let i = 1; i <= total; i++) {
+        items.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              isActive={i === current}
+              onClick={() => pagination.goToPage(i)}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>,
+        );
+      }
+    } else {
+      // Show 1
+      items.push(
+        <PaginationItem key={1}>
+          <PaginationLink
+            isActive={1 === current}
+            onClick={() => pagination.goToPage(1)}
+          >
+            1
+          </PaginationLink>
+        </PaginationItem>,
+      );
+
+      // Ellipsis if needed
+      if (current > 4) {
+        items.push(
+          <PaginationItem key="ellipsis1">
+            <PaginationEllipsis />
+          </PaginationItem>,
+        );
+      }
+
+      // Pages around current
+      const start = Math.max(2, current - 1);
+      const end = Math.min(total - 1, current + 1);
+      for (let i = start; i <= end; i++) {
+        items.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              isActive={i === current}
+              onClick={() => pagination.goToPage(i)}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>,
+        );
+      }
+
+      // Ellipsis if needed
+      if (current < total - 3) {
+        items.push(
+          <PaginationItem key="ellipsis2">
+            <PaginationEllipsis />
+          </PaginationItem>,
+        );
+      }
+
+      // Last page
+      if (total > 1) {
+        items.push(
+          <PaginationItem key={total}>
+            <PaginationLink
+              isActive={total === current}
+              onClick={() => pagination.goToPage(total)}
+            >
+              {total}
+            </PaginationLink>
+          </PaginationItem>,
+        );
+      }
+    }
+
+    // Next button
+    items.push(
+      <PaginationItem key="next">
+        <PaginationLink
+          onClick={pagination.nextPage}
+          className={current === total ? "pointer-events-none opacity-50" : ""}
+        >
+          <span className="hidden sm:block">{t.next}</span>
+          <ChevronRightIcon />
+        </PaginationLink>
+      </PaginationItem>,
+    );
+
+    return items;
+  };
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 max-w-7xl">
@@ -209,12 +333,9 @@ function Home() {
       </div>
 
       {totalPages > 1 && (
-        <CustomPagination
-          currentPage={currentPageClamped}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          translations={{ previous: t.previous, next: t.next }}
-        />
+        <Pagination>
+          <PaginationContent>{generatePaginationItems()}</PaginationContent>
+        </Pagination>
       )}
     </div>
   );

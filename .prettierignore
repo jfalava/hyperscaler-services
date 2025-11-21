@@ -1,1 +1,3 @@
 worker-configuration.d.ts
+bun.lock
+src/routeTree.gen.ts

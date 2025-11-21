@@ -1,4 +1,4 @@
-import projectPackage from "../../package.json";
+import projectPackage from "../../../package.json";
 const VERSION = `${projectPackage.version}`;
 
 export function Footer() {

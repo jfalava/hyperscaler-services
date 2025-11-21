@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "bun run cf-typegen && vite dev",
     "check": "bun run typecheck && bun run lint",
-    "build": "vite build",
+    "build": "tsgo --noEmit && oxlint --type-aware --fix . && vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
     "lint": "bun run cf-typegen && oxlint --type-aware --fix .",
@@ -27,8 +27,7 @@
     "lucide-react": "^0.554.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwind-merge": "^3.4.0",
-    "zustand": "^5.0.8"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
