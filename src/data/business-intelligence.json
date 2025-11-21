@@ -1,0 +1,18 @@
+[
+  {
+    "category": "business-intelligence",
+    "categoryName": {
+      "en": "Business Intelligence",
+      "es": "Inteligencia de Negocios"
+    },
+    "aws": "QuickSight",
+    "azure": "Power BI",
+    "gcp": "Looker",
+    "oracle": "Analytics Cloud",
+    "cloudflare": "Web Analytics",
+    "description": {
+      "en": "Analytics and visualization tools",
+      "es": "Herramientas de análisis y visualización"
+    }
+  }
+]

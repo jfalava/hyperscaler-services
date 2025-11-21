@@ -1,0 +1,18 @@
+[
+  {
+    "category": "communication",
+    "categoryName": {
+      "en": "Communication",
+      "es": "Comunicación"
+    },
+    "aws": "SES",
+    "azure": "Communication Services",
+    "gcp": "SendGrid (third-party)",
+    "oracle": "Email Delivery",
+    "cloudflare": "Email Routing",
+    "description": {
+      "en": "Email sending service",
+      "es": "Servicio de envío de correos electrónicos"
+    }
+  }
+]

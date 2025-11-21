@@ -1,0 +1,66 @@
+[
+  {
+    "category": "containers",
+    "categoryName": {
+      "en": "Containers",
+      "es": "Contenedores"
+    },
+    "aws": "ECS / EKS",
+    "azure": "Container Instances / AKS",
+    "gcp": "Cloud Run / GKE",
+    "oracle": "Container Instances / OKE",
+    "cloudflare": "—",
+    "description": {
+      "en": "Container orchestration services",
+      "es": "Servicios de orquestación de contenedores"
+    }
+  },
+  {
+    "category": "containers",
+    "categoryName": {
+      "en": "Containers",
+      "es": "Contenedores"
+    },
+    "aws": "ECR",
+    "azure": "Container Registry",
+    "gcp": "Artifact Registry",
+    "oracle": "Container Registry",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed container image registry",
+      "es": "Registro de imágenes de contenedores administrado"
+    }
+  },
+  {
+    "category": "containers",
+    "categoryName": {
+      "en": "Containers",
+      "es": "Contenedores"
+    },
+    "aws": "EKS",
+    "azure": "AKS",
+    "gcp": "GKE",
+    "oracle": "OKE",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed Kubernetes service",
+      "es": "Servicio de Kubernetes administrado"
+    }
+  },
+  {
+    "category": "containers",
+    "categoryName": {
+      "en": "Containers",
+      "es": "Contenedores"
+    },
+    "aws": "App Mesh",
+    "azure": "Istio add-on for AKS",
+    "gcp": "Anthos Service Mesh",
+    "oracle": "Service Mesh",
+    "cloudflare": "—",
+    "description": {
+      "en": "Service mesh for microservices",
+      "es": "Malla de servicios para microservicios"
+    }
+  }
+]

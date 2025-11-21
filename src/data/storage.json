@@ -1,0 +1,210 @@
+[
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "S3",
+    "azure": "Blob Storage",
+    "gcp": "Cloud Storage",
+    "oracle": "Object Storage",
+    "cloudflare": "R2",
+    "description": {
+      "en": "Object storage service",
+      "es": "Servicio de almacenamiento de objetos"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "EBS",
+    "azure": "Managed Disks",
+    "gcp": "Persistent Disk",
+    "oracle": "Block Volumes",
+    "cloudflare": "—",
+    "description": {
+      "en": "Block storage for virtual machines",
+      "es": "Almacenamiento en bloques para máquinas virtuales"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "EFS",
+    "azure": "Files",
+    "gcp": "Filestore",
+    "oracle": "File Storage",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed file storage service",
+      "es": "Servicio de almacenamiento de archivos administrado"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "Glacier",
+    "azure": "Archive Storage",
+    "gcp": "Cloud Storage Archive",
+    "oracle": "Archive Storage",
+    "cloudflare": "—",
+    "description": {
+      "en": "Long-term archive storage",
+      "es": "Almacenamiento de archivo a largo plazo"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "FSX for NetApp ONTAP",
+    "azure": "Elastic SAN",
+    "gcp": "Hyperdisk",
+    "oracle": "Ultra High Performance",
+    "cloudflare": "—",
+    "description": {
+      "en": "Cloud-based storage area network",
+      "es": "Red de área de almacenamiento basada en la nube"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "FSX for Windows File Server",
+    "azure": "Azure Files",
+    "gcp": "Filestore",
+    "oracle": "File Storage",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed SMB file share",
+      "es": "Recurso compartido de archivos SMB administrado"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "FSX for Lustre",
+    "azure": "Azure Managed Lustre",
+    "gcp": "Parallelstore",
+    "oracle": "File Storage (NFS)",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed Lustre file system for HPC",
+      "es": "Sistema de archivos Lustre administrado para HPC"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "FSX for NetApp ONTAP",
+    "azure": "Azure NetApp Files",
+    "gcp": "NetApp Volumes",
+    "oracle": "NetApp on OCI",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed NetApp capabilities",
+      "es": "Capacidades de NetApp administradas"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "S3 Infrequent Access",
+    "azure": "Cool Blob Storage",
+    "gcp": "Cloud Storage Nearline",
+    "oracle": "Infrequent Access",
+    "cloudflare": "—",
+    "description": {
+      "en": "Lower-cost tier for infrequent data",
+      "es": "Nivel de menor costo para datos poco frecuentes"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "S3 Glacier Deep Archive",
+    "azure": "Archive Access Tier",
+    "gcp": "Cloud Storage Archive",
+    "oracle": "Archive Storage",
+    "cloudflare": "—",
+    "description": {
+      "en": "Lowest storage cost with extended recovery",
+      "es": "Costo de almacenamiento más bajo con recuperación extendida"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "AWS Backup",
+    "azure": "Azure Backup",
+    "gcp": "Backup and DR Service",
+    "oracle": "Cloud Backup",
+    "cloudflare": "—",
+    "description": {
+      "en": "Backup and recovery service",
+      "es": "Servicio de copia de seguridad y recuperación"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "DataSync",
+    "azure": "File Sync",
+    "gcp": "Storage Transfer Service",
+    "oracle": "Data Transfer",
+    "cloudflare": "—",
+    "description": {
+      "en": "Data synchronization service",
+      "es": "Servicio de sincronización de datos"
+    }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "Snowball Edge",
+    "azure": "Data Box",
+    "gcp": "Transfer Appliance",
+    "oracle": "Data Transfer Appliance",
+    "cloudflare": "—",
+    "description": {
+      "en": "Petabyte-scale data transport",
+      "es": "Transporte de datos a escala de petabytes"
+    }
+  }
+]

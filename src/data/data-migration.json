@@ -1,0 +1,18 @@
+[
+  {
+    "category": "data-migration",
+    "categoryName": {
+      "en": "Data Migration",
+      "es": "Migración de Datos"
+    },
+    "aws": "DMS",
+    "azure": "Database Migration Service",
+    "gcp": "Database Migration Service",
+    "oracle": "Zero Downtime Migration",
+    "cloudflare": "—",
+    "description": {
+      "en": "Cloud migration service",
+      "es": "Servicio de migración en la nube"
+    }
+  }
+]

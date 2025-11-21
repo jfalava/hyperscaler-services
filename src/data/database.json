@@ -1,0 +1,146 @@
+[
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "RDS",
+    "azure": "SQL Database",
+    "gcp": "Cloud SQL",
+    "oracle": "Base Database Service",
+    "cloudflare": "D1",
+    "description": {
+      "en": "Managed relational database service",
+      "es": "Servicio de base de datos relacional administrado"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "RDS for MySQL",
+    "azure": "Database for MySQL",
+    "gcp": "Cloud SQL for MySQL",
+    "oracle": "MySQL Database Service",
+    "cloudflare": "D1",
+    "description": {
+      "en": "Managed MySQL database",
+      "es": "Base de datos MySQL administrada"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "RDS for PostgreSQL",
+    "azure": "Database for PostgreSQL",
+    "gcp": "Cloud SQL for PostgreSQL",
+    "oracle": "PostgreSQL Service",
+    "cloudflare": "D1",
+    "description": {
+      "en": "Managed PostgreSQL database",
+      "es": "Base de datos PostgreSQL administrada"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "Aurora Serverless",
+    "azure": "SQL Database Serverless",
+    "gcp": "AlloyDB",
+    "oracle": "Autonomous Database",
+    "cloudflare": "D1",
+    "description": {
+      "en": "Auto-scales compute based on demand",
+      "es": "Escala automáticamente el proceso según la demanda"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "DynamoDB",
+    "azure": "Cosmos DB",
+    "gcp": "Firestore",
+    "oracle": "NoSQL Database",
+    "cloudflare": "Workers KV",
+    "description": {
+      "en": "Multi-model NoSQL database",
+      "es": "Base de datos NoSQL multimodelo"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "DocumentDB",
+    "azure": "Cosmos DB",
+    "gcp": "Firestore",
+    "oracle": "NoSQL Database",
+    "cloudflare": "Durable Objects",
+    "description": {
+      "en": "Document database service",
+      "es": "Servicio de base de datos de documentos"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "Neptune",
+    "azure": "Cosmos DB",
+    "gcp": "Neo4j (on GCP)",
+    "oracle": "Graph Studio",
+    "cloudflare": "—",
+    "description": {
+      "en": "Graph database service",
+      "es": "Servicio de base de datos de grafos"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "ElastiCache",
+    "azure": "Cache for Redis",
+    "gcp": "Memorystore",
+    "oracle": "OCI Cache",
+    "cloudflare": "Workers KV",
+    "description": {
+      "en": "In-memory caching service",
+      "es": "Servicio de caché en memoria"
+    }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "MemoryDB for Redis",
+    "azure": "Cache for Redis",
+    "gcp": "Memorystore for Redis",
+    "oracle": "OCI Cache with Redis",
+    "cloudflare": "Workers KV",
+    "description": {
+      "en": "High-performance Redis-compatible store",
+      "es": "Almacén compatible con Redis de alto rendimiento"
+    }
+  }
+]

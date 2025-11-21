@@ -57,10 +57,40 @@ export async function fetchServices(
 }
 
 /**
- * Import services data directly from local JSON file.
+ * Import services data from separate JSON files per category.
  * This is used in the React/SSR context.
  */
 export async function importServices(): Promise<ServiceMapping[]> {
-  const servicesData = await import("./services.json");
-  return servicesData.default as ServiceMapping[];
+  const categories = [
+    "account-management",
+    "ai-services",
+    "big-data",
+    "business-intelligence",
+    "communication",
+    "compute",
+    "containers",
+    "data-governance",
+    "data-integration",
+    "data-lake",
+    "data-migration",
+    "data-warehouse",
+    "database",
+    "generative-ai",
+    "governance",
+    "infrastructure",
+    "iot",
+    "machine-learning",
+    "messaging",
+    "monitoring",
+    "networking",
+    "security",
+    "storage",
+  ];
+
+  const allServices: ServiceMapping[] = [];
+  for (const category of categories) {
+    const module = await import(`./${category}.json`);
+    allServices.push(...module.default);
+  }
+  return allServices;
 }

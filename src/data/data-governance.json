@@ -1,0 +1,18 @@
+[
+  {
+    "category": "data-governance",
+    "categoryName": {
+      "en": "Data Governance",
+      "es": "Gobernanza de Datos"
+    },
+    "aws": "Glue Data Catalog",
+    "azure": "Microsoft Purview",
+    "gcp": "Dataplex",
+    "oracle": "Data Catalog",
+    "cloudflare": "—",
+    "description": {
+      "en": "Unified data governance solution",
+      "es": "Solución unificada de gobernanza de datos"
+    }
+  }
+]

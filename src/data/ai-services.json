@@ -1,0 +1,130 @@
+[
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Rekognition",
+    "azure": "Computer Vision",
+    "gcp": "Vision AI",
+    "oracle": "Vision",
+    "cloudflare": "AI (Inference)",
+    "description": {
+      "en": "Image and video analysis",
+      "es": "Análisis de imágenes y video"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Polly",
+    "azure": "Speech (Text-to-Speech)",
+    "gcp": "Text-to-Speech",
+    "oracle": "Speech",
+    "cloudflare": "—",
+    "description": {
+      "en": "Neural voice conversion",
+      "es": "Conversión de voz neuronal"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Transcribe",
+    "azure": "Speech (Speech-to-Text)",
+    "gcp": "Speech-to-Text",
+    "oracle": "Speech",
+    "cloudflare": "—",
+    "description": {
+      "en": "Audio transcription service",
+      "es": "Servicio de transcripción de audio"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Translate",
+    "azure": "Translator",
+    "gcp": "Translation AI",
+    "oracle": "Language",
+    "cloudflare": "—",
+    "description": {
+      "en": "Neural machine translation",
+      "es": "Traducción automática neuronal"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Comprehend",
+    "azure": "Text Analytics",
+    "gcp": "Natural Language AI",
+    "oracle": "Language",
+    "cloudflare": "—",
+    "description": {
+      "en": "Natural language processing",
+      "es": "Procesamiento de lenguaje natural"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Lex",
+    "azure": "Conversational Language Understanding",
+    "gcp": "Dialogflow",
+    "oracle": "Digital Assistant",
+    "cloudflare": "—",
+    "description": {
+      "en": "Conversational interfaces",
+      "es": "Interfaces conversacionales"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "Textract",
+    "azure": "Document Intelligence",
+    "gcp": "Document AI",
+    "oracle": "Document Understanding",
+    "cloudflare": "—",
+    "description": {
+      "en": "Document data extraction",
+      "es": "Extracción de datos de documentos"
+    }
+  },
+  {
+    "category": "ai-services",
+    "categoryName": {
+      "en": "AI Services",
+      "es": "Servicios de IA"
+    },
+    "aws": "OpenSearch Service",
+    "azure": "AI Search",
+    "gcp": "Vertex AI Search",
+    "oracle": "Search",
+    "cloudflare": "Vectorize",
+    "description": {
+      "en": "Enterprise search service",
+      "es": "Servicio de búsqueda empresarial"
+    }
+  }
+]

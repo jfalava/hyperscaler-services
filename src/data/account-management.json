@@ -1,0 +1,50 @@
+[
+  {
+    "category": "account-management",
+    "categoryName": {
+      "en": "Account Management",
+      "es": "Gestión de Cuentas"
+    },
+    "aws": "AWS Organization Root",
+    "azure": "Azure Tenant (Microsoft Entra)",
+    "gcp": "Google Cloud Organization",
+    "oracle": "OCI Tenancy",
+    "cloudflare": "Cloudflare Account",
+    "description": {
+      "en": "Top-level organizational structure for managing users, groups, and applications",
+      "es": "Estructura organizacional de nivel superior para administrar usuarios, grupos y aplicaciones"
+    }
+  },
+  {
+    "category": "account-management",
+    "categoryName": {
+      "en": "Account Management",
+      "es": "Gestión de Cuentas"
+    },
+    "aws": "AWS Account",
+    "azure": "Azure Subscription",
+    "gcp": "Google Cloud Project",
+    "oracle": "OCI Compartment",
+    "cloudflare": "Cloudflare Zone",
+    "description": {
+      "en": "Logical unit for services linked to billing and resource management boundaries",
+      "es": "Unidad lógica para servicios vinculados a límites de facturación y administración de recursos"
+    }
+  },
+  {
+    "category": "account-management",
+    "categoryName": {
+      "en": "Account Management",
+      "es": "Gestión de Cuentas"
+    },
+    "aws": "Organizational Units (OUs)",
+    "azure": "Management Groups",
+    "gcp": "Folders",
+    "oracle": "Compartment Hierarchy",
+    "cloudflare": "Account Members",
+    "description": {
+      "en": "Hierarchical structures for organizing and managing resources across multiple accounts/subscriptions",
+      "es": "Estructuras jerárquicas para organizar y administrar recursos en múltiples cuentas/suscripciones"
+    }
+  }
+]

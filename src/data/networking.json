@@ -1,0 +1,258 @@
+[
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "VPC",
+    "azure": "Virtual Network",
+    "gcp": "VPC",
+    "oracle": "VCN",
+    "cloudflare": "Magic WAN",
+    "description": {
+      "en": "Private network in the cloud",
+      "es": "Red privada en la nube"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "NAT Gateway",
+    "azure": "NAT Gateway",
+    "gcp": "Cloud NAT",
+    "oracle": "NAT Gateway",
+    "cloudflare": "—",
+    "description": {
+      "en": "Outbound Internet connectivity",
+      "es": "Conectividad de Internet de salida"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Route Tables",
+    "azure": "User Defined Routes",
+    "gcp": "Routes",
+    "oracle": "Route Tables",
+    "cloudflare": "—",
+    "description": {
+      "en": "Custom network routing",
+      "es": "Enrutamiento de red personalizado"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Site-to-Site VPN",
+    "azure": "VPN Gateway",
+    "gcp": "Cloud VPN",
+    "oracle": "Site-to-Site VPN",
+    "cloudflare": "Magic WAN",
+    "description": {
+      "en": "VPN connectivity up to 10 Gbps",
+      "es": "Conectividad VPN de hasta 10 Gbps"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Direct Connect",
+    "azure": "ExpressRoute",
+    "gcp": "Cloud Interconnect",
+    "oracle": "FastConnect",
+    "cloudflare": "Network Interconnect",
+    "description": {
+      "en": "Dedicated private network connections",
+      "es": "Conexiones de red privadas dedicadas"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Network Load Balancer",
+    "azure": "Load Balancer",
+    "gcp": "Network Load Balancing",
+    "oracle": "Network Load Balancer",
+    "cloudflare": "Load Balancing",
+    "description": {
+      "en": "Layer 4 TCP/UDP load balancing",
+      "es": "Equilibrio de carga TCP/UDP de capa 4"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Application Load Balancer",
+    "azure": "Application Gateway",
+    "gcp": "Cloud Load Balancing",
+    "oracle": "Load Balancer",
+    "cloudflare": "Load Balancing",
+    "description": {
+      "en": "Layer 7 application load balancing",
+      "es": "Equilibrio de carga de aplicaciones de capa 7"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Route 53",
+    "azure": "DNS",
+    "gcp": "Cloud DNS",
+    "oracle": "DNS",
+    "cloudflare": "DNS",
+    "description": {
+      "en": "Domain name system service",
+      "es": "Servicio de sistema de nombres de dominio"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Route 53",
+    "azure": "Traffic Manager",
+    "gcp": "Cloud DNS",
+    "oracle": "Traffic Management",
+    "cloudflare": "Traffic",
+    "description": {
+      "en": "DNS-level traffic routing",
+      "es": "Enrutamiento de tráfico a nivel de DNS"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Global Accelerator",
+    "azure": "Traffic Manager",
+    "gcp": "Cloud Load Balancing",
+    "oracle": "Traffic Management",
+    "cloudflare": "Argo Smart Routing",
+    "description": {
+      "en": "Global routing and performance",
+      "es": "Enrutamiento global y rendimiento"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "CloudFront",
+    "azure": "CDN",
+    "gcp": "Cloud CDN",
+    "oracle": "CDN",
+    "cloudflare": "CDN",
+    "description": {
+      "en": "Content delivery network",
+      "es": "Red de distribución de contenido"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "PrivateLink",
+    "azure": "Private Link",
+    "gcp": "Private Service Connect",
+    "oracle": "Private Endpoint",
+    "cloudflare": "—",
+    "description": {
+      "en": "Private connectivity to PaaS",
+      "es": "Conectividad privada a PaaS"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "VPC Endpoints",
+    "azure": "Private Endpoint",
+    "gcp": "Private Service Connect",
+    "oracle": "Service Gateway",
+    "cloudflare": "—",
+    "description": {
+      "en": "Private endpoint connectivity",
+      "es": "Conectividad de punto final privado"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "VPC Peering",
+    "azure": "Virtual Network Peering",
+    "gcp": "VPC Peering",
+    "oracle": "VCN Peering",
+    "cloudflare": "—",
+    "description": {
+      "en": "Connect virtual networks",
+      "es": "Conectar redes virtuales"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "Transit Gateway",
+    "azure": "Virtual WAN",
+    "gcp": "Network Connectivity Center",
+    "oracle": "DRG (Dynamic Routing Gateway)",
+    "cloudflare": "—",
+    "description": {
+      "en": "Multi-environment network connectivity",
+      "es": "Conectividad de red de múltiples entornos"
+    }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "VPC Flow Logs",
+    "azure": "Network Watcher",
+    "gcp": "VPC Flow Logs",
+    "oracle": "VCN Flow Logs",
+    "cloudflare": "Network Analytics",
+    "description": {
+      "en": "Network traffic monitoring",
+      "es": "Monitoreo de tráfico de red"
+    }
+  }
+]

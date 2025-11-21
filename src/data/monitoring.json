@@ -1,0 +1,50 @@
+[
+  {
+    "category": "monitoring",
+    "categoryName": {
+      "en": "Monitoring",
+      "es": "Monitoreo"
+    },
+    "aws": "CloudWatch",
+    "azure": "Monitor",
+    "gcp": "Cloud Monitoring",
+    "oracle": "Monitoring",
+    "cloudflare": "Analytics",
+    "description": {
+      "en": "Monitoring and observability service",
+      "es": "Servicio de monitoreo y observabilidad"
+    }
+  },
+  {
+    "category": "monitoring",
+    "categoryName": {
+      "en": "Monitoring",
+      "es": "Monitoreo"
+    },
+    "aws": "CloudTrail",
+    "azure": "Activity Log",
+    "gcp": "Cloud Logging",
+    "oracle": "Audit",
+    "cloudflare": "Audit Logs",
+    "description": {
+      "en": "Audit and compliance logging",
+      "es": "Registro de auditoría y cumplimiento"
+    }
+  },
+  {
+    "category": "monitoring",
+    "categoryName": {
+      "en": "Monitoring",
+      "es": "Monitoreo"
+    },
+    "aws": "Systems Manager",
+    "azure": "Automation",
+    "gcp": "Cloud Operations",
+    "oracle": "OS Management",
+    "cloudflare": "—",
+    "description": {
+      "en": "Operations management service",
+      "es": "Servicio de gestión de operaciones"
+    }
+  }
+]

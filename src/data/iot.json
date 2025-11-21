@@ -1,0 +1,18 @@
+[
+  {
+    "category": "iot",
+    "categoryName": {
+      "en": "IoT",
+      "es": "IoT"
+    },
+    "aws": "IoT Analytics",
+    "azure": "Event Streams + KQL Database",
+    "gcp": "IoT Core + BigQuery",
+    "oracle": "IoT Cloud Service",
+    "cloudflare": "Pub/Sub",
+    "description": {
+      "en": "IoT data collection and analysis",
+      "es": "Recopilación y análisis de datos de IoT"
+    }
+  }
+]
