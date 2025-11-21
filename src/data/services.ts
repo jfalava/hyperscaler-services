@@ -1,9 +1,9 @@
 /**
  * Type definitions for cloud service comparison data.
  *
- * These types define the structure of service data loaded from
- * /public/services.json. The JSON file can be replaced with an
- * API endpoint to fetch data from a database in the future.
+ * These types define structure of service data loaded from
+ * /src/data/services.json. The JSON file can be replaced with an
+ * API endpoint to fetch data from a database in future.
  */
 
 /**
@@ -19,7 +19,7 @@ export interface ServiceTranslations {
  *
  * Each service includes category information, service names from all
  * providers, and localized descriptions to help users understand
- * the purpose and equivalence of the services.
+ * purpose and equivalence of services.
  */
 export interface ServiceMapping {
   category: string;
@@ -36,7 +36,7 @@ export interface ServiceMapping {
  * Fetch cloud service mappings from JSON file or API.
  *
  * Currently loads data from /public/services.json. This function
- * can be modified to fetch from a database API endpoint in the future
+ * can be modified to fetch from a database API endpoint in future
  * without changing the consuming code.
  *
  * @param baseUrl - Base URL for fetching (e.g., Astro.url.origin)
@@ -54,4 +54,13 @@ export async function fetchServices(
     throw new Error(`Failed to fetch services: ${response.statusText}`);
   }
   return response.json();
+}
+
+/**
+ * Import services data directly from local JSON file.
+ * This is used in the React/SSR context.
+ */
+export async function importServices(): Promise<ServiceMapping[]> {
+  const servicesData = await import("./services.json");
+  return servicesData.default as ServiceMapping[];
 }
