@@ -1,17 +1,21 @@
 import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useState, useEffect, useMemo } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { WrapTextIcon } from "lucide-react";
 import { importServices } from "@/data/services";
-import { FloatingButtons } from "@/components/floating-buttons.";
+import { FloatingButtons } from "@/components/floating-buttons";
 import { ServicesTable } from "@/components/services-table";
 import { usePaginationStore } from "@/hooks/use-pagination";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
   PaginationLink,
   PaginationEllipsis,
+  PaginationPrevious,
+  PaginationNext,
 } from "@/components/ui/pagination";
 
 // Server function to load services
@@ -41,6 +45,7 @@ interface PageTranslations {
   services: string;
   previous: string;
   next: string;
+  wrapText: string;
 }
 
 const getTranslations = (currentLang: string): PageTranslations => {
@@ -71,6 +76,7 @@ const getTranslations = (currentLang: string): PageTranslations => {
     services: currentLang === "es" ? "servicios" : "services",
     previous: currentLang === "es" ? "Anterior" : "Previous",
     next: currentLang === "es" ? "Siguiente" : "Next",
+    wrapText: currentLang === "es" ? "Ajustar texto" : "Wrap text",
   };
 };
 
@@ -99,7 +105,9 @@ function Home() {
   const t = getTranslations(currentLang);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [wrapText, setWrapText] = useState(false);
   const pagination = usePaginationStore();
+  const isMobile = useIsMobile();
 
   // Filter services based on search query
   const filteredServices = useMemo(() => {
@@ -175,13 +183,12 @@ function Home() {
     // Previous button
     items.push(
       <PaginationItem key="prev">
-        <PaginationLink
+        <PaginationPrevious
           onClick={pagination.previousPage}
           className={current === 1 ? "pointer-events-none opacity-50" : ""}
         >
-          <ChevronLeftIcon />
-          <span className="hidden sm:block">{t.previous}</span>
-        </PaginationLink>
+          {t.previous}
+        </PaginationPrevious>
       </PaginationItem>,
     );
 
@@ -264,13 +271,12 @@ function Home() {
     // Next button
     items.push(
       <PaginationItem key="next">
-        <PaginationLink
+        <PaginationNext
           onClick={pagination.nextPage}
           className={current === total ? "pointer-events-none opacity-50" : ""}
         >
-          <span className="hidden sm:block">{t.next}</span>
-          <ChevronRightIcon />
-        </PaginationLink>
+          {t.next}
+        </PaginationNext>
       </PaginationItem>,
     );
 
@@ -279,7 +285,11 @@ function Home() {
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8 max-w-7xl">
-      <FloatingButtons currentLang={currentLang} />
+      <FloatingButtons
+        currentLang={currentLang}
+        wrapText={wrapText}
+        onWrapTextChange={setWrapText}
+      />
 
       <header className="mb-6 sm:mb-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -318,7 +328,21 @@ function Home() {
         </div>
       </header>
 
-      <div className="bg-card rounded-lg shadow-md overflow-hidden border border-border">
+      <div className="bg-card rounded-lg shadow-md overflow-hidden border border-border relative">
+        {!isMobile && filteredServices.length > 0 && (
+          <div className="sticky top-0 z-10 flex justify-end p-3 bg-card/95 backdrop-blur-sm border-b border-border">
+            <Button
+              variant={wrapText ? "default" : "outline"}
+              size="sm"
+              onClick={() => setWrapText(!wrapText)}
+              className="gap-2"
+              title={t.wrapText}
+            >
+              <WrapTextIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">{t.wrapText}</span>
+            </Button>
+          </div>
+        )}
         {filteredServices.length === 0 ? (
           <div className="p-8 text-center text-muted-foreground">
             {t.noResults}
@@ -328,12 +352,13 @@ function Home() {
             services={paginatedServices}
             translations={t}
             currentLang={currentLang}
+            wrapText={wrapText}
           />
         )}
       </div>
 
       {totalPages > 1 && (
-        <Pagination>
+        <Pagination className="mt-4">
           <PaginationContent>{generatePaginationItems()}</PaginationContent>
         </Pagination>
       )}

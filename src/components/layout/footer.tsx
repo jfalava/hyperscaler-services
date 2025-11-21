@@ -9,10 +9,10 @@ export function Footer() {
       <div className="flex items-center justify-center py-4 md:py-6 max-w-7xl mx-auto px-4">
         <div className="grid place-items-center border-r border-border pr-3 py-6">
           <div className="grid place-items-center">
-            <span className="font-sans font-semibold tracking-tight flex items-center">
+            <span className="font-semibold tracking-tight flex items-center">
               Hyperscaler Services
             </span>
-            <span className="font-sans text-xs flex items-center font-semibold">
+            <span className="text-xs flex items-center font-semibold">
               by JFA
             </span>
           </div>

@@ -37,35 +37,6 @@ export const Route = createRootRoute({
         title: "Hyperscaler Services",
       },
     ],
-    scripts: [
-      {
-        children: `
-          (function() {
-            try {
-              const theme = localStorage.getItem('theme') || 'system';
-              const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-              // Apply theme immediately to prevent flash
-              if (isDark) {
-                document.documentElement.classList.add('dark');
-              } else {
-                document.documentElement.classList.remove('dark');
-              }
-
-              // Set initial CSS variables to prevent flash
-              document.documentElement.style.setProperty('color-scheme', isDark ? 'dark' : 'light');
-            } catch (e) {
-              // Fallback to system preference if localStorage fails
-              const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-              if (prefersDark) {
-                document.documentElement.classList.add('dark');
-              }
-              document.documentElement.style.setProperty('color-scheme', prefersDark ? 'dark' : 'light');
-            }
-          })();
-        `,
-      },
-    ],
   }),
   notFoundComponent: () => (
     <div className="flex flex-col items-center justify-center min-h-screen">
@@ -98,11 +69,16 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `!function(){try{var t=localStorage.getItem("theme")||"system",e="dark"===t||"system"===t&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=document.documentElement;e?(a.classList.add("dark"),a.style.colorScheme="dark"):(a.classList.remove("dark"),a.style.colorScheme="light")}catch(t){var e=window.matchMedia("(prefers-color-scheme: dark)").matches,a=document.documentElement;e?(a.classList.add("dark"),a.style.colorScheme="dark"):a.style.colorScheme="light"}}();`,
+          }}
+        />
         <HeadContent />
       </head>
-      <body className="bg-background text-foreground min-h-screen flex flex-col transition-colors duration-200">
+      <body className="bg-background text-foreground min-h-screen flex flex-col transition-colors duration-200 font-sans">
         <QueryClientProvider client={queryClient}>
           <main className="flex-1">{children}</main>
           <Footer />

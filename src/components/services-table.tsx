@@ -1,4 +1,5 @@
 import type { ServiceMapping } from "@/data/services";
+import { cn } from "@/lib/utils";
 import {
   Table,
   TableBody,
@@ -20,6 +21,7 @@ interface ServicesTableProps {
     descriptionColumn: string;
   };
   currentLang: "en" | "es";
+  wrapText?: boolean;
 }
 
 /**
@@ -29,6 +31,7 @@ export function ServicesTable({
   services,
   translations,
   currentLang,
+  wrapText = false,
 }: ServicesTableProps) {
   return (
     <div className="overflow-x-auto">
@@ -64,25 +67,60 @@ export function ServicesTable({
               key={index}
               className="border-b border-border hover:bg-accent/50 transition-colors"
             >
-              <TableCell className="px-6 py-4 text-sm font-medium text-muted-foreground">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm font-medium text-muted-foreground",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.categoryName[currentLang]}
               </TableCell>
-              <TableCell className="px-6 py-4 text-sm text-foreground font-medium">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm text-foreground font-medium",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.aws}
               </TableCell>
-              <TableCell className="px-6 py-4 text-sm text-foreground font-medium">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm text-foreground font-medium",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.azure}
               </TableCell>
-              <TableCell className="px-6 py-4 text-sm text-foreground font-medium">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm text-foreground font-medium",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.gcp}
               </TableCell>
-              <TableCell className="px-6 py-4 text-sm text-foreground font-medium">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm text-foreground font-medium",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.oracle}
               </TableCell>
-              <TableCell className="px-6 py-4 text-sm text-foreground font-medium">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm text-foreground font-medium",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.cloudflare}
               </TableCell>
-              <TableCell className="px-6 py-4 text-sm text-muted-foreground">
+              <TableCell
+                className={cn(
+                  "px-6 py-4 text-sm text-muted-foreground",
+                  wrapText ? "whitespace-normal break-words" : ""
+                )}
+              >
                 {service.description[currentLang]}
               </TableCell>
             </TableRow>
