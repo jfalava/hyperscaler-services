@@ -3,32 +3,39 @@
   "type": "module",
   "version": "0.1.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "bun run cf-typegen && astro build",
-    "preview": "astro build && wrangler dev",
-    "astro": "astro",
-    "deploy": "bun run lint:fix && bun run format && astro build && wrangler deploy",
-    "cf-typegen": "wrangler types",
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
     "format": "prettier --write .",
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --fix",
-    "typecheck": "bun run cf-typegen && bun tsgo --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/vite": "^4.1.17",
+    "@tanstack/react-router": "^1.139.0",
+    "@tanstack/react-start": "^1.139.0",
     "astro": "^5.15.8",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
     "@typescript/native-preview": "^7.0.0-dev.20251116.1",
+    "@vitejs/plugin-react": "^5.1.1",
     "oxlint": "^1.28.0",
     "oxlint-tsgolint": "^0.6.0",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4",
+    "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "^4.47.0"
   }
 }
