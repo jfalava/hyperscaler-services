@@ -12,14 +12,24 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme, type ThemeMode } from "@/hooks/use-theme";
 import { useNavigate } from "@tanstack/react-router";
 
+/**
+ * Props for the FloatingButtons component.
+ */
 interface FloatingButtonsProps {
+  /** Current language code */
   currentLang: "en" | "es";
+  /** Whether text wrapping is enabled */
   wrapText?: boolean;
+  /** Callback for when wrap text setting changes */
   onWrapTextChange?: (wrap: boolean) => void;
 }
 
 /**
- * Floating button component that opens a dialog with theme toggle and language switcher.
+ * Floating settings button that opens a dialog with theme and language controls.
+ * Provides quick access to app settings from any page.
+ *
+ * @param props - Component props
+ * @returns Floating button with settings dialog
  */
 export function FloatingButtons({
   currentLang,
@@ -31,6 +41,9 @@ export function FloatingButtons({
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
+  /**
+   * Cycles through available theme modes.
+   */
   const cycleTheme = () => {
     const themes: ThemeMode[] = ["light", "dark", "system"];
     const currentIndex = themes.indexOf(theme);
@@ -38,6 +51,9 @@ export function FloatingButtons({
     setTheme(nextTheme);
   };
 
+  /**
+   * Toggles between English and Spanish languages.
+   */
   const toggleLanguage = () => {
     const newLang = currentLang === "en" ? "es" : "en";
     void navigate({
@@ -51,6 +67,11 @@ export function FloatingButtons({
     });
   };
 
+  /**
+   * Gets the localized label for the current theme.
+   *
+   * @returns Localized theme label
+   */
   const getThemeLabel = () => {
     if (currentLang === "es") {
       switch (theme) {

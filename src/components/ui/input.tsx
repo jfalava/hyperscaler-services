@@ -2,6 +2,13 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * Input component with consistent styling and focus states.
+ * Supports all standard input attributes and types.
+ *
+ * @param props - Standard input element props
+ * @returns Styled input element
+ */
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input

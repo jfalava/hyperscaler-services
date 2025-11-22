@@ -6,13 +6,17 @@ import {
   type ReactNode,
 } from "react";
 
+/**
+ * Available theme modes for the application.
+ */
 export type ThemeMode = "light" | "dark" | "system";
 
 /**
- * Apply theme to the document.
+ * Applies the specified theme to the document element.
+ *
+ * @param theme - The theme mode to apply
  */
 function applyTheme(theme: ThemeMode): void {
-  // Guard against server-side rendering or missing APIs
   if (typeof window === "undefined" || typeof document === "undefined") {
     return;
   }
@@ -31,20 +35,25 @@ function applyTheme(theme: ThemeMode): void {
   }
 }
 
+/**
+ * Interface for the theme context value.
+ */
 interface ThemeContextType {
+  /** Current theme mode */
   theme: ThemeMode;
+  /** Function to set the theme mode */
   setTheme: (theme: ThemeMode) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 /**
- * Provider component for theme management.
- * Wraps the app to provide shared theme state to all components.
+ * Provider component that manages theme state for the application.
+ *
+ * @param children - Child components to wrap with theme context
  */
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
-    // Lazy initialization - only read localStorage on client side
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme") as ThemeMode | null;
       if (
@@ -58,14 +67,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return "system";
   });
 
-  // Apply theme when it changes
   useEffect(() => {
     if (typeof window !== "undefined") {
       applyTheme(theme);
     }
   }, [theme]);
 
-  // Listen to system preference changes
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -79,6 +86,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme]);
 
+  /**
+   * Sets the theme and persists it to localStorage.
+   *
+   * @param newTheme - The new theme mode to set
+   */
   const setTheme = (newTheme: ThemeMode) => {
     setThemeState(newTheme);
     if (typeof window !== "undefined") {
@@ -94,10 +106,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 }
 
 /**
- * Hook for accessing theme state and setter.
- * Must be used within a ThemeProvider.
+ * Hook for accessing theme state and setter function.
+ * Must be used within a ThemeProvider component.
+ *
+ * @returns Theme context value containing current theme and setter
+ * @throws Error if used outside of ThemeProvider
  */
-export function useTheme() {
+export function useTheme(): ThemeContextType {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     throw new Error("useTheme must be used within a ThemeProvider");

@@ -9,8 +9,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+/**
+ * Props for the ServicesTable component.
+ */
 interface ServicesTableProps {
+  /** Array of service mappings to display */
   services: ServiceMapping[];
+  /** Translation strings for table headers */
   translations: {
     categoryColumn: string;
     awsColumn: string;
@@ -20,12 +25,17 @@ interface ServicesTableProps {
     cloudflareColumn: string;
     descriptionColumn: string;
   };
+  /** Current language for displaying content */
   currentLang: "en" | "es";
+  /** Whether to enable text wrapping in cells */
   wrapText?: boolean;
 }
 
 /**
- * Helper component to render service name as link or text.
+ * Renders a service name as either a link (if URL provided) or plain text.
+ *
+ * @param props - Component props
+ * @returns Link or span element containing the service name
  */
 function ServiceLink({ name, url }: { name: string; url?: string }) {
   if (url) {
@@ -44,7 +54,11 @@ function ServiceLink({ name, url }: { name: string; url?: string }) {
 }
 
 /**
- * Services table component using shadcn Table.
+ * Table component displaying cloud services comparison data.
+ * Shows equivalent services across different cloud providers.
+ *
+ * @param props - Component props
+ * @returns Formatted table with service comparison data
  */
 export function ServicesTable({
   services,
@@ -52,6 +66,12 @@ export function ServicesTable({
   currentLang,
   wrapText = false,
 }: ServicesTableProps) {
+  /**
+   * Generates CSS classes for table cells based on wrap text setting.
+   *
+   * @param baseClasses - Base CSS classes to apply
+   * @returns Combined CSS classes
+   */
   const getCellClasses = (baseClasses: string) =>
     cn(baseClasses, wrapText && "whitespace-normal break-words");
   return (

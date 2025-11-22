@@ -1,8 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 
+/**
+ * Interface representing the pagination state.
+ */
 interface PaginationState {
+  /** Current page number (1-based) */
   currentPage: number;
+  /** Total number of items across all pages */
   totalItems: number;
+  /** Number of items displayed per page */
   itemsPerPage: number;
 }
 
@@ -12,6 +18,12 @@ const initialState: PaginationState = {
   itemsPerPage: 20,
 };
 
+/**
+ * Validates and sanitizes pagination state from unknown data.
+ *
+ * @param parsed - Unknown data to validate as pagination state
+ * @returns Sanitized partial pagination state or null if invalid
+ */
 const sanitizePaginationState = (
   parsed: unknown,
 ): Partial<PaginationState> | null => {
@@ -20,7 +32,6 @@ const sanitizePaginationState = (
   const obj = parsed as Record<string, unknown>;
   const result: Partial<PaginationState> = {};
 
-  // Validate and sanitize currentPage if present
   if ("currentPage" in obj) {
     if (
       typeof obj.currentPage !== "number" ||
@@ -33,7 +44,6 @@ const sanitizePaginationState = (
     result.currentPage = sanitized;
   }
 
-  // Validate and sanitize totalItems if present
   if ("totalItems" in obj) {
     if (
       typeof obj.totalItems !== "number" ||
@@ -46,7 +56,6 @@ const sanitizePaginationState = (
     result.totalItems = sanitized;
   }
 
-  // Validate and sanitize itemsPerPage if present
   if ("itemsPerPage" in obj) {
     if (
       typeof obj.itemsPerPage !== "number" ||
@@ -62,40 +71,45 @@ const sanitizePaginationState = (
   return result;
 };
 
+/**
+ * Calculates the total number of pages based on total items and items per page.
+ *
+ * @param totalItems - Total number of items
+ * @param itemsPerPage - Number of items per page
+ * @returns Total number of pages (minimum 1)
+ */
 const getTotalPages = (totalItems: number, itemsPerPage: number): number => {
   return Math.max(1, Math.ceil(totalItems / itemsPerPage));
 };
 
+/**
+ * Hook for managing pagination state with localStorage persistence.
+ *
+ * @returns Pagination state and control functions
+ */
 export const usePaginationStore = () => {
   const [state, setState] = useState<PaginationState>(() => {
-    // Load from localStorage on client side
     if (typeof window !== "undefined") {
       try {
         const saved = localStorage.getItem("hyperscaler-pagination");
         if (saved) {
           const parsed = JSON.parse(saved);
           const sanitized = sanitizePaginationState(parsed);
-          // Check for valid non-empty object
           if (sanitized !== null && Object.keys(sanitized).length > 0) {
             return { ...initialState, ...sanitized };
           }
-          // Invalid or empty state, remove it
           localStorage.removeItem("hyperscaler-pagination");
         }
       } catch (error) {
         console.error("Failed to load pagination state:", error);
-        // Remove corrupt data
         try {
           localStorage.removeItem("hyperscaler-pagination");
-        } catch {
-          // Ignore if we can't remove
-        }
+        } catch {}
       }
     }
     return initialState;
   });
 
-  // Save to localStorage whenever state changes
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
@@ -106,6 +120,11 @@ export const usePaginationStore = () => {
     }
   }, [state]);
 
+  /**
+   * Sets the current page, ensuring it's within valid bounds.
+   *
+   * @param page - The page number to set
+   */
   const setCurrentPage = useCallback((page: number) => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
@@ -115,6 +134,11 @@ export const usePaginationStore = () => {
     });
   }, []);
 
+  /**
+   * Sets the total number of items and adjusts current page if needed.
+   *
+   * @param total - The total number of items
+   */
   const setTotalItems = useCallback((total: number) => {
     setState((prev) => {
       const validTotal = Number.isFinite(total) && total >= 0 ? total : 0;
@@ -124,6 +148,9 @@ export const usePaginationStore = () => {
     });
   }, []);
 
+  /**
+   * Navigates to the next page if available.
+   */
   const nextPage = useCallback(() => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
@@ -134,6 +161,9 @@ export const usePaginationStore = () => {
     });
   }, []);
 
+  /**
+   * Navigates to the previous page if available.
+   */
   const previousPage = useCallback(() => {
     setState((prev) => ({
       ...prev,
@@ -141,6 +171,11 @@ export const usePaginationStore = () => {
     }));
   }, []);
 
+  /**
+   * Navigates to a specific page number.
+   *
+   * @param page - The page number to navigate to
+   */
   const goToPage = useCallback((page: number) => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
@@ -148,6 +183,9 @@ export const usePaginationStore = () => {
     });
   }, []);
 
+  /**
+   * Resets pagination to initial state.
+   */
   const reset = useCallback(() => {
     setState(initialState);
   }, []);

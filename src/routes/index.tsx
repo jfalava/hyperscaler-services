@@ -22,16 +22,23 @@ import {
   PaginationNext,
 } from "@/components/ui/pagination";
 
-// Server function to load services
+/**
+ * Server function to load services data on the server side.
+ */
 const getServices = createServerFn({
   method: "GET",
 }).handler(async () => {
   return await importServices();
 });
 
-// Type definitions
+/**
+ * Supported language codes.
+ */
 type LanguageCode = "en" | "es";
 
+/**
+ * Interface for page translation strings.
+ */
 interface PageTranslations {
   title: string;
   subtitle: string;
@@ -52,6 +59,12 @@ interface PageTranslations {
   wrapText: string;
 }
 
+/**
+ * Gets translation strings based on the current language.
+ *
+ * @param currentLang - Current language code
+ * @returns Translation object with all UI strings
+ */
 const getTranslations = (currentLang: string): PageTranslations => {
   return {
     title:
@@ -84,7 +97,12 @@ const getTranslations = (currentLang: string): PageTranslations => {
   };
 };
 
-// Normalize string helper
+/**
+ * Normalizes a string for case-insensitive search by removing diacritics.
+ *
+ * @param str - String to normalize
+ * @returns Normalized string in lowercase without diacritics
+ */
 const normalizeString = (str: string): string => {
   return str
     .toLowerCase()
@@ -122,6 +140,9 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+/**
+ * Main home page component displaying the services comparison table.
+ */
 function Home() {
   const services = Route.useLoaderData();
   const { lang, page, wrapText } = useSearch({ from: "/" });
@@ -133,7 +154,11 @@ function Home() {
   const pagination = usePaginationStore();
   const isMobile = useIsMobile();
 
-  // Update URL parameters
+  /**
+   * Updates URL search parameters with provided changes.
+   *
+   * @param updates - Partial updates to apply to search parameters
+   */
   const updateURL = useCallback(
     (updates: Partial<{ page: number; wrapText: boolean }>) => {
       void navigate({
@@ -144,12 +169,13 @@ function Home() {
     [navigate],
   );
 
-  // Sync pagination with URL
   useEffect(() => {
     pagination.setCurrentPage(page);
   }, [page, pagination.setCurrentPage]);
 
-  // Filter services based on search query
+  /**
+   * Filters services based on the search query across all text fields.
+   */
   const filteredServices = useMemo(() => {
     if (!searchQuery.trim()) return services;
 
@@ -176,17 +202,14 @@ function Home() {
     });
   }, [services, searchQuery, currentLang]);
 
-  // Update total items when filtered services change
   useEffect(() => {
     pagination.setTotalItems(filteredServices.length);
   }, [filteredServices.length, pagination.setTotalItems]);
 
-  // Reset to page 1 when search changes
   useEffect(() => {
     updateURL({ page: 1 });
   }, [searchQuery, updateURL]);
 
-  // Pagination
   const totalPages = Math.max(
     1,
     Math.ceil(filteredServices.length / pagination.itemsPerPage),
@@ -199,13 +222,10 @@ function Home() {
   const endIndex = startIndex + pagination.itemsPerPage;
   const paginatedServices = filteredServices.slice(startIndex, endIndex);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore if modifier keys are pressed
       if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
 
-      // Ignore if event target is an editable control
       const target = e.target as HTMLElement;
       if (
         target.tagName === "INPUT" ||
@@ -230,12 +250,16 @@ function Home() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [currentPageClamped, totalPages, updateURL]);
 
+  /**
+   * Generates pagination items with proper ellipsis handling.
+   *
+   * @returns Array of pagination items
+   */
   const generatePaginationItems = () => {
     const items = [];
     const total = totalPages;
     const current = currentPageClamped;
 
-    // Previous button
     items.push(
       <PaginationItem key="prev">
         <PaginationPrevious
@@ -247,7 +271,6 @@ function Home() {
       </PaginationItem>,
     );
 
-    // Page numbers
     if (total <= 7) {
       for (let i = 1; i <= total; i++) {
         items.push(
@@ -262,7 +285,6 @@ function Home() {
         );
       }
     } else {
-      // Show 1
       items.push(
         <PaginationItem key="1">
           <PaginationLink
@@ -274,7 +296,6 @@ function Home() {
         </PaginationItem>,
       );
 
-      // Ellipsis if needed
       if (current > 4) {
         items.push(
           <PaginationItem key="ellipsis1">
@@ -283,7 +304,6 @@ function Home() {
         );
       }
 
-      // Pages around current
       const start = Math.max(2, current - 1);
       const end = Math.min(total - 1, current + 1);
       for (let i = start; i <= end; i++) {
@@ -299,7 +319,6 @@ function Home() {
         );
       }
 
-      // Ellipsis if needed
       if (current < total - 3) {
         items.push(
           <PaginationItem key="ellipsis2">
@@ -308,7 +327,6 @@ function Home() {
         );
       }
 
-      // Last page
       if (total > 1) {
         items.push(
           <PaginationItem key={total}>
@@ -323,7 +341,6 @@ function Home() {
       }
     }
 
-    // Next button
     items.push(
       <PaginationItem key="next">
         <PaginationNext

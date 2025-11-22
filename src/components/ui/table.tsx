@@ -2,6 +2,12 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * Table component with responsive container and consistent styling.
+ *
+ * @param props - Table element props
+ * @returns Table wrapped in responsive container
+ */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
@@ -17,6 +23,12 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   );
 }
 
+/**
+ * Table header component for column headers.
+ *
+ * @param props - Thead element props
+ * @returns Table header with bottom border styling
+ */
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
@@ -27,6 +39,12 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   );
 }
 
+/**
+ * Table body component for data rows.
+ *
+ * @param props - Tbody element props
+ * @returns Table body with row border styling
+ */
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
@@ -37,6 +55,12 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   );
 }
 
+/**
+ * Table footer component for summary rows.
+ *
+ * @param props - Tfoot element props
+ * @returns Table footer with muted background
+ */
 function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   return (
     <tfoot
@@ -50,6 +74,12 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   );
 }
 
+/**
+ * Table row component with hover and selection states.
+ *
+ * @param props - Tr element props
+ * @returns Table row with interactive styling
+ */
 function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   return (
     <tr
@@ -63,6 +93,12 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   );
 }
 
+/**
+ * Table header cell component for column titles.
+ *
+ * @param props - Th element props
+ * @returns Table header cell with proper alignment and spacing
+ */
 function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
@@ -76,6 +112,12 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   );
 }
 
+/**
+ * Table data cell component for content.
+ *
+ * @param props - Td element props
+ * @returns Table data cell with proper alignment and spacing
+ */
 function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
@@ -89,6 +131,12 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   );
 }
 
+/**
+ * Table caption component for table descriptions.
+ *
+ * @param props - Caption element props
+ * @returns Table caption with muted styling
+ */
 function TableCaption({
   className,
   ...props

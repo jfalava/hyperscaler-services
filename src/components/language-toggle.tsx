@@ -1,12 +1,21 @@
 import { useNavigate } from "@tanstack/react-router";
 
+/**
+ * Props for the LanguageToggle component.
+ */
 interface LanguageToggleProps {
+  /** Current language code */
   currentLang: "en" | "es";
+  /** Display variant for different screen sizes */
   variant?: "mobile" | "desktop";
 }
 
 /**
- * Language toggle component for switching between English and Spanish.
+ * Component for toggling between English and Spanish languages.
+ * Updates URL search parameters to reflect language change.
+ *
+ * @param props - Component props
+ * @returns Language toggle buttons
  */
 export function LanguageToggle({
   currentLang,
@@ -14,6 +23,11 @@ export function LanguageToggle({
 }: LanguageToggleProps) {
   const navigate = useNavigate();
 
+  /**
+   * Handles language change by updating URL search parameters.
+   *
+   * @param lang - The language code to switch to
+   */
   const handleLanguageChange = (lang: "en" | "es") => {
     void navigate({
       to: "/",

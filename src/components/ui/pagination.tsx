@@ -8,6 +8,12 @@ import {
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 
+/**
+ * Pagination navigation container component.
+ *
+ * @param props - Nav element props
+ * @returns Navigation element with pagination role
+ */
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
@@ -20,6 +26,12 @@ function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   );
 }
 
+/**
+ * Container for pagination items (buttons and links).
+ *
+ * @param props - UL element props
+ * @returns Unordered list with pagination items
+ */
 function PaginationContent({
   className,
   ...props
@@ -33,15 +45,31 @@ function PaginationContent({
   );
 }
 
+/**
+ * Individual pagination item wrapper.
+ *
+ * @param props - LI element props
+ * @returns List item element
+ */
 function PaginationItem({ ...props }: React.ComponentProps<"li">) {
   return <li data-slot="pagination-item" {...props} />;
 }
 
+/**
+ * Props for pagination link component.
+ */
 type PaginationLinkProps = {
+  /** Whether this link represents the current active page */
   isActive?: boolean;
 } & Pick<React.ComponentProps<typeof Button>, "size"> &
   React.ComponentProps<"a">;
 
+/**
+ * Pagination link component for page numbers.
+ *
+ * @param props - Link props with active state and size
+ * @returns Styled anchor element for pagination
+ */
 function PaginationLink({
   className,
   isActive,
@@ -65,6 +93,12 @@ function PaginationLink({
   );
 }
 
+/**
+ * Previous page navigation button.
+ *
+ * @param props - Pagination link props
+ * @returns Button with left chevron and "Previous" text
+ */
 function PaginationPrevious({
   className,
   children,
@@ -83,6 +117,12 @@ function PaginationPrevious({
   );
 }
 
+/**
+ * Next page navigation button.
+ *
+ * @param props - Pagination link props
+ * @returns Button with right chevron and "Next" text
+ */
 function PaginationNext({
   className,
   children,
@@ -101,6 +141,12 @@ function PaginationNext({
   );
 }
 
+/**
+ * Ellipsis component for indicating omitted pages.
+ *
+ * @param props - Span element props
+ * @returns Span with horizontal ellipsis icon
+ */
 function PaginationEllipsis({
   className,
   ...props
