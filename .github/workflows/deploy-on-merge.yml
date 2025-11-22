@@ -22,11 +22,11 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build the TanStack Start web app
+      - name: Check and build the TanStack Start web app
         run: |
-          bun run cf-typegen
-          bun run lint
-          bun run typecheck
+          bun wrangler types
+          bun oxlint --type-aware --fix .
+          bun tsgo --noEmit
           bun vite build
 
       - name: Deploy the TanStack Start web app
