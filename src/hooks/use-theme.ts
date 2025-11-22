@@ -58,7 +58,6 @@ export function useTheme() {
     setThemeState(newTheme);
     if (typeof window !== "undefined") {
       localStorage.setItem("theme", newTheme);
-      applyTheme(newTheme);
     }
   };
 
