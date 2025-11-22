@@ -1,0 +1,50 @@
+[
+  {
+    "category": "infrastructure",
+    "categoryName": {
+      "en": "Infrastructure",
+      "es": "Infraestructura"
+    },
+    "aws": "CloudFormation",
+    "azure": "ARM Templates",
+    "gcp": "Deployment Manager",
+    "oracle": "Resource Manager",
+    "cloudflare": "Terraform",
+    "description": {
+      "en": "Infrastructure as code templates",
+      "es": "Plantillas de infraestructura como código"
+    }
+  },
+  {
+    "category": "infrastructure",
+    "categoryName": {
+      "en": "Infrastructure",
+      "es": "Infraestructura"
+    },
+    "aws": "Management Console",
+    "azure": "Portal",
+    "gcp": "Cloud Console",
+    "oracle": "Console",
+    "cloudflare": "Dashboard",
+    "description": {
+      "en": "Web-based management interface",
+      "es": "Interfaz de gestión basada en web"
+    }
+  },
+  {
+    "category": "infrastructure",
+    "categoryName": {
+      "en": "Infrastructure",
+      "es": "Infraestructura"
+    },
+    "aws": "CLI",
+    "azure": "CLI",
+    "gcp": "gcloud CLI",
+    "oracle": "OCI CLI",
+    "cloudflare": "Wrangler CLI",
+    "description": {
+      "en": "Command-line interface",
+      "es": "Interfaz de línea de comandos"
+    }
+  }
+]

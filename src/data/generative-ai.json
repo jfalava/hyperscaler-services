@@ -1,0 +1,18 @@
+[
+  {
+    "category": "generative-ai",
+    "categoryName": {
+      "en": "Generative AI",
+      "es": "IA Generativa"
+    },
+    "aws": "Bedrock",
+    "azure": "AI Foundry",
+    "gcp": "Vertex AI (Model Garden)",
+    "oracle": "Generative AI",
+    "cloudflare": "Workers AI",
+    "description": {
+      "en": "Foundation model platform",
+      "es": "Plataforma de modelos fundamentales"
+    }
+  }
+]

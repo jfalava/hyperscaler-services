@@ -1,0 +1,34 @@
+[
+  {
+    "category": "machine-learning",
+    "categoryName": {
+      "en": "Machine Learning",
+      "es": "Aprendizaje Automático"
+    },
+    "aws": "SageMaker",
+    "azure": "Machine Learning",
+    "gcp": "Vertex AI",
+    "oracle": "Data Science",
+    "cloudflare": "AI Gateway",
+    "description": {
+      "en": "End-to-end ML platform",
+      "es": "Plataforma de ML de extremo a extremo"
+    }
+  },
+  {
+    "category": "machine-learning",
+    "categoryName": {
+      "en": "Machine Learning",
+      "es": "Aprendizaje Automático"
+    },
+    "aws": "SageMaker Autopilot",
+    "azure": "Automated ML",
+    "gcp": "Vertex AI AutoML",
+    "oracle": "AutoML",
+    "cloudflare": "Workers AI",
+    "description": {
+      "en": "Automated machine learning",
+      "es": "Aprendizaje automático automatizado"
+    }
+  }
+]

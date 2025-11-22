@@ -1,0 +1,66 @@
+[
+  {
+    "category": "data-integration",
+    "categoryName": {
+      "en": "Data Integration",
+      "es": "Integración de Datos"
+    },
+    "aws": "Glue",
+    "azure": "Data Factory",
+    "gcp": "Dataflow",
+    "oracle": "Data Integration",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed ETL service",
+      "es": "Servicio ETL administrado"
+    }
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {
+      "en": "Data Integration",
+      "es": "Integración de Datos"
+    },
+    "aws": "MWAA",
+    "azure": "Fabric Apache Airflow",
+    "gcp": "Cloud Composer",
+    "oracle": "Data Flow",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed workflow orchestration",
+      "es": "Orquestación de flujos de trabajo administrados"
+    }
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {
+      "en": "Data Integration",
+      "es": "Integración de Datos"
+    },
+    "aws": "AppFlow",
+    "azure": "Logic Apps",
+    "gcp": "Application Integration",
+    "oracle": "Integration Cloud",
+    "cloudflare": "Workers",
+    "description": {
+      "en": "Low-code data flow automation",
+      "es": "Automatización de flujos de datos de bajo código"
+    }
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {
+      "en": "Data Integration",
+      "es": "Integración de Datos"
+    },
+    "aws": "Step Functions",
+    "azure": "Logic Apps",
+    "gcp": "Workflows",
+    "oracle": "Process Automation",
+    "cloudflare": "Durable Objects",
+    "description": {
+      "en": "Workflow orchestration service",
+      "es": "Servicio de orquestación de flujos de trabajo"
+    }
+  }
+]

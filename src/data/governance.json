@@ -1,0 +1,18 @@
+[
+  {
+    "category": "governance",
+    "categoryName": {
+      "en": "Governance",
+      "es": "Gobernanza"
+    },
+    "aws": "Service Control Policies (SCPs)",
+    "azure": "Azure Policy",
+    "gcp": "Organization Policies",
+    "oracle": "OCI Governance Rules",
+    "cloudflare": "Page Rules",
+    "description": {
+      "en": "Governance enforcement for compliance standards",
+      "es": "Aplicación de gobernanza para estándares de cumplimiento"
+    }
+  }
+]

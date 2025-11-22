@@ -1,0 +1,34 @@
+[
+  {
+    "category": "data-warehouse",
+    "categoryName": {
+      "en": "Data Warehousing",
+      "es": "Almacenamiento de Datos"
+    },
+    "aws": "Redshift",
+    "azure": "Synapse Analytics",
+    "gcp": "BigQuery",
+    "oracle": "Autonomous Data Warehouse",
+    "cloudflare": "Analytics Engine",
+    "description": {
+      "en": "Petabyte-scale data warehouse",
+      "es": "Almacén de datos a escala de petabytes"
+    }
+  },
+  {
+    "category": "data-warehouse",
+    "categoryName": {
+      "en": "Data Warehousing",
+      "es": "Almacenamiento de Datos"
+    },
+    "aws": "Redshift Spectrum",
+    "azure": "OneLake Shortcuts",
+    "gcp": "BigLake",
+    "oracle": "Data Catalog",
+    "cloudflare": "—",
+    "description": {
+      "en": "Query external data without movement",
+      "es": "Consulta de datos externos sin movimiento"
+    }
+  }
+]

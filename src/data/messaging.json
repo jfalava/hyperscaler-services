@@ -1,0 +1,66 @@
+[
+  {
+    "category": "messaging",
+    "categoryName": {
+      "en": "Messaging",
+      "es": "Mensajería"
+    },
+    "aws": "SQS",
+    "azure": "Queue Storage / Service Bus",
+    "gcp": "Pub/Sub",
+    "oracle": "Queue",
+    "cloudflare": "Queues",
+    "description": {
+      "en": "Message queue service",
+      "es": "Servicio de cola de mensajes"
+    }
+  },
+  {
+    "category": "messaging",
+    "categoryName": {
+      "en": "Messaging",
+      "es": "Mensajería"
+    },
+    "aws": "SNS",
+    "azure": "Service Bus / Event Grid",
+    "gcp": "Pub/Sub",
+    "oracle": "Notifications",
+    "cloudflare": "Pub/Sub",
+    "description": {
+      "en": "Pub/sub messaging service",
+      "es": "Servicio de mensajería pub/sub"
+    }
+  },
+  {
+    "category": "messaging",
+    "categoryName": {
+      "en": "Messaging",
+      "es": "Mensajería"
+    },
+    "aws": "EventBridge",
+    "azure": "Event Grid",
+    "gcp": "Eventarc",
+    "oracle": "Events",
+    "cloudflare": "Workers (event-driven)",
+    "description": {
+      "en": "Event routing service",
+      "es": "Servicio de enrutamiento de eventos"
+    }
+  },
+  {
+    "category": "messaging",
+    "categoryName": {
+      "en": "Messaging",
+      "es": "Mensajería"
+    },
+    "aws": "MQ",
+    "azure": "Service Bus",
+    "gcp": "Cloud Tasks",
+    "oracle": "Advanced Queuing",
+    "cloudflare": "—",
+    "description": {
+      "en": "JMS 2.0 API compatible messaging",
+      "es": "Mensajería compatible con API JMS 2.0"
+    }
+  }
+]

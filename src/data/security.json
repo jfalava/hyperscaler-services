@@ -1,0 +1,162 @@
+[
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "IAM Roles & Resource-Based Policies",
+    "azure": "Azure RBAC",
+    "gcp": "IAM & Service Accounts",
+    "oracle": "OCI IAM Policies",
+    "cloudflare": "Access Policies",
+    "description": {
+      "en": "Cross-account/subscription access management",
+      "es": "Gestión de acceso entre cuentas/suscripciones"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "IAM",
+    "azure": "Active Directory / Entra ID",
+    "gcp": "Cloud Identity / IAM",
+    "oracle": "IAM",
+    "cloudflare": "Access",
+    "description": {
+      "en": "Identity and access management",
+      "es": "Gestión de identidad y acceso"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "IAM Identity Center",
+    "azure": "Microsoft Entra ID",
+    "gcp": "Cloud Identity",
+    "oracle": "Identity Domains",
+    "cloudflare": "Zero Trust",
+    "description": {
+      "en": "Centralized identity management with SSO",
+      "es": "Gestión de identidades centralizada con SSO"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "Organizations",
+    "azure": "Management Groups",
+    "gcp": "Resource Manager",
+    "oracle": "Tenancy",
+    "cloudflare": "Account",
+    "description": {
+      "en": "Hierarchical account management",
+      "es": "Gestión jerárquica de cuentas"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "Directory Service",
+    "azure": "Entra Domain Services",
+    "gcp": "Managed Service for Microsoft AD",
+    "oracle": "Microsoft AD",
+    "cloudflare": "—",
+    "description": {
+      "en": "Managed directory services",
+      "es": "Servicios de directorio administrados"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "MFA",
+    "azure": "Entra MFA",
+    "gcp": "2-Step Verification",
+    "oracle": "MFA",
+    "cloudflare": "Access (MFA)",
+    "description": {
+      "en": "Multi-factor authentication",
+      "es": "Autenticación multifactor"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "KMS",
+    "azure": "Key Vault",
+    "gcp": "Cloud KMS",
+    "oracle": "Vault",
+    "cloudflare": "—",
+    "description": {
+      "en": "Key management service",
+      "es": "Servicio de gestión de claves"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "WAF",
+    "azure": "Web Application Firewall",
+    "gcp": "Cloud Armor",
+    "oracle": "WAF",
+    "cloudflare": "WAF",
+    "description": {
+      "en": "Web application firewall",
+      "es": "Cortafuegos de aplicaciones web"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "Secrets Manager",
+    "azure": "Key Vault Secrets",
+    "gcp": "Secret Manager",
+    "oracle": "Vault (Secrets)",
+    "cloudflare": "—",
+    "description": {
+      "en": "Secrets management service",
+      "es": "Servicio de gestión de secretos"
+    }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "Cognito",
+    "azure": "Microsoft Identity Platform",
+    "gcp": "Identity Platform",
+    "oracle": "Identity Cloud Service",
+    "cloudflare": "Access",
+    "description": {
+      "en": "Complete identity platform",
+      "es": "Plataforma de identidad completa"
+    }
+  }
+]
