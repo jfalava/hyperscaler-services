@@ -119,7 +119,7 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : "",
+                  wrapText ? "whitespace-normal wrap-break-word" : "",
                 )}
               >
                 <ServiceLink name={service.oracle} url={service.oracleUrl} />
