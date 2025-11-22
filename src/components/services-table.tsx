@@ -25,6 +25,25 @@ interface ServicesTableProps {
 }
 
 /**
+ * Helper component to render service name as link or text.
+ */
+function ServiceLink({ name, url }: { name: string; url?: string }) {
+  if (url) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary hover:underline hover:text-primary/80 transition-colors"
+      >
+        {name}
+      </a>
+    );
+  }
+  return <span>{name}</span>;
+}
+
+/**
  * Services table component using shadcn Table.
  */
 export function ServicesTable({
@@ -81,7 +100,7 @@ export function ServicesTable({
                   wrapText ? "whitespace-normal break-words" : ""
                 )}
               >
-                {service.aws}
+                <ServiceLink name={service.aws} url={service.awsUrl} />
               </TableCell>
               <TableCell
                 className={cn(
@@ -89,7 +108,7 @@ export function ServicesTable({
                   wrapText ? "whitespace-normal break-words" : ""
                 )}
               >
-                {service.azure}
+                <ServiceLink name={service.azure} url={service.azureUrl} />
               </TableCell>
               <TableCell
                 className={cn(
@@ -97,7 +116,7 @@ export function ServicesTable({
                   wrapText ? "whitespace-normal break-words" : ""
                 )}
               >
-                {service.gcp}
+                <ServiceLink name={service.gcp} url={service.gcpUrl} />
               </TableCell>
               <TableCell
                 className={cn(
@@ -105,7 +124,7 @@ export function ServicesTable({
                   wrapText ? "whitespace-normal break-words" : ""
                 )}
               >
-                {service.oracle}
+                <ServiceLink name={service.oracle} url={service.oracleUrl} />
               </TableCell>
               <TableCell
                 className={cn(
@@ -113,7 +132,7 @@ export function ServicesTable({
                   wrapText ? "whitespace-normal break-words" : ""
                 )}
               >
-                {service.cloudflare}
+                <ServiceLink name={service.cloudflare} url={service.cloudflareUrl} />
               </TableCell>
               <TableCell
                 className={cn(

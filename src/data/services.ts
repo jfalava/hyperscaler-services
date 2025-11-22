@@ -25,10 +25,15 @@ export interface ServiceMapping {
   category: string;
   categoryName: ServiceTranslations;
   aws: string;
+  awsUrl?: string;
   azure: string;
+  azureUrl?: string;
   gcp: string;
+  gcpUrl?: string;
   oracle: string;
+  oracleUrl?: string;
   cloudflare: string;
+  cloudflareUrl?: string;
   description: ServiceTranslations;
 }
 

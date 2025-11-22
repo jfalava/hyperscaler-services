@@ -6,10 +6,15 @@
       "es": "Comunicación"
     },
     "aws": "SES",
+    "awsUrl": "https://aws.amazon.com/ses/",
     "azure": "Communication Services",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/communication-services/",
     "gcp": "SendGrid (third-party)",
+    "gcpUrl": "https://cloud.google.com/marketplace/product/sendgrid-app/sendgrid-email",
     "oracle": "Email Delivery",
+    "oracleUrl": "https://www.oracle.com/cloud/networking/email-delivery/",
     "cloudflare": "Email Routing",
+    "cloudflareUrl": "https://developers.cloudflare.com/email-routing/",
     "description": {
       "en": "Email sending service",
       "es": "Servicio de envío de correos electrónicos"

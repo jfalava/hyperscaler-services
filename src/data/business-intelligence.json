@@ -6,10 +6,15 @@
       "es": "Inteligencia de Negocios"
     },
     "aws": "QuickSight",
+    "awsUrl": "https://aws.amazon.com/quicksight/",
     "azure": "Power BI",
+    "azureUrl": "https://powerbi.microsoft.com/",
     "gcp": "Looker",
+    "gcpUrl": "https://cloud.google.com/looker",
     "oracle": "Analytics Cloud",
+    "oracleUrl": "https://www.oracle.com/business-analytics/",
     "cloudflare": "Web Analytics",
+    "cloudflareUrl": "https://developers.cloudflare.com/analytics/web-analytics/",
     "description": {
       "en": "Analytics and visualization tools",
       "es": "Herramientas de análisis y visualización"
