@@ -6,6 +6,12 @@ import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
 
+/**
+ * Vite configuration for the hyperscaler services application.
+ * Configures plugins for React, TypeScript paths, Tailwind CSS, TanStack Start, and Cloudflare.
+ *
+ * @returns Vite configuration object
+ */
 export default defineConfig({
   plugins: [
     cloudflare({ viteEnvironment: { name: "ssr" } }),

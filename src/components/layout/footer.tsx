@@ -1,6 +1,12 @@
 import projectPackage from "../../../package.json";
 const VERSION = `${projectPackage.version}`;
 
+/**
+ * Footer component displaying app information and links.
+ * Shows version, year, author, and GitHub repository link.
+ *
+ * @returns Footer element with app metadata
+ */
 export function Footer() {
   const currentYear = new Date().getFullYear();
 

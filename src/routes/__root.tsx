@@ -11,10 +11,13 @@ import "@/styles/global.css";
 import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from "@/hooks/use-theme";
 
+/**
+ * Query client instance with default configuration.
+ */
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
     },
   },
 });
@@ -60,6 +63,11 @@ export const Route = createRootRoute({
   component: RootComponent,
 });
 
+/**
+ * Root component wrapper for the application.
+ *
+ * @returns Root component with document wrapper
+ */
 function RootComponent() {
   return (
     <RootDocument>
@@ -68,6 +76,13 @@ function RootComponent() {
   );
 }
 
+/**
+ * Document wrapper component with theme script and providers.
+ * Includes theme initialization script to prevent flash of incorrect theme.
+ *
+ * @param props - Component props with children
+ * @returns HTML document structure with providers
+ */
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html suppressHydrationWarning>

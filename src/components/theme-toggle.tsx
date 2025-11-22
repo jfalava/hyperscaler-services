@@ -9,11 +9,19 @@ import {
 import { useTheme } from "@/hooks/use-theme";
 
 /**
- * Theme toggle component with light, dark, and system options.
+ * Theme toggle dropdown component with light, dark, and system options.
+ * Displays current theme icon and allows switching between themes.
+ *
+ * @returns Theme toggle dropdown menu
  */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
+  /**
+   * Gets the appropriate icon for the current theme.
+   *
+   * @returns Icon component for current theme
+   */
   const getThemeIcon = () => {
     switch (theme) {
       case "light":
