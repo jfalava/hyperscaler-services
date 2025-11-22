@@ -14,9 +14,9 @@ export default defineConfig({
       projects: ["./tsconfig.json"],
     }),
     tsConfigPaths(),
+    tailwindcss(),
     tanstackStart(),
     viteReact(),
-    tailwindcss(),
   ],
   resolve: {
     alias: {

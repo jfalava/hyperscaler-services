@@ -1,11 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
-  font-family: "Pretendard Variable";
+  font-family: "Pretendard";
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
