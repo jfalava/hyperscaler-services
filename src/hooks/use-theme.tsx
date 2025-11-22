@@ -1,4 +1,10 @@
-import { useState, useEffect, createContext, useContext, type ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  type ReactNode,
+} from "react";
 
 export type ThemeMode = "light" | "dark" | "system";
 
@@ -41,7 +47,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // Lazy initialization - only read localStorage on client side
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme") as ThemeMode | null;
-      if (savedTheme === "light" || savedTheme === "dark" || savedTheme === "system") {
+      if (
+        savedTheme === "light" ||
+        savedTheme === "dark" ||
+        savedTheme === "system"
+      ) {
         return savedTheme;
       }
     }
@@ -94,4 +104,3 @@ export function useTheme() {
   }
   return context;
 }
-

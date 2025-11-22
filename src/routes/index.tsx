@@ -1,6 +1,10 @@
-import { createFileRoute, useSearch } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  useSearch,
+  useNavigate,
+} from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { WrapTextIcon } from "lucide-react";
 import { importServices } from "@/data/services";
 import { FloatingButtons } from "@/components/floating-buttons";
@@ -89,13 +93,30 @@ const normalizeString = (str: string): string => {
 };
 
 export const Route = createFileRoute("/")({
-  validateSearch: (search: Record<string, unknown>): { lang: LanguageCode } => {
+  validateSearch: (search: Record<string, unknown>) => {
     const langValue = search.lang;
     // Validate and clamp to allowed values
-    if (langValue === "en" || langValue === "es") {
-      return { lang: langValue };
-    }
-    return { lang: "en" };
+    const validLang =
+      langValue === "en" || langValue === "es" ? langValue : "en";
+
+    // Validate page parameter
+    const pageValue =
+      typeof search.page === "number"
+        ? search.page
+        : typeof search.page === "string"
+          ? parseInt(search.page, 10)
+          : 1;
+    const validPage = !isNaN(pageValue) && pageValue > 0 ? pageValue : 1;
+
+    // Validate wrapText parameter
+    const wrapTextValue = search.wrapText;
+    const validWrapText = wrapTextValue === true || wrapTextValue === "true";
+
+    return {
+      lang: validLang as LanguageCode,
+      page: validPage,
+      wrapText: validWrapText,
+    };
   },
   loader: async () => await getServices(),
   component: Home,
@@ -103,14 +124,30 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const services = Route.useLoaderData();
-  const { lang } = useSearch({ from: "/" });
+  const { lang, page, wrapText } = useSearch({ from: "/" });
   const currentLang = lang;
   const t = getTranslations(currentLang);
+  const navigate = useNavigate({ from: "/" });
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [wrapText, setWrapText] = useState(false);
   const pagination = usePaginationStore();
   const isMobile = useIsMobile();
+
+  // Update URL parameters
+  const updateURL = useCallback(
+    (updates: Partial<{ page: number; wrapText: boolean }>) => {
+      void navigate({
+        search: (prev) => ({ ...prev, ...updates }),
+        replace: true,
+      });
+    },
+    [navigate],
+  );
+
+  // Sync pagination with URL
+  useEffect(() => {
+    pagination.setCurrentPage(page);
+  }, [page, pagination.setCurrentPage]);
 
   // Filter services based on search query
   const filteredServices = useMemo(() => {
@@ -146,8 +183,8 @@ function Home() {
 
   // Reset to page 1 when search changes
   useEffect(() => {
-    pagination.setCurrentPage(1);
-  }, [searchQuery, pagination.setCurrentPage]);
+    updateURL({ page: 1 });
+  }, [searchQuery, updateURL]);
 
   // Pagination
   const totalPages = Math.max(
@@ -182,16 +219,16 @@ function Home() {
 
       if (e.key === "ArrowLeft" && currentPageClamped > 1) {
         e.preventDefault();
-        pagination.previousPage();
+        updateURL({ page: currentPageClamped - 1 });
       } else if (e.key === "ArrowRight" && currentPageClamped < totalPages) {
         e.preventDefault();
-        pagination.nextPage();
+        updateURL({ page: currentPageClamped + 1 });
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [currentPageClamped, totalPages, pagination.previousPage, pagination.nextPage]);
+  }, [currentPageClamped, totalPages, updateURL]);
 
   const generatePaginationItems = () => {
     const items = [];
@@ -202,7 +239,7 @@ function Home() {
     items.push(
       <PaginationItem key="prev">
         <PaginationPrevious
-          onClick={pagination.previousPage}
+          onClick={() => updateURL({ page: current - 1 })}
           className={current === 1 ? "pointer-events-none opacity-50" : ""}
         >
           {t.previous}
@@ -227,10 +264,10 @@ function Home() {
     } else {
       // Show 1
       items.push(
-        <PaginationItem key={1}>
+        <PaginationItem key="1">
           <PaginationLink
             isActive={1 === current}
-            onClick={() => pagination.goToPage(1)}
+            onClick={() => updateURL({ page: 1 })}
           >
             1
           </PaginationLink>
@@ -254,7 +291,7 @@ function Home() {
           <PaginationItem key={i}>
             <PaginationLink
               isActive={i === current}
-              onClick={() => pagination.goToPage(i)}
+              onClick={() => updateURL({ page: i })}
             >
               {i}
             </PaginationLink>
@@ -277,7 +314,7 @@ function Home() {
           <PaginationItem key={total}>
             <PaginationLink
               isActive={total === current}
-              onClick={() => pagination.goToPage(total)}
+              onClick={() => updateURL({ page: total })}
             >
               {total}
             </PaginationLink>
@@ -290,7 +327,7 @@ function Home() {
     items.push(
       <PaginationItem key="next">
         <PaginationNext
-          onClick={pagination.nextPage}
+          onClick={() => updateURL({ page: current + 1 })}
           className={current === total ? "pointer-events-none opacity-50" : ""}
         >
           {t.next}
@@ -306,7 +343,7 @@ function Home() {
       <FloatingButtons
         currentLang={currentLang}
         wrapText={wrapText}
-        onWrapTextChange={setWrapText}
+        onWrapTextChange={(newWrapText) => updateURL({ wrapText: newWrapText })}
       />
 
       <header className="mb-6 sm:mb-8">
@@ -352,7 +389,7 @@ function Home() {
             <Button
               variant={wrapText ? "default" : "outline"}
               size="sm"
-              onClick={() => setWrapText(!wrapText)}
+              onClick={() => updateURL({ wrapText: !wrapText })}
               className="gap-2"
               title={t.wrapText}
             >

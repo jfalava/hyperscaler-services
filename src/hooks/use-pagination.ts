@@ -12,7 +12,9 @@ const initialState: PaginationState = {
   itemsPerPage: 20,
 };
 
-const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | null => {
+const sanitizePaginationState = (
+  parsed: unknown,
+): Partial<PaginationState> | null => {
   if (typeof parsed !== "object" || parsed === null) return null;
 
   const obj = parsed as Record<string, unknown>;
@@ -20,7 +22,10 @@ const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | nu
 
   // Validate and sanitize currentPage if present
   if ("currentPage" in obj) {
-    if (typeof obj.currentPage !== "number" || !Number.isFinite(obj.currentPage)) {
+    if (
+      typeof obj.currentPage !== "number" ||
+      !Number.isFinite(obj.currentPage)
+    ) {
       return null;
     }
     const sanitized = Math.floor(obj.currentPage);
@@ -30,7 +35,10 @@ const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | nu
 
   // Validate and sanitize totalItems if present
   if ("totalItems" in obj) {
-    if (typeof obj.totalItems !== "number" || !Number.isFinite(obj.totalItems)) {
+    if (
+      typeof obj.totalItems !== "number" ||
+      !Number.isFinite(obj.totalItems)
+    ) {
       return null;
     }
     const sanitized = Math.floor(obj.totalItems);
@@ -40,7 +48,10 @@ const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | nu
 
   // Validate and sanitize itemsPerPage if present
   if ("itemsPerPage" in obj) {
-    if (typeof obj.itemsPerPage !== "number" || !Number.isFinite(obj.itemsPerPage)) {
+    if (
+      typeof obj.itemsPerPage !== "number" ||
+      !Number.isFinite(obj.itemsPerPage)
+    ) {
       return null;
     }
     const sanitized = Math.floor(obj.itemsPerPage);
@@ -76,7 +87,7 @@ export const usePaginationStore = () => {
         // Remove corrupt data
         try {
           localStorage.removeItem("hyperscaler-pagination");
-        } catch (e) {
+        } catch {
           // Ignore if we can't remove
         }
       }
@@ -96,11 +107,21 @@ export const usePaginationStore = () => {
   }, [state]);
 
   const setCurrentPage = useCallback((page: number) => {
-    setState((prev) => ({ ...prev, currentPage: page }));
+    setState((prev) => {
+      const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
+      const validPage =
+        Number.isFinite(page) && page > 0 ? Math.min(page, totalPages) : 1;
+      return { ...prev, currentPage: validPage };
+    });
   }, []);
 
   const setTotalItems = useCallback((total: number) => {
-    setState((prev) => ({ ...prev, totalItems: total }));
+    setState((prev) => {
+      const validTotal = Number.isFinite(total) && total >= 0 ? total : 0;
+      const totalPages = getTotalPages(validTotal, prev.itemsPerPage);
+      const adjustedPage = Math.min(prev.currentPage, totalPages);
+      return { ...prev, totalItems: validTotal, currentPage: adjustedPage };
+    });
   }, []);
 
   const nextPage = useCallback(() => {

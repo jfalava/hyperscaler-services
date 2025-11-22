@@ -9,7 +9,10 @@ export function useIsMobile() {
 
   React.useEffect(() => {
     // Check if window and matchMedia API are available
-    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    ) {
       setIsMobile(false);
       return;
     }

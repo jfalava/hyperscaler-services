@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme, type ThemeMode } from "@/hooks/use-theme";
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 interface FloatingButtonsProps {
   currentLang: "en" | "es";
@@ -30,7 +30,6 @@ export function FloatingButtons({
   const { theme, setTheme } = useTheme();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  const search = useSearch({ strict: false });
 
   const cycleTheme = () => {
     const themes: ThemeMode[] = ["light", "dark", "system"];
@@ -41,8 +40,13 @@ export function FloatingButtons({
 
   const toggleLanguage = () => {
     const newLang = currentLang === "en" ? "es" : "en";
-    navigate({
-      search: { ...search, lang: newLang },
+    void navigate({
+      to: "/",
+      search: (prev) => ({
+        lang: newLang,
+        page: prev.page ?? 1,
+        wrapText: prev.wrapText ?? false,
+      }),
       replace: true,
     });
   };
