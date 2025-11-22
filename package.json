@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "scripts": {
     "dev": "bun run cf-typegen && vite dev",
-    "check": "bun run typecheck && bun run lint",
+    "check": "bun run cf-typegen && tsgo --noEmit && oxlint --type-aware --fix .",
     "build": "tsgo --noEmit && oxlint --type-aware --fix . && vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
