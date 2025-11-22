@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Sun, Moon, Monitor, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,64 +6,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-type ThemeMode = "light" | "dark" | "system";
-
-/**
- * Apply theme to the document.
- */
-function applyTheme(theme: ThemeMode): void {
-  if (
-    theme === "dark" ||
-    (theme === "system" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}
+import { useTheme } from "@/hooks/use-theme";
 
 /**
  * Theme toggle component with light, dark, and system options.
  */
 export function ThemeToggle() {
-  const [theme, setThemeState] = useState<ThemeMode>("system");
-
-  useEffect(() => {
-    // Only access localStorage on client side
-    if (typeof window !== "undefined") {
-      const savedTheme =
-        (localStorage.getItem("theme") as ThemeMode) || "system";
-      setThemeState(savedTheme);
-      applyTheme(savedTheme);
-    }
-  }, []);
-
-  useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => {
-      if (theme === "system") {
-        applyTheme("system");
-      }
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [theme]);
-
-  const setTheme = (newTheme: ThemeMode) => {
-    setThemeState(newTheme);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", newTheme);
-    }
-    applyTheme(newTheme);
-  };
+  const { theme, setTheme } = useTheme();
 
   const getThemeIcon = () => {
     switch (theme) {

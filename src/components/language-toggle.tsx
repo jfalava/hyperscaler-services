@@ -1,3 +1,5 @@
+import { useNavigate, useSearch } from "@tanstack/react-router";
+
 interface LanguageToggleProps {
   currentLang: "en" | "es";
   variant?: "mobile" | "desktop";
@@ -10,10 +12,14 @@ export function LanguageToggle({
   currentLang,
   variant = "desktop",
 }: LanguageToggleProps) {
+  const navigate = useNavigate();
+  const search = useSearch({ strict: false });
+
   const handleLanguageChange = (lang: "en" | "es") => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("lang", lang);
-    window.location.href = url.toString();
+    navigate({
+      search: { ...search, lang },
+      replace: true,
+    });
   };
 
   const baseClasses =

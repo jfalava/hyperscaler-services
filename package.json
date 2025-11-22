@@ -46,7 +46,7 @@
     "vite-tsconfig-paths": "^5.1.4",
     "wrangler": "^4.50.0"
   },
-  "overrides": {
-    "vite": "npm:rolldown-vite@latest"
+  "comments": {
+    "vite": "Using rolldown-vite (experimental) - a faster Vite fork based on Rolldown bundler. This is in beta and may affect build reproducibility. To revert to stable Vite, change 'npm:rolldown-vite@^7.2.7' to '^6.0.0' or latest stable version and run install to update lockfile."
   }
 }

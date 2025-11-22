@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SettingsIcon, WrapTextIcon } from "lucide-react";
 import {
   Dialog,
@@ -9,20 +9,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-type ThemeMode = "light" | "dark" | "system";
-
-function applyTheme(theme: ThemeMode): void {
-  if (
-    theme === "dark" ||
-    (theme === "system" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-}
+import { useTheme, type ThemeMode } from "@/hooks/use-theme";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 
 interface FloatingButtonsProps {
   currentLang: "en" | "es";
@@ -39,51 +27,24 @@ export function FloatingButtons({
   onWrapTextChange,
 }: FloatingButtonsProps) {
   const [open, setOpen] = useState(false);
-  const [theme, setThemeState] = useState<ThemeMode>("system");
+  const { theme, setTheme } = useTheme();
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme =
-        (localStorage.getItem("theme") as ThemeMode) || "system";
-      setThemeState(savedTheme);
-      applyTheme(savedTheme);
-    }
-  }, []);
-
-  useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => {
-      if (theme === "system") {
-        applyTheme("system");
-      }
-    };
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [theme]);
+  const navigate = useNavigate();
+  const search = useSearch({ strict: false });
 
   const cycleTheme = () => {
     const themes: ThemeMode[] = ["light", "dark", "system"];
     const currentIndex = themes.indexOf(theme);
     const nextTheme = themes[(currentIndex + 1) % themes.length];
-    setThemeState(nextTheme);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", nextTheme);
-    }
-    applyTheme(nextTheme);
+    setTheme(nextTheme);
   };
 
   const toggleLanguage = () => {
     const newLang = currentLang === "en" ? "es" : "en";
-    const url = new URL(window.location.href);
-    url.searchParams.set("lang", newLang);
-    window.location.href = url.toString();
+    navigate({
+      search: { ...search, lang: newLang },
+      replace: true,
+    });
   };
 
   const getThemeLabel = () => {
