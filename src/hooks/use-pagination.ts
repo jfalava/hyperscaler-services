@@ -64,10 +64,11 @@ export const usePaginationStore = () => {
         if (saved) {
           const parsed = JSON.parse(saved);
           const sanitized = sanitizePaginationState(parsed);
-          if (sanitized) {
+          // Check for valid non-empty object
+          if (sanitized !== null && Object.keys(sanitized).length > 0) {
             return { ...initialState, ...sanitized };
           }
-          // Invalid state, remove it
+          // Invalid or empty state, remove it
           localStorage.removeItem("hyperscaler-pagination");
         }
       } catch (error) {
