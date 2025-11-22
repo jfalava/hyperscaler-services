@@ -142,12 +142,12 @@ function Home() {
   // Update total items when filtered services change
   useEffect(() => {
     pagination.setTotalItems(filteredServices.length);
-  }, [filteredServices.length]);
+  }, [filteredServices.length, pagination.setTotalItems]);
 
   // Reset to page 1 when search changes
   useEffect(() => {
     pagination.setCurrentPage(1);
-  }, [searchQuery]);
+  }, [searchQuery, pagination.setCurrentPage]);
 
   // Pagination
   const totalPages = Math.max(
@@ -191,7 +191,7 @@ function Home() {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [currentPageClamped, totalPages]);
+  }, [currentPageClamped, totalPages, pagination.previousPage, pagination.nextPage]);
 
   const generatePaginationItems = () => {
     const items = [];

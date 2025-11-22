@@ -35,6 +35,10 @@ const isValidPaginationState = (parsed: unknown): parsed is Partial<PaginationSt
   return true;
 };
 
+const getTotalPages = (totalItems: number, itemsPerPage: number): number => {
+  return Math.max(1, Math.ceil(totalItems / itemsPerPage));
+};
+
 export const usePaginationStore = () => {
   const [state, setState] = useState<PaginationState>(() => {
     // Load from localStorage on client side
@@ -83,10 +87,7 @@ export const usePaginationStore = () => {
 
   const nextPage = () => {
     setState((prev) => {
-      const totalPages = Math.max(
-        1,
-        Math.ceil(prev.totalItems / prev.itemsPerPage),
-      );
+      const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
       return {
         ...prev,
         currentPage: Math.min(prev.currentPage + 1, totalPages),
@@ -102,10 +103,7 @@ export const usePaginationStore = () => {
   };
 
   const goToPage = (page: number) => {
-    const totalPages = Math.max(
-      1,
-      Math.ceil(state.totalItems / state.itemsPerPage),
-    );
+    const totalPages = getTotalPages(state.totalItems, state.itemsPerPage);
     setCurrentPage(Math.max(1, Math.min(page, totalPages)));
   };
 
