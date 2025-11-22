@@ -6,9 +6,13 @@
       "es": "Cómputo"
     },
     "aws": "EC2",
+    "awsUrl": "https://aws.amazon.com/ec2/",
     "azure": "Virtual Machines",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/virtual-machines/",
     "gcp": "Compute Engine",
+    "gcpUrl": "https://cloud.google.com/compute",
     "oracle": "OCI Compute",
+    "oracleUrl": "https://www.oracle.com/cloud/compute/",
     "cloudflare": "—",
     "description": {
       "en": "On-demand virtual machines billed per second",
@@ -22,9 +26,13 @@
       "es": "Cómputo"
     },
     "aws": "VMware Cloud on AWS",
+    "awsUrl": "https://aws.amazon.com/vmware/",
     "azure": "Azure VMware Solution",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/azure-vmware/",
     "gcp": "Google Cloud VMware Engine",
+    "gcpUrl": "https://cloud.google.com/vmware-engine",
     "oracle": "Oracle Cloud VMware Solution",
+    "oracleUrl": "https://www.oracle.com/cloud/compute/vmware/",
     "cloudflare": "—",
     "description": {
       "en": "Enables migration of VMware vSphere environments",
@@ -38,9 +46,13 @@
       "es": "Cómputo"
     },
     "aws": "AWS ParallelCluster",
+    "awsUrl": "https://aws.amazon.com/hpc/parallelcluster/",
     "azure": "Azure CycleCloud",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/cyclecloud/",
     "gcp": "HPC Toolkit",
+    "gcpUrl": "https://cloud.google.com/hpc-toolkit",
     "oracle": "OCI HPC",
+    "oracleUrl": "https://www.oracle.com/cloud/hpc/",
     "cloudflare": "—",
     "description": {
       "en": "Facilitates creation and management of HPC clusters",
@@ -54,10 +66,15 @@
       "es": "Cómputo"
     },
     "aws": "AWS Auto Scaling",
+    "awsUrl": "https://aws.amazon.com/autoscaling/",
     "azure": "Virtual Machine Scale Sets",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/virtual-machine-scale-sets/",
     "gcp": "Managed Instance Groups",
+    "gcpUrl": "https://cloud.google.com/compute/docs/instance-groups",
     "oracle": "Autoscaling",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/autoscalinginstancepools.htm",
     "cloudflare": "Workers (auto-scale)",
+    "cloudflareUrl": "https://developers.cloudflare.com/workers/",
     "description": {
       "en": "Automatic scaling of compute resources",
       "es": "Escalado automático de recursos de cómputo"
@@ -70,10 +87,15 @@
       "es": "Cómputo"
     },
     "aws": "AWS Batch",
+    "awsUrl": "https://aws.amazon.com/batch/",
     "azure": "Azure Batch",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/batch/",
     "gcp": "Batch",
+    "gcpUrl": "https://cloud.google.com/batch",
     "oracle": "Resource Manager Jobs",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
     "cloudflare": "Queues",
+    "cloudflareUrl": "https://developers.cloudflare.com/queues/",
     "description": {
       "en": "Managed batch processing service",
       "es": "Servicio de procesamiento por lotes administrado"
@@ -86,10 +108,15 @@
       "es": "Cómputo"
     },
     "aws": "Lambda",
+    "awsUrl": "https://aws.amazon.com/lambda/",
     "azure": "Functions",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/functions/",
     "gcp": "Cloud Functions",
+    "gcpUrl": "https://cloud.google.com/functions",
     "oracle": "OCI Functions",
+    "oracleUrl": "https://www.oracle.com/cloud/cloud-native/functions/",
     "cloudflare": "Workers",
+    "cloudflareUrl": "https://developers.cloudflare.com/workers/",
     "description": {
       "en": "Serverless compute service",
       "es": "Servicio de cómputo sin servidor"
@@ -102,10 +129,15 @@
       "es": "Cómputo"
     },
     "aws": "Elastic Beanstalk",
+    "awsUrl": "https://aws.amazon.com/elasticbeanstalk/",
     "azure": "App Service",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/app-service/",
     "gcp": "App Engine",
+    "gcpUrl": "https://cloud.google.com/appengine",
     "oracle": "OCI DevOps",
+    "oracleUrl": "https://www.oracle.com/devops/",
     "cloudflare": "Pages",
+    "cloudflareUrl": "https://developers.cloudflare.com/pages/",
     "description": {
       "en": "Platform as a Service for web apps",
       "es": "Plataforma como servicio para aplicaciones web"

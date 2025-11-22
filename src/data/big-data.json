@@ -6,9 +6,13 @@
       "es": "Big Data"
     },
     "aws": "EMR",
+    "awsUrl": "https://aws.amazon.com/emr/",
     "azure": "HDInsight",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/hdinsight/",
     "gcp": "Dataproc",
+    "gcpUrl": "https://cloud.google.com/dataproc",
     "oracle": "Big Data Service",
+    "oracleUrl": "https://www.oracle.com/big-data/",
     "cloudflare": "—",
     "description": {
       "en": "Managed Hadoop and Spark service",
@@ -22,10 +26,15 @@
       "es": "Big Data"
     },
     "aws": "Kinesis",
+    "awsUrl": "https://aws.amazon.com/kinesis/",
     "azure": "Event Hubs / Stream Analytics",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/event-hubs/",
     "gcp": "Pub/Sub + Dataflow",
+    "gcpUrl": "https://cloud.google.com/pubsub",
     "oracle": "Streaming",
+    "oracleUrl": "https://www.oracle.com/cloud/streaming/",
     "cloudflare": "Stream",
+    "cloudflareUrl": "https://developers.cloudflare.com/stream/",
     "description": {
       "en": "Real-time data streaming",
       "es": "Transmisión de datos en tiempo real"
@@ -38,9 +47,13 @@
       "es": "Big Data"
     },
     "aws": "MSK",
+    "awsUrl": "https://aws.amazon.com/msk/",
     "azure": "Event Hubs",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/event-hubs/",
     "gcp": "Pub/Sub",
+    "gcpUrl": "https://cloud.google.com/pubsub",
     "oracle": "Streaming (Kafka)",
+    "oracleUrl": "https://www.oracle.com/cloud/streaming/",
     "cloudflare": "—",
     "description": {
       "en": "Managed Kafka clusters",

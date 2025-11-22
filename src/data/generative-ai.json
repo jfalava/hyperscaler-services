@@ -6,10 +6,15 @@
       "es": "IA Generativa"
     },
     "aws": "Bedrock",
+    "awsUrl": "https://aws.amazon.com/bedrock/",
     "azure": "AI Foundry",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-studio/",
     "gcp": "Vertex AI (Model Garden)",
+    "gcpUrl": "https://cloud.google.com/vertex-ai",
     "oracle": "Generative AI",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/generative-ai/",
     "cloudflare": "Workers AI",
+    "cloudflareUrl": "https://developers.cloudflare.com/workers-ai/",
     "description": {
       "en": "Foundation model platform",
       "es": "Plataforma de modelos fundamentales"

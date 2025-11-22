@@ -6,9 +6,13 @@
       "es": "Contenedores"
     },
     "aws": "ECS / EKS",
+    "awsUrl": "https://aws.amazon.com/ecs/",
     "azure": "Container Instances / AKS",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/container-instances/",
     "gcp": "Cloud Run / GKE",
+    "gcpUrl": "https://cloud.google.com/run",
     "oracle": "Container Instances / OKE",
+    "oracleUrl": "https://www.oracle.com/cloud/cloud-native/container-instances/",
     "cloudflare": "—",
     "description": {
       "en": "Container orchestration services",
@@ -22,9 +26,13 @@
       "es": "Contenedores"
     },
     "aws": "ECR",
+    "awsUrl": "https://aws.amazon.com/ecr/",
     "azure": "Container Registry",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/container-registry/",
     "gcp": "Artifact Registry",
+    "gcpUrl": "https://cloud.google.com/artifact-registry",
     "oracle": "Container Registry",
+    "oracleUrl": "https://www.oracle.com/cloud/cloud-native/container-registry/",
     "cloudflare": "—",
     "description": {
       "en": "Managed container image registry",
@@ -38,9 +46,13 @@
       "es": "Contenedores"
     },
     "aws": "EKS",
+    "awsUrl": "https://aws.amazon.com/eks/",
     "azure": "AKS",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/kubernetes-service/",
     "gcp": "GKE",
+    "gcpUrl": "https://cloud.google.com/kubernetes-engine",
     "oracle": "OKE",
+    "oracleUrl": "https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/",
     "cloudflare": "—",
     "description": {
       "en": "Managed Kubernetes service",
@@ -54,9 +66,13 @@
       "es": "Contenedores"
     },
     "aws": "App Mesh",
+    "awsUrl": "https://aws.amazon.com/app-mesh/",
     "azure": "Istio add-on for AKS",
+    "azureUrl": "https://learn.microsoft.com/en-us/azure/aks/istio-about",
     "gcp": "Anthos Service Mesh",
+    "gcpUrl": "https://cloud.google.com/service-mesh",
     "oracle": "Service Mesh",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/service-mesh/home.htm",
     "cloudflare": "—",
     "description": {
       "en": "Service mesh for microservices",

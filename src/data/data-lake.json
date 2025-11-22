@@ -6,9 +6,13 @@
       "es": "Lagos de Datos"
     },
     "aws": "Lake Formation",
+    "awsUrl": "https://aws.amazon.com/lake-formation/",
     "azure": "OneLake",
+    "azureUrl": "https://learn.microsoft.com/en-us/fabric/onelake/",
     "gcp": "Dataplex",
+    "gcpUrl": "https://cloud.google.com/dataplex",
     "oracle": "Data Lake",
+    "oracleUrl": "https://www.oracle.com/big-data/data-lake/",
     "cloudflare": "—",
     "description": {
       "en": "Data lake governance and security",
@@ -22,9 +26,13 @@
       "es": "Lagos de Datos"
     },
     "aws": "Athena",
+    "awsUrl": "https://aws.amazon.com/athena/",
     "azure": "Fabric Lakehouse",
+    "azureUrl": "https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-overview",
     "gcp": "BigQuery",
+    "gcpUrl": "https://cloud.google.com/bigquery",
     "oracle": "Autonomous Database",
+    "oracleUrl": "https://www.oracle.com/autonomous-database/",
     "cloudflare": "—",
     "description": {
       "en": "Serverless query engine",

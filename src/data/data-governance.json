@@ -6,9 +6,13 @@
       "es": "Gobernanza de Datos"
     },
     "aws": "Glue Data Catalog",
+    "awsUrl": "https://aws.amazon.com/glue/",
     "azure": "Microsoft Purview",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/purview/",
     "gcp": "Dataplex",
+    "gcpUrl": "https://cloud.google.com/dataplex",
     "oracle": "Data Catalog",
+    "oracleUrl": "https://www.oracle.com/big-data/data-catalog/",
     "cloudflare": "—",
     "description": {
       "en": "Unified data governance solution",

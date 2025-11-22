@@ -6,10 +6,15 @@
       "es": "Servicios de IA"
     },
     "aws": "Rekognition",
+    "awsUrl": "https://aws.amazon.com/rekognition/",
     "azure": "Computer Vision",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/ai-vision/",
     "gcp": "Vision AI",
+    "gcpUrl": "https://cloud.google.com/vision",
     "oracle": "Vision",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/vision/",
     "cloudflare": "AI (Inference)",
+    "cloudflareUrl": "https://developers.cloudflare.com/workers-ai/",
     "description": {
       "en": "Image and video analysis",
       "es": "Análisis de imágenes y video"
@@ -22,9 +27,13 @@
       "es": "Servicios de IA"
     },
     "aws": "Polly",
+    "awsUrl": "https://aws.amazon.com/polly/",
     "azure": "Speech (Text-to-Speech)",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/text-to-speech/",
     "gcp": "Text-to-Speech",
+    "gcpUrl": "https://cloud.google.com/text-to-speech",
     "oracle": "Speech",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/speech/",
     "cloudflare": "—",
     "description": {
       "en": "Neural voice conversion",
@@ -38,9 +47,13 @@
       "es": "Servicios de IA"
     },
     "aws": "Transcribe",
+    "awsUrl": "https://aws.amazon.com/transcribe/",
     "azure": "Speech (Speech-to-Text)",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/speech-to-text/",
     "gcp": "Speech-to-Text",
+    "gcpUrl": "https://cloud.google.com/speech-to-text",
     "oracle": "Speech",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/speech/",
     "cloudflare": "—",
     "description": {
       "en": "Audio transcription service",
@@ -54,9 +67,13 @@
       "es": "Servicios de IA"
     },
     "aws": "Translate",
+    "awsUrl": "https://aws.amazon.com/translate/",
     "azure": "Translator",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/ai-translator/",
     "gcp": "Translation AI",
+    "gcpUrl": "https://cloud.google.com/translate",
     "oracle": "Language",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/language/",
     "cloudflare": "—",
     "description": {
       "en": "Neural machine translation",
@@ -70,9 +87,13 @@
       "es": "Servicios de IA"
     },
     "aws": "Comprehend",
+    "awsUrl": "https://aws.amazon.com/comprehend/",
     "azure": "Text Analytics",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/text-analytics/",
     "gcp": "Natural Language AI",
+    "gcpUrl": "https://cloud.google.com/natural-language",
     "oracle": "Language",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/language/",
     "cloudflare": "—",
     "description": {
       "en": "Natural language processing",
@@ -86,9 +107,13 @@
       "es": "Servicios de IA"
     },
     "aws": "Lex",
+    "awsUrl": "https://aws.amazon.com/lex/",
     "azure": "Conversational Language Understanding",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/conversational-language-understanding/",
     "gcp": "Dialogflow",
+    "gcpUrl": "https://cloud.google.com/dialogflow",
     "oracle": "Digital Assistant",
+    "oracleUrl": "https://www.oracle.com/chatbots/",
     "cloudflare": "—",
     "description": {
       "en": "Conversational interfaces",
@@ -102,9 +127,13 @@
       "es": "Servicios de IA"
     },
     "aws": "Textract",
+    "awsUrl": "https://aws.amazon.com/textract/",
     "azure": "Document Intelligence",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/ai-document-intelligence/",
     "gcp": "Document AI",
+    "gcpUrl": "https://cloud.google.com/document-ai",
     "oracle": "Document Understanding",
+    "oracleUrl": "https://www.oracle.com/artificial-intelligence/document-understanding/",
     "cloudflare": "—",
     "description": {
       "en": "Document data extraction",
@@ -118,10 +147,15 @@
       "es": "Servicios de IA"
     },
     "aws": "OpenSearch Service",
+    "awsUrl": "https://aws.amazon.com/opensearch-service/",
     "azure": "AI Search",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/ai-search/",
     "gcp": "Vertex AI Search",
+    "gcpUrl": "https://cloud.google.com/generative-ai-app-builder/docs/enterprise-search",
     "oracle": "Search",
+    "oracleUrl": "https://www.oracle.com/search/",
     "cloudflare": "Vectorize",
+    "cloudflareUrl": "https://developers.cloudflare.com/vectorize/",
     "description": {
       "en": "Enterprise search service",
       "es": "Servicio de búsqueda empresarial"

@@ -6,10 +6,15 @@
       "es": "IoT"
     },
     "aws": "IoT Analytics",
+    "awsUrl": "https://aws.amazon.com/iot-analytics/",
     "azure": "Event Streams + KQL Database",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/iot-hub/",
     "gcp": "IoT Core + BigQuery",
+    "gcpUrl": "https://cloud.google.com/iot-core",
     "oracle": "IoT Cloud Service",
+    "oracleUrl": "https://www.oracle.com/internet-of-things/",
     "cloudflare": "Pub/Sub",
+    "cloudflareUrl": "https://developers.cloudflare.com/pub-sub/",
     "description": {
       "en": "IoT data collection and analysis",
       "es": "Recopilación y análisis de datos de IoT"
