@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext, type ReactNode } from "react";
 
 export type ThemeMode = "light" | "dark" | "system";
 
@@ -6,6 +6,11 @@ export type ThemeMode = "light" | "dark" | "system";
  * Apply theme to the document.
  */
 function applyTheme(theme: ThemeMode): void {
+  // Guard against server-side rendering or missing APIs
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return;
+  }
+
   if (
     theme === "dark" ||
     (theme === "system" &&
@@ -17,11 +22,18 @@ function applyTheme(theme: ThemeMode): void {
   }
 }
 
+interface ThemeContextType {
+  theme: ThemeMode;
+  setTheme: (theme: ThemeMode) => void;
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
 /**
- * Hook for managing theme state with localStorage persistence.
- * Handles initial loading, system preference changes, and theme switching.
+ * Provider component for theme management.
+ * Wraps the app to provide shared theme state to all components.
  */
-export function useTheme() {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     // Lazy initialization - only read localStorage on client side
     if (typeof window !== "undefined") {
@@ -61,5 +73,22 @@ export function useTheme() {
     }
   };
 
-  return { theme, setTheme };
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
+
+/**
+ * Hook for accessing theme state and setter.
+ * Must be used within a ThemeProvider.
+ */
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider");
+  }
+  return context;
+}
+

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface PaginationState {
   currentPage: number;
@@ -12,27 +12,43 @@ const initialState: PaginationState = {
   itemsPerPage: 20,
 };
 
-const isValidPaginationState = (parsed: unknown): parsed is Partial<PaginationState> => {
-  if (typeof parsed !== "object" || parsed === null) return false;
+const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | null => {
+  if (typeof parsed !== "object" || parsed === null) return null;
 
   const obj = parsed as Record<string, unknown>;
+  const result: Partial<PaginationState> = {};
 
-  // Validate currentPage if present
-  if ("currentPage" in obj && (typeof obj.currentPage !== "number" || obj.currentPage < 1)) {
-    return false;
+  // Validate and sanitize currentPage if present
+  if ("currentPage" in obj) {
+    if (typeof obj.currentPage !== "number" || !Number.isFinite(obj.currentPage)) {
+      return null;
+    }
+    const sanitized = Math.floor(obj.currentPage);
+    if (sanitized < 1) return null;
+    result.currentPage = sanitized;
   }
 
-  // Validate totalItems if present
-  if ("totalItems" in obj && (typeof obj.totalItems !== "number" || obj.totalItems < 0)) {
-    return false;
+  // Validate and sanitize totalItems if present
+  if ("totalItems" in obj) {
+    if (typeof obj.totalItems !== "number" || !Number.isFinite(obj.totalItems)) {
+      return null;
+    }
+    const sanitized = Math.floor(obj.totalItems);
+    if (sanitized < 0) return null;
+    result.totalItems = sanitized;
   }
 
-  // Validate itemsPerPage if present
-  if ("itemsPerPage" in obj && (typeof obj.itemsPerPage !== "number" || obj.itemsPerPage < 1 || obj.itemsPerPage > 100)) {
-    return false;
+  // Validate and sanitize itemsPerPage if present
+  if ("itemsPerPage" in obj) {
+    if (typeof obj.itemsPerPage !== "number" || !Number.isFinite(obj.itemsPerPage)) {
+      return null;
+    }
+    const sanitized = Math.floor(obj.itemsPerPage);
+    if (sanitized < 1 || sanitized > 100) return null;
+    result.itemsPerPage = sanitized;
   }
 
-  return true;
+  return result;
 };
 
 const getTotalPages = (totalItems: number, itemsPerPage: number): number => {
@@ -47,8 +63,9 @@ export const usePaginationStore = () => {
         const saved = localStorage.getItem("hyperscaler-pagination");
         if (saved) {
           const parsed = JSON.parse(saved);
-          if (isValidPaginationState(parsed)) {
-            return { ...initialState, ...parsed };
+          const sanitized = sanitizePaginationState(parsed);
+          if (sanitized) {
+            return { ...initialState, ...sanitized };
           }
           // Invalid state, remove it
           localStorage.removeItem("hyperscaler-pagination");
@@ -77,15 +94,15 @@ export const usePaginationStore = () => {
     }
   }, [state]);
 
-  const setCurrentPage = (page: number) => {
+  const setCurrentPage = useCallback((page: number) => {
     setState((prev) => ({ ...prev, currentPage: page }));
-  };
+  }, []);
 
-  const setTotalItems = (total: number) => {
+  const setTotalItems = useCallback((total: number) => {
     setState((prev) => ({ ...prev, totalItems: total }));
-  };
+  }, []);
 
-  const nextPage = () => {
+  const nextPage = useCallback(() => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
       return {
@@ -93,23 +110,25 @@ export const usePaginationStore = () => {
         currentPage: Math.min(prev.currentPage + 1, totalPages),
       };
     });
-  };
+  }, []);
 
-  const previousPage = () => {
+  const previousPage = useCallback(() => {
     setState((prev) => ({
       ...prev,
       currentPage: Math.max(1, prev.currentPage - 1),
     }));
-  };
+  }, []);
 
-  const goToPage = (page: number) => {
-    const totalPages = getTotalPages(state.totalItems, state.itemsPerPage);
-    setCurrentPage(Math.max(1, Math.min(page, totalPages)));
-  };
+  const goToPage = useCallback((page: number) => {
+    setState((prev) => {
+      const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
+      return { ...prev, currentPage: Math.max(1, Math.min(page, totalPages)) };
+    });
+  }, []);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setState(initialState);
-  };
+  }, []);
 
   return {
     currentPage: state.currentPage,
