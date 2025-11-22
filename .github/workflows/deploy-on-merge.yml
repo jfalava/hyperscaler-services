@@ -3,8 +3,6 @@ name: Deploy on merge - TanStack Start App
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "bun.lock"
     branches:
       - main
 
