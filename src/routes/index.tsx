@@ -89,10 +89,13 @@ const normalizeString = (str: string): string => {
 };
 
 export const Route = createFileRoute("/")({
-  validateSearch: (search: Record<string, unknown>) => {
-    return {
-      lang: (search.lang as string) || "en",
-    };
+  validateSearch: (search: Record<string, unknown>): { lang: LanguageCode } => {
+    const langValue = search.lang;
+    // Validate and clamp to allowed values
+    if (langValue === "en" || langValue === "es") {
+      return { lang: langValue };
+    }
+    return { lang: "en" };
   },
   loader: async () => await getServices(),
   component: Home,
@@ -101,7 +104,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   const services = Route.useLoaderData();
   const { lang } = useSearch({ from: "/" });
-  const currentLang = (lang || "en") as LanguageCode;
+  const currentLang = lang;
   const t = getTranslations(currentLang);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -139,12 +142,12 @@ function Home() {
   // Update total items when filtered services change
   useEffect(() => {
     pagination.setTotalItems(filteredServices.length);
-  }, [filteredServices.length]);
+  }, [filteredServices.length, pagination.setTotalItems]);
 
   // Reset to page 1 when search changes
   useEffect(() => {
     pagination.setCurrentPage(1);
-  }, [searchQuery]);
+  }, [searchQuery, pagination.setCurrentPage]);
 
   // Pagination
   const totalPages = Math.max(
@@ -162,6 +165,21 @@ function Home() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if modifier keys are pressed
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+
+      // Ignore if event target is an editable control
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.tagName === "SELECT" ||
+        target.contentEditable === "true" ||
+        target.getAttribute("role") === "textbox"
+      ) {
+        return;
+      }
+
       if (e.key === "ArrowLeft" && currentPageClamped > 1) {
         e.preventDefault();
         pagination.previousPage();
@@ -173,7 +191,7 @@ function Home() {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [currentPageClamped, totalPages]);
+  }, [currentPageClamped, totalPages, pagination.previousPage, pagination.nextPage]);
 
   const generatePaginationItems = () => {
     const items = [];

@@ -9,6 +9,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/styles/global.css";
 import { Footer } from "@/components/layout/footer";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -79,10 +80,12 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body className="bg-background text-foreground min-h-screen flex flex-col transition-colors duration-200 font-sans">
-        <QueryClientProvider client={queryClient}>
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </QueryClientProvider>
+        <ThemeProvider>
+          <QueryClientProvider client={queryClient}>
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </QueryClientProvider>
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>
