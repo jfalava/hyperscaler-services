@@ -107,11 +107,21 @@ export const usePaginationStore = () => {
   }, [state]);
 
   const setCurrentPage = useCallback((page: number) => {
-    setState((prev) => ({ ...prev, currentPage: page }));
+    setState((prev) => {
+      const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
+      const validPage =
+        Number.isFinite(page) && page > 0 ? Math.min(page, totalPages) : 1;
+      return { ...prev, currentPage: validPage };
+    });
   }, []);
 
   const setTotalItems = useCallback((total: number) => {
-    setState((prev) => ({ ...prev, totalItems: total }));
+    setState((prev) => {
+      const validTotal = Number.isFinite(total) && total >= 0 ? total : 0;
+      const totalPages = getTotalPages(validTotal, prev.itemsPerPage);
+      const adjustedPage = Math.min(prev.currentPage, totalPages);
+      return { ...prev, totalItems: validTotal, currentPage: adjustedPage };
+    });
   }, []);
 
   const nextPage = useCallback(() => {

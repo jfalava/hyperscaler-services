@@ -4,7 +4,7 @@ import {
   useNavigate,
 } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { WrapTextIcon } from "lucide-react";
 import { importServices } from "@/data/services";
 import { FloatingButtons } from "@/components/floating-buttons";
@@ -134,22 +134,20 @@ function Home() {
   const isMobile = useIsMobile();
 
   // Update URL parameters
-  const updateURL = (updates: Partial<{ page: number; wrapText: boolean }>) => {
-    void navigate({
-      search: (prev) => ({ ...prev, ...updates }),
-      replace: true,
-    });
-  };
+  const updateURL = useCallback(
+    (updates: Partial<{ page: number; wrapText: boolean }>) => {
+      void navigate({
+        search: (prev) => ({ ...prev, ...updates }),
+        replace: true,
+      });
+    },
+    [navigate],
+  );
 
   // Sync pagination with URL
   useEffect(() => {
     pagination.setCurrentPage(page);
   }, [page, pagination.setCurrentPage]);
-
-  // Update wrapText in pagination store when URL changes
-  useEffect(() => {
-    // Note: We'll need to add wrapText to the pagination store or handle it separately
-  }, [wrapText]);
 
   // Filter services based on search query
   const filteredServices = useMemo(() => {
@@ -186,7 +184,7 @@ function Home() {
   // Reset to page 1 when search changes
   useEffect(() => {
     updateURL({ page: 1 });
-  }, [searchQuery]);
+  }, [searchQuery, updateURL]);
 
   // Pagination
   const totalPages = Math.max(
@@ -230,12 +228,7 @@ function Home() {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [
-    currentPageClamped,
-    totalPages,
-    pagination.previousPage,
-    pagination.nextPage,
-  ]);
+  }, [currentPageClamped, totalPages, updateURL]);
 
   const generatePaginationItems = () => {
     const items = [];

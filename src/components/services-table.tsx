@@ -52,6 +52,8 @@ export function ServicesTable({
   currentLang,
   wrapText = false,
 }: ServicesTableProps) {
+  const getCellClasses = (baseClasses: string) =>
+    cn(baseClasses, wrapText && "whitespace-normal break-words");
   return (
     <div className="overflow-x-auto">
       <Table>
@@ -87,33 +89,29 @@ export function ServicesTable({
               className="border-b border-border hover:bg-accent/50 transition-colors"
             >
               <TableCell
-                className={cn(
+                className={getCellClasses(
                   "px-6 py-4 text-sm font-medium text-muted-foreground",
-                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 {service.categoryName[currentLang]}
               </TableCell>
               <TableCell
-                className={cn(
+                className={getCellClasses(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.aws} url={service.awsUrl} />
               </TableCell>
               <TableCell
-                className={cn(
+                className={getCellClasses(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.azure} url={service.azureUrl} />
               </TableCell>
               <TableCell
-                className={cn(
+                className={getCellClasses(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.gcp} url={service.gcpUrl} />
@@ -127,9 +125,8 @@ export function ServicesTable({
                 <ServiceLink name={service.oracle} url={service.oracleUrl} />
               </TableCell>
               <TableCell
-                className={cn(
+                className={getCellClasses(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink
@@ -138,9 +135,8 @@ export function ServicesTable({
                 />
               </TableCell>
               <TableCell
-                className={cn(
-                  "px-6 py-4 text-sm text-muted-foreground",
-                  wrapText ? "whitespace-normal break-words" : "",
+                className={getCellClasses(
+                  "px-6 py-4 text-sm text-foreground font-medium",
                 )}
               >
                 {service.description[currentLang]}
