@@ -94,7 +94,7 @@ export async function importServices(): Promise<ServiceMapping[]> {
 
   const allServices: ServiceMapping[] = [];
   for (const category of categories) {
-    const module = await import(`./${category}.json`);
+    const module = await import(/* @vite-ignore */ `./${category}.json`);
     allServices.push(...module.default);
   }
   return allServices;

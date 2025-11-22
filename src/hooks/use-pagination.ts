@@ -12,7 +12,9 @@ const initialState: PaginationState = {
   itemsPerPage: 20,
 };
 
-const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | null => {
+const sanitizePaginationState = (
+  parsed: unknown,
+): Partial<PaginationState> | null => {
   if (typeof parsed !== "object" || parsed === null) return null;
 
   const obj = parsed as Record<string, unknown>;
@@ -20,7 +22,10 @@ const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | nu
 
   // Validate and sanitize currentPage if present
   if ("currentPage" in obj) {
-    if (typeof obj.currentPage !== "number" || !Number.isFinite(obj.currentPage)) {
+    if (
+      typeof obj.currentPage !== "number" ||
+      !Number.isFinite(obj.currentPage)
+    ) {
       return null;
     }
     const sanitized = Math.floor(obj.currentPage);
@@ -30,7 +35,10 @@ const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | nu
 
   // Validate and sanitize totalItems if present
   if ("totalItems" in obj) {
-    if (typeof obj.totalItems !== "number" || !Number.isFinite(obj.totalItems)) {
+    if (
+      typeof obj.totalItems !== "number" ||
+      !Number.isFinite(obj.totalItems)
+    ) {
       return null;
     }
     const sanitized = Math.floor(obj.totalItems);
@@ -40,7 +48,10 @@ const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | nu
 
   // Validate and sanitize itemsPerPage if present
   if ("itemsPerPage" in obj) {
-    if (typeof obj.itemsPerPage !== "number" || !Number.isFinite(obj.itemsPerPage)) {
+    if (
+      typeof obj.itemsPerPage !== "number" ||
+      !Number.isFinite(obj.itemsPerPage)
+    ) {
       return null;
     }
     const sanitized = Math.floor(obj.itemsPerPage);
@@ -76,7 +87,7 @@ export const usePaginationStore = () => {
         // Remove corrupt data
         try {
           localStorage.removeItem("hyperscaler-pagination");
-        } catch (e) {
+        } catch {
           // Ignore if we can't remove
         }
       }

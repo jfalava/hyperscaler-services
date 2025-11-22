@@ -89,7 +89,7 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm font-medium text-muted-foreground",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 {service.categoryName[currentLang]}
@@ -97,7 +97,7 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.aws} url={service.awsUrl} />
@@ -105,7 +105,7 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.azure} url={service.azureUrl} />
@@ -113,7 +113,7 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.gcp} url={service.gcpUrl} />
@@ -121,7 +121,7 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 <ServiceLink name={service.oracle} url={service.oracleUrl} />
@@ -129,15 +129,18 @@ export function ServicesTable({
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-foreground font-medium",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
-                <ServiceLink name={service.cloudflare} url={service.cloudflareUrl} />
+                <ServiceLink
+                  name={service.cloudflare}
+                  url={service.cloudflareUrl}
+                />
               </TableCell>
               <TableCell
                 className={cn(
                   "px-6 py-4 text-sm text-muted-foreground",
-                  wrapText ? "whitespace-normal break-words" : ""
+                  wrapText ? "whitespace-normal break-words" : "",
                 )}
               >
                 {service.description[currentLang]}
