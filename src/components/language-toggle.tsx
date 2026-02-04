@@ -17,10 +17,7 @@ interface LanguageToggleProps {
  * @param props - Component props
  * @returns Language toggle buttons
  */
-export function LanguageToggle({
-  currentLang,
-  variant = "desktop",
-}: LanguageToggleProps) {
+export function LanguageToggle({ currentLang, variant = "desktop" }: LanguageToggleProps) {
   const navigate = useNavigate();
 
   /**
@@ -53,9 +50,7 @@ export function LanguageToggle({
         : "px-3 py-1 rounded-full font-medium transition-colors";
 
     return `${baseButtonClasses} ${
-      isActive
-        ? "bg-primary text-primary-foreground shadow-sm"
-        : "text-secondary-foreground"
+      isActive ? "bg-primary text-primary-foreground shadow-sm" : "text-secondary-foreground"
     }`;
   };
 

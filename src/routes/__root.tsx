@@ -1,12 +1,10 @@
+/* eslint-disable react/no-danger -- Theme script needed before hydration to prevent flash */
 /// <reference types="vite/client" />
 import type { ReactNode } from "react";
-import {
-  Outlet,
-  createRootRoute,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+
 import "@/styles/global.css";
 import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from "@/hooks/use-theme";
@@ -34,8 +32,7 @@ export const Route = createRootRoute({
       },
       {
         name: "description",
-        content:
-          "Compare AWS, Azure, GCP, Oracle Cloud and Cloudflare services equivalents",
+        content: "Compare AWS, Azure, GCP, Oracle Cloud and Cloudflare services equivalents",
       },
       {
         title: "Hyperscaler Services",
@@ -43,17 +40,13 @@ export const Route = createRootRoute({
     ],
   }),
   notFoundComponent: () => (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-foreground mb-4">
-          404 - Page Not Found
-        </h1>
-        <p className="text-muted-foreground mb-8">
-          The page you're looking for doesn't exist.
-        </p>
+        <h1 className="mb-4 text-4xl font-bold text-foreground">404 - Page Not Found</h1>
+        <p className="mb-8 text-muted-foreground">The page you're looking for doesn't exist.</p>
         <a
           href="/"
-          className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-primary-foreground transition-colors hover:bg-primary/90"
         >
           Go Home
         </a>
@@ -85,7 +78,7 @@ function RootComponent() {
  */
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -94,7 +87,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         />
         <HeadContent />
       </head>
-      <body className="bg-background text-foreground min-h-screen flex flex-col transition-colors duration-200 font-sans">
+      <body className="flex min-h-screen flex-col bg-background font-sans text-foreground transition-colors duration-200">
         <ThemeProvider>
           <QueryClientProvider client={queryClient}>
             <main className="flex-1">{children}</main>

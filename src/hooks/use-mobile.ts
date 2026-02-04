@@ -8,15 +8,10 @@ const MOBILE_BREAKPOINT = 768;
  * @returns Boolean indicating if the screen width is below the mobile breakpoint
  */
 export function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(
-    undefined,
-  );
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
 
   React.useEffect(() => {
-    if (
-      typeof window === "undefined" ||
-      typeof window.matchMedia !== "function"
-    ) {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
       setIsMobile(false);
       return;
     }
@@ -43,5 +38,5 @@ export function useIsMobile(): boolean {
     };
   }, []);
 
-  return !!isMobile;
+  return Boolean(isMobile);
 }

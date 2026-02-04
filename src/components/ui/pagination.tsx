@@ -1,12 +1,8 @@
+import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
 import * as React from "react";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-react";
 
-import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 /**
  * Pagination navigation container component.
@@ -17,7 +13,6 @@ import { Button, buttonVariants } from "@/components/ui/button";
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
-      role="navigation"
       aria-label="pagination"
       data-slot="pagination"
       className={cn("mx-auto flex w-full justify-center", className)}
@@ -32,10 +27,7 @@ function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
  * @param props - UL element props
  * @returns Unordered list with pagination items
  */
-function PaginationContent({
-  className,
-  ...props
-}: React.ComponentProps<"ul">) {
+function PaginationContent({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-slot="pagination-content"
@@ -74,6 +66,7 @@ function PaginationLink({
   className,
   isActive,
   size = "icon",
+  children,
   ...props
 }: PaginationLinkProps) {
   return (
@@ -89,7 +82,9 @@ function PaginationLink({
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </a>
   );
 }
 
@@ -147,10 +142,7 @@ function PaginationNext({
  * @param props - Span element props
  * @returns Span with horizontal ellipsis icon
  */
-function PaginationEllipsis({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
+function PaginationEllipsis({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       aria-hidden

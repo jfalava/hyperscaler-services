@@ -1,16 +1,10 @@
-import {
-  createFileRoute,
-  useSearch,
-  useNavigate,
-} from "@tanstack/react-router";
+import { createFileRoute, useSearch, useNavigate } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { useState, useEffect, useMemo, useCallback } from "react";
 import { WrapTextIcon } from "lucide-react";
-import { importServices } from "@/data/services";
+import { useState, useEffect, useMemo, useCallback } from "react";
+
 import { FloatingButtons } from "@/components/floating-buttons";
 import { ServicesTable } from "@/components/services-table";
-import { usePaginationStore } from "@/hooks/use-pagination";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import {
   Pagination,
@@ -21,6 +15,9 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination";
+import { importServices } from "@/data/services";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { usePaginationStore } from "@/hooks/use-pagination";
 
 /**
  * Server function to load services data on the server side.
@@ -59,6 +56,49 @@ interface PageTranslations {
   wrapText: string;
 }
 
+const translations: Record<LanguageCode, PageTranslations> = {
+  en: {
+    title: "Hyperscaler Services",
+    subtitle:
+      "Compare equivalent services between AWS, Azure, Google Cloud, Oracle Cloud, and Cloudflare",
+    searchPlaceholder: "Search services...",
+    awsColumn: "AWS",
+    azureColumn: "Azure",
+    gcpColumn: "GCP",
+    oracleColumn: "Oracle",
+    cloudflareColumn: "Cloudflare",
+    categoryColumn: "Category",
+    descriptionColumn: "Description",
+    noResults: "No services found",
+    showing: "Showing",
+    of: "of",
+    services: "services",
+    previous: "Previous",
+    next: "Next",
+    wrapText: "Wrap text",
+  },
+  es: {
+    title: "Servicios de Hyperscalers",
+    subtitle:
+      "Compara servicios equivalentes entre AWS, Azure, Google Cloud, Oracle Cloud y Cloudflare",
+    searchPlaceholder: "Buscar servicios...",
+    awsColumn: "AWS",
+    azureColumn: "Azure",
+    gcpColumn: "GCP",
+    oracleColumn: "Oracle",
+    cloudflareColumn: "Cloudflare",
+    categoryColumn: "Categoría",
+    descriptionColumn: "Descripción",
+    noResults: "No se encontraron servicios",
+    showing: "Mostrando",
+    of: "de",
+    services: "servicios",
+    previous: "Anterior",
+    next: "Siguiente",
+    wrapText: "Ajustar texto",
+  },
+};
+
 /**
  * Gets translation strings based on the current language.
  *
@@ -66,35 +106,7 @@ interface PageTranslations {
  * @returns Translation object with all UI strings
  */
 const getTranslations = (currentLang: string): PageTranslations => {
-  return {
-    title:
-      currentLang === "es"
-        ? "Servicios de Hyperscalers"
-        : "Hyperscaler Services",
-    subtitle:
-      currentLang === "es"
-        ? "Compara servicios equivalentes entre AWS, Azure, Google Cloud, Oracle Cloud y Cloudflare"
-        : "Compare equivalent services between AWS, Azure, Google Cloud, Oracle Cloud, and Cloudflare",
-    searchPlaceholder:
-      currentLang === "es" ? "Buscar servicios..." : "Search services...",
-    awsColumn: "AWS",
-    azureColumn: "Azure",
-    gcpColumn: "GCP",
-    oracleColumn: "Oracle",
-    cloudflareColumn: "Cloudflare",
-    categoryColumn: currentLang === "es" ? "Categoría" : "Category",
-    descriptionColumn: currentLang === "es" ? "Descripción" : "Description",
-    noResults:
-      currentLang === "es"
-        ? "No se encontraron servicios"
-        : "No services found",
-    showing: currentLang === "es" ? "Mostrando" : "Showing",
-    of: currentLang === "es" ? "de" : "of",
-    services: currentLang === "es" ? "servicios" : "services",
-    previous: currentLang === "es" ? "Anterior" : "Previous",
-    next: currentLang === "es" ? "Siguiente" : "Next",
-    wrapText: currentLang === "es" ? "Ajustar texto" : "Wrap text",
-  };
+  return translations[currentLang as LanguageCode] ?? translations.en;
 };
 
 /**
@@ -114,8 +126,7 @@ export const Route = createFileRoute("/")({
   validateSearch: (search: Record<string, unknown>) => {
     const langValue = search.lang;
     // Validate and clamp to allowed values
-    const validLang =
-      langValue === "en" || langValue === "es" ? langValue : "en";
+    const validLang = langValue === "en" || langValue === "es" ? langValue : "en";
 
     // Validate page parameter
     const pageValue =
@@ -171,13 +182,16 @@ function Home() {
 
   useEffect(() => {
     pagination.setCurrentPage(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, pagination.setCurrentPage]);
 
   /**
    * Filters services based on the search query across all text fields.
    */
   const filteredServices = useMemo(() => {
-    if (!searchQuery.trim()) return services;
+    if (!searchQuery.trim()) {
+      return services;
+    }
 
     const searchNormalized = normalizeString(searchQuery.trim());
 
@@ -204,36 +218,41 @@ function Home() {
 
   useEffect(() => {
     pagination.setTotalItems(filteredServices.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredServices.length, pagination.setTotalItems]);
 
   useEffect(() => {
     updateURL({ page: 1 });
   }, [searchQuery, updateURL]);
 
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredServices.length / pagination.itemsPerPage),
-  );
-  const currentPageClamped = Math.max(
-    1,
-    Math.min(pagination.currentPage, totalPages),
-  );
+  const totalPages = Math.max(1, Math.ceil(filteredServices.length / pagination.itemsPerPage));
+  const currentPageClamped = Math.max(1, Math.min(pagination.currentPage, totalPages));
   const startIndex = (currentPageClamped - 1) * pagination.itemsPerPage;
   const endIndex = startIndex + pagination.itemsPerPage;
   const paginatedServices = filteredServices.slice(startIndex, endIndex);
 
+  const isInputElement = (target: HTMLElement): boolean => {
+    const tagName = target.tagName;
+    if (tagName === "INPUT" || tagName === "TEXTAREA" || tagName === "SELECT") {
+      return true;
+    }
+    if (target.contentEditable === "true") {
+      return true;
+    }
+    if (target.getAttribute("role") === "textbox") {
+      return true;
+    }
+    return false;
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) {
+        return;
+      }
 
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === "INPUT" ||
-        target.tagName === "TEXTAREA" ||
-        target.tagName === "SELECT" ||
-        target.contentEditable === "true" ||
-        target.getAttribute("role") === "textbox"
-      ) {
+      if (isInputElement(target)) {
         return;
       }
 
@@ -275,10 +294,7 @@ function Home() {
       for (let i = 1; i <= total; i++) {
         items.push(
           <PaginationItem key={i}>
-            <PaginationLink
-              isActive={i === current}
-              onClick={() => pagination.goToPage(i)}
-            >
+            <PaginationLink isActive={i === current} onClick={() => pagination.goToPage(i)}>
               {i}
             </PaginationLink>
           </PaginationItem>,
@@ -287,10 +303,7 @@ function Home() {
     } else {
       items.push(
         <PaginationItem key="1">
-          <PaginationLink
-            isActive={1 === current}
-            onClick={() => updateURL({ page: 1 })}
-          >
+          <PaginationLink isActive={1 === current} onClick={() => updateURL({ page: 1 })}>
             1
           </PaginationLink>
         </PaginationItem>,
@@ -309,10 +322,7 @@ function Home() {
       for (let i = start; i <= end; i++) {
         items.push(
           <PaginationItem key={i}>
-            <PaginationLink
-              isActive={i === current}
-              onClick={() => updateURL({ page: i })}
-            >
+            <PaginationLink isActive={i === current} onClick={() => updateURL({ page: i })}>
               {i}
             </PaginationLink>
           </PaginationItem>,
@@ -330,10 +340,7 @@ function Home() {
       if (total > 1) {
         items.push(
           <PaginationItem key={total}>
-            <PaginationLink
-              isActive={total === current}
-              onClick={() => updateURL({ page: total })}
-            >
+            <PaginationLink isActive={total === current} onClick={() => updateURL({ page: total })}>
               {total}
             </PaginationLink>
           </PaginationItem>,
@@ -356,7 +363,7 @@ function Home() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 sm:py-8 max-w-7xl">
+    <div className="container mx-auto max-w-7xl px-4 py-6 sm:py-8">
       <FloatingButtons
         currentLang={currentLang}
         wrapText={wrapText}
@@ -366,12 +373,10 @@ function Home() {
       <header className="mb-6 sm:mb-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-1">
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               {t.title}
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
-              {t.subtitle}
-            </p>
+            <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">{t.subtitle}</p>
           </div>
         </div>
 
@@ -382,10 +387,10 @@ function Home() {
             placeholder={t.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full mt-1 px-4 py-2 pl-12 border border-input rounded-lg bg-background text-foreground placeholder-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-colors"
+            className="mt-1 w-full rounded-lg border border-input bg-background px-4 py-2 pl-12 text-foreground placeholder-muted-foreground transition-colors focus:border-transparent focus:ring-2 focus:ring-ring"
           />
           <svg
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground"
+            className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-muted-foreground"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -400,9 +405,9 @@ function Home() {
         </div>
       </header>
 
-      <div className="bg-card rounded-lg shadow-md overflow-hidden border border-border relative">
+      <div className="relative overflow-hidden rounded-lg border border-border bg-card shadow-md">
         {!isMobile && filteredServices.length > 0 && (
-          <div className="sticky top-0 z-10 flex justify-end p-3 bg-card/95 backdrop-blur-sm border-b border-border">
+          <div className="sticky top-0 z-10 flex justify-end border-b border-border bg-card/95 p-3 backdrop-blur-sm">
             <Button
               variant={wrapText ? "default" : "outline"}
               size="sm"
@@ -416,9 +421,7 @@ function Home() {
           </div>
         )}
         {filteredServices.length === 0 ? (
-          <div className="p-8 text-center text-muted-foreground">
-            {t.noResults}
-          </div>
+          <div className="p-8 text-center text-muted-foreground">{t.noResults}</div>
         ) : (
           <ServicesTable
             services={paginatedServices}

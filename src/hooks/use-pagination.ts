@@ -24,48 +24,50 @@ const initialState: PaginationState = {
  * @param parsed - Unknown data to validate as pagination state
  * @returns Sanitized partial pagination state or null if invalid
  */
-const sanitizePaginationState = (
-  parsed: unknown,
-): Partial<PaginationState> | null => {
-  if (typeof parsed !== "object" || parsed === null) return null;
+const validateNumber = (value: unknown, min: number, max?: number): number | null => {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    return null;
+  }
+  const sanitized = Math.floor(value);
+  if (sanitized < min) {
+    return null;
+  }
+  if (max !== undefined && sanitized > max) {
+    return null;
+  }
+  return sanitized;
+};
+
+const sanitizePaginationState = (parsed: unknown): Partial<PaginationState> | null => {
+  if (typeof parsed !== "object" || parsed === null) {
+    return null;
+  }
 
   const obj = parsed as Record<string, unknown>;
   const result: Partial<PaginationState> = {};
 
   if ("currentPage" in obj) {
-    if (
-      typeof obj.currentPage !== "number" ||
-      !Number.isFinite(obj.currentPage)
-    ) {
+    const validated = validateNumber(obj.currentPage, 1);
+    if (validated === null) {
       return null;
     }
-    const sanitized = Math.floor(obj.currentPage);
-    if (sanitized < 1) return null;
-    result.currentPage = sanitized;
+    result.currentPage = validated;
   }
 
   if ("totalItems" in obj) {
-    if (
-      typeof obj.totalItems !== "number" ||
-      !Number.isFinite(obj.totalItems)
-    ) {
+    const validated = validateNumber(obj.totalItems, 0);
+    if (validated === null) {
       return null;
     }
-    const sanitized = Math.floor(obj.totalItems);
-    if (sanitized < 0) return null;
-    result.totalItems = sanitized;
+    result.totalItems = validated;
   }
 
   if ("itemsPerPage" in obj) {
-    if (
-      typeof obj.itemsPerPage !== "number" ||
-      !Number.isFinite(obj.itemsPerPage)
-    ) {
+    const validated = validateNumber(obj.itemsPerPage, 1, 100);
+    if (validated === null) {
       return null;
     }
-    const sanitized = Math.floor(obj.itemsPerPage);
-    if (sanitized < 1 || sanitized > 100) return null;
-    result.itemsPerPage = sanitized;
+    result.itemsPerPage = validated;
   }
 
   return result;
@@ -93,7 +95,7 @@ export const usePaginationStore = () => {
       try {
         const saved = localStorage.getItem("hyperscaler-pagination");
         if (saved) {
-          const parsed = JSON.parse(saved);
+          const parsed: unknown = JSON.parse(saved) as unknown;
           const sanitized = sanitizePaginationState(parsed);
           if (sanitized !== null && Object.keys(sanitized).length > 0) {
             return { ...initialState, ...sanitized };
@@ -128,8 +130,7 @@ export const usePaginationStore = () => {
   const setCurrentPage = useCallback((page: number) => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
-      const validPage =
-        Number.isFinite(page) && page > 0 ? Math.min(page, totalPages) : 1;
+      const validPage = Number.isFinite(page) && page > 0 ? Math.min(page, totalPages) : 1;
       return { ...prev, currentPage: validPage };
     });
   }, []);

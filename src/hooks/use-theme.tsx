@@ -1,10 +1,4 @@
-import {
-  useState,
-  useEffect,
-  createContext,
-  useContext,
-  type ReactNode,
-} from "react";
+import { useState, useEffect, createContext, useContext, type ReactNode } from "react";
 
 /**
  * Available theme modes for the application.
@@ -23,8 +17,7 @@ function applyTheme(theme: ThemeMode): void {
 
   const isDark =
     theme === "dark" ||
-    (theme === "system" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+    (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   if (isDark) {
     document.documentElement.classList.add("dark");
@@ -56,11 +49,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme") as ThemeMode | null;
-      if (
-        savedTheme === "light" ||
-        savedTheme === "dark" ||
-        savedTheme === "system"
-      ) {
+      if (savedTheme === "light" || savedTheme === "dark" || savedTheme === "system") {
         return savedTheme;
       }
     }
@@ -74,7 +63,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") {
+      return;
+    }
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => {
@@ -98,11 +89,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 }
 
 /**
