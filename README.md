@@ -8,7 +8,7 @@ A comparison tool for popular cloud services equivalents, built with TanStack.
 bun run dev
 ```
 
-Visit `http://localhost:5173/` to see the application.
+Visit `http://localhost:3000/` to see the application.
 
 ### Build
 
