@@ -8,35 +8,36 @@ const MOBILE_BREAKPOINT = 768;
  * @returns Boolean indicating if the screen width is below the mobile breakpoint
  */
 export function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
+  const [isMobile, setIsMobile] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-      setIsMobile(false);
       return;
     }
 
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+
+    const updateMobileState = () => {
+      const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT;
+      setIsMobile((prev) => (prev !== newIsMobile ? newIsMobile : prev));
     };
 
-    if (mql.addEventListener) {
-      mql.addEventListener("change", onChange);
-    } else if (mql.addListener) {
-      mql.addListener(onChange);
-    }
+    updateMobileState();
 
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    if (mql.addEventListener) {
+      mql.addEventListener("change", updateMobileState);
+    } else if (mql.addListener) {
+      mql.addListener(updateMobileState);
+    }
 
     return () => {
       if (mql.removeEventListener) {
-        mql.removeEventListener("change", onChange);
+        mql.removeEventListener("change", updateMobileState);
       } else if (mql.removeListener) {
-        mql.removeListener(onChange);
+        mql.removeListener(updateMobileState);
       }
     };
   }, []);
 
-  return Boolean(isMobile);
+  return isMobile;
 }

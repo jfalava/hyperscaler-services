@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/pagination";
 import { importServices } from "@/data/services";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { usePaginationHotkeys } from "@/hooks/use-pagination-hotkeys";
 import { usePaginationStore } from "@/hooks/use-pagination";
 
 /**
@@ -113,33 +114,16 @@ const getTranslations = (currentLang: string): PageTranslations => {
  * Normalizes a string for case-insensitive search by removing diacritics.
  *
  * @param str - String to normalize
- * @returns Normalized string in lowercase without diacritics
+ * @returns Normalized string in lowercase without diacritics, or empty string if input is null/undefined
  */
-const normalizeString = (str: string): string => {
+const normalizeString = (str: string | null | undefined): string => {
+  if (str === null || str === undefined) {
+    return "";
+  }
   return str
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
-};
-
-/**
- * Detects if a target element accepts text input.
- *
- * @param target - Event target element
- * @returns True when keyboard events should be ignored for pagination shortcuts
- */
-const isInputElement = (target: HTMLElement): boolean => {
-  const tagName = target.tagName;
-  if (tagName === "INPUT" || tagName === "TEXTAREA" || tagName === "SELECT") {
-    return true;
-  }
-  if (target.contentEditable === "true") {
-    return true;
-  }
-  if (target.getAttribute("role") === "textbox") {
-    return true;
-  }
-  return false;
 };
 
 export const Route = createFileRoute("/")({
@@ -249,29 +233,12 @@ function Home() {
   const endIndex = startIndex + pagination.itemsPerPage;
   const paginatedServices = filteredServices.slice(startIndex, endIndex);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) {
-        return;
-      }
-
-      const target = e.target as HTMLElement;
-      if (isInputElement(target)) {
-        return;
-      }
-
-      if (e.key === "ArrowLeft" && currentPageClamped > 1) {
-        e.preventDefault();
-        updateURL({ page: currentPageClamped - 1 });
-      } else if (e.key === "ArrowRight" && currentPageClamped < totalPages) {
-        e.preventDefault();
-        updateURL({ page: currentPageClamped + 1 });
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [currentPageClamped, totalPages, updateURL]);
+  // Register pagination keyboard shortcuts using TanStack Hotkeys
+  usePaginationHotkeys({
+    currentPage: currentPageClamped,
+    totalPages,
+    onPageChange: (page) => updateURL({ page }),
+  });
 
   /**
    * Generates pagination items with proper ellipsis handling.
@@ -298,7 +265,7 @@ function Home() {
       for (let i = 1; i <= total; i++) {
         items.push(
           <PaginationItem key={i}>
-            <PaginationLink isActive={i === current} onClick={() => pagination.goToPage(i)}>
+            <PaginationLink isActive={i === current} onClick={() => updateURL({ page: i })}>
               {i}
             </PaginationLink>
           </PaginationItem>,
