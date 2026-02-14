@@ -10,7 +10,7 @@
     "azure": "Communication Services",
     "azureUrl": "https://azure.microsoft.com/en-us/products/communication-services/",
     "gcp": "SendGrid (third-party)",
-    "gcpUrl": "https://cloud.google.com/marketplace/product/sendgrid-app/sendgrid-email",
+    "gcpUrl": "https://cloud.google.com/integration-connectors/docs/connectors/sendgrid/configure",
     "oracle": "Email Delivery",
     "oracleUrl": "https://www.oracle.com/cloud/networking/email-delivery/",
     "cloudflare": "Email Routing",

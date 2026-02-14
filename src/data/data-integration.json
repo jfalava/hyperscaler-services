@@ -26,7 +26,7 @@
       "es": "Integración de Datos"
     },
     "aws": "MWAA",
-    "awsUrl": "https://aws.amazon.com/managed-workflows-apache-airflow/",
+    "awsUrl": "https://aws.amazon.com/mwaa/",
     "azure": "Fabric Apache Airflow",
     "azureUrl": "https://learn.microsoft.com/en-us/fabric/data-factory/",
     "gcp": "Cloud Composer",

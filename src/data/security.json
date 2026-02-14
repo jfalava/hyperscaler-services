@@ -12,7 +12,7 @@
     "gcp": "IAM & Service Accounts",
     "gcpUrl": "https://cloud.google.com/iam",
     "oracle": "OCI IAM Policies",
-    "oracleUrl": "https://www.oracle.com/cloud/security/identity-management/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
     "cloudflare": "Access Policies",
     "cloudflareUrl": "https://developers.cloudflare.com/cloudflare-one/policies/access/",
     "description": {
@@ -33,7 +33,7 @@
     "gcp": "Cloud Identity / IAM",
     "gcpUrl": "https://cloud.google.com/identity",
     "oracle": "IAM",
-    "oracleUrl": "https://www.oracle.com/cloud/security/identity-management/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
     "cloudflare": "Access",
     "cloudflareUrl": "https://developers.cloudflare.com/cloudflare-one/policies/access/",
     "description": {
@@ -114,7 +114,7 @@
     "azure": "Entra MFA",
     "azureUrl": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks",
     "gcp": "2-Step Verification",
-    "gcpUrl": "https://cloud.google.com/identity/docs/how-to/setup-2sv",
+    "gcpUrl": "https://support.google.com/a/answer/175197",
     "oracle": "MFA",
     "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Identity/mfa/understand-multi-factor-authentication.htm",
     "cloudflare": "Access (MFA)",
@@ -137,7 +137,7 @@
     "gcp": "Cloud KMS",
     "gcpUrl": "https://cloud.google.com/kms",
     "oracle": "Vault",
-    "oracleUrl": "https://www.oracle.com/cloud/security/key-management/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
     "cloudflare": "—",
     "description": {
       "en": "Key management service",
@@ -157,7 +157,7 @@
     "gcp": "Cloud Armor",
     "gcpUrl": "https://cloud.google.com/armor",
     "oracle": "WAF",
-    "oracleUrl": "https://www.oracle.com/cloud/security/web-application-firewall/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/WAF/home.htm",
     "cloudflare": "WAF",
     "cloudflareUrl": "https://developers.cloudflare.com/waf/",
     "description": {
@@ -178,7 +178,7 @@
     "gcp": "Secret Manager",
     "gcpUrl": "https://cloud.google.com/secret-manager",
     "oracle": "Vault (Secrets)",
-    "oracleUrl": "https://www.oracle.com/cloud/security/key-management/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingvaults.htm",
     "cloudflare": "—",
     "description": {
       "en": "Secrets management service",
@@ -219,7 +219,7 @@
     "gcp": "reCAPTCHA Enterprise",
     "gcpUrl": "https://cloud.google.com/recaptcha-enterprise",
     "oracle": "Bot Management",
-    "oracleUrl": "https://www.oracle.com/cloud/security/waf/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/WAF/home.htm",
     "cloudflare": "Turnstile",
     "cloudflareUrl": "https://developers.cloudflare.com/turnstile/",
     "description": {

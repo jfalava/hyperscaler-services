@@ -35,7 +35,7 @@
     "oracle": "OCI Compartment",
     "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Identity/compartments/managingcompartments.htm",
     "cloudflare": "Cloudflare Zone",
-    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/setup/account/add-site/",
+    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/setup/manage-domains/",
     "description": {
       "en": "Logical unit for services linked to billing and resource management boundaries",
       "es": "Unidad lógica para servicios vinculados a límites de facturación y administración de recursos"

@@ -54,7 +54,7 @@
     "gcp": "Cloud SQL for PostgreSQL",
     "gcpUrl": "https://cloud.google.com/sql/postgresql",
     "oracle": "PostgreSQL Service",
-    "oracleUrl": "https://www.oracle.com/database/postgresql/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/postgresql/home.htm",
     "cloudflare": "D1",
     "cloudflareUrl": "https://developers.cloudflare.com/d1/",
     "description": {
@@ -136,9 +136,9 @@
     "azure": "Cosmos DB",
     "azureUrl": "https://azure.microsoft.com/en-us/products/cosmos-db/",
     "gcp": "Neo4j (on GCP)",
-    "gcpUrl": "https://cloud.google.com/architecture/deploying-neo4j-graph-database",
+    "gcpUrl": "https://neo4j.com/product/auradb/",
     "oracle": "Graph Studio",
-    "oracleUrl": "https://www.oracle.com/autonomous-database/graph/",
+    "oracleUrl": "https://docs.oracle.com/en/database/oracle/property-graph/",
     "cloudflare": "—",
     "description": {
       "en": "Graph database service",

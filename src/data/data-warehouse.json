@@ -27,7 +27,7 @@
       "es": "Almacenamiento de Datos"
     },
     "aws": "Redshift Spectrum",
-    "awsUrl": "https://aws.amazon.com/redshift/features/redshift-spectrum/",
+    "awsUrl": "https://aws.amazon.com/redshift/features/",
     "azure": "OneLake Shortcuts",
     "azureUrl": "https://learn.microsoft.com/en-us/fabric/onelake/onelake-shortcuts",
     "gcp": "BigLake",

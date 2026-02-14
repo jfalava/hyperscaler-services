@@ -151,14 +151,14 @@
     "azure": "AI Search",
     "azureUrl": "https://azure.microsoft.com/en-us/products/ai-services/ai-search/",
     "gcp": "Vertex AI Search",
-    "gcpUrl": "https://cloud.google.com/generative-ai-app-builder/docs/enterprise-search",
+    "gcpUrl": "https://cloud.google.com/generative-ai-app-builder/docs/enterprise-search-introduction",
     "oracle": "Search",
     "oracleUrl": "https://www.oracle.com/search/",
     "cloudflare": "Vectorize",
     "cloudflareUrl": "https://developers.cloudflare.com/vectorize/",
     "description": {
-      "en": "Enterprise search service",
-      "es": "Servicio de búsqueda empresarial"
+      "en": "Managed search and vector retrieval service",
+      "es": "Servicio administrado de búsqueda y recuperación vectorial"
     }
   }
 ]

@@ -30,15 +30,36 @@
     "awsUrl": "https://aws.amazon.com/q/",
     "azure": "Copilot in Azure",
     "azureUrl": "https://learn.microsoft.com/en-us/azure/copilot/",
-    "gcp": "Duet AI / Gemini",
+    "gcp": "Gemini for Google Cloud",
     "gcpUrl": "https://cloud.google.com/gemini",
     "oracle": "OCI Generative AI Agents",
     "oracleUrl": "https://www.oracle.com/artificial-intelligence/generative-ai/agents/",
-    "cloudflare": "AI Assistant (beta)",
-    "cloudflareUrl": "https://developers.cloudflare.com/workers-ai/",
+    "cloudflare": "Workers AI + AI Gateway",
+    "cloudflareUrl": "https://developers.cloudflare.com/ai-gateway/",
     "description": {
       "en": "AI assistant for cloud operations",
       "es": "Asistente de IA para operaciones en la nube"
+    }
+  },
+  {
+    "category": "generative-ai",
+    "categoryName": {
+      "en": "Generative AI",
+      "es": "IA Generativa"
+    },
+    "aws": "Bedrock Knowledge Bases",
+    "awsUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+    "azure": "Azure OpenAI On Your Data",
+    "azureUrl": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/use-your-data",
+    "gcp": "Vertex AI RAG Engine",
+    "gcpUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/rag-overview",
+    "oracle": "AI Vector Search",
+    "oracleUrl": "https://www.oracle.com/database/ai-vector-search/",
+    "cloudflare": "AutoRAG",
+    "cloudflareUrl": "https://developers.cloudflare.com/autorag/",
+    "description": {
+      "en": "Managed retrieval-augmented generation (RAG) and knowledge grounding",
+      "es": "Generación aumentada por recuperación (RAG) administrada y fundamentación en conocimiento"
     }
   }
 ]

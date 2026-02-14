@@ -33,7 +33,7 @@
     "gcp": "Pub/Sub",
     "gcpUrl": "https://cloud.google.com/pubsub",
     "oracle": "Notifications",
-    "oracleUrl": "https://www.oracle.com/cloud/notifications/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Notification/Concepts/notificationoverview.htm",
     "cloudflare": "Pub/Sub",
     "cloudflareUrl": "https://developers.cloudflare.com/pub-sub/",
     "description": {

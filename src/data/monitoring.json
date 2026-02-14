@@ -12,7 +12,7 @@
     "gcp": "Cloud Monitoring",
     "gcpUrl": "https://cloud.google.com/monitoring",
     "oracle": "Monitoring",
-    "oracleUrl": "https://www.oracle.com/cloud/observability/monitoring/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Monitoring/Concepts/monitoringoverview.htm",
     "cloudflare": "Analytics",
     "cloudflareUrl": "https://developers.cloudflare.com/analytics/",
     "description": {
@@ -33,9 +33,9 @@
     "gcp": "Cloud Logging",
     "gcpUrl": "https://cloud.google.com/logging",
     "oracle": "Audit",
-    "oracleUrl": "https://www.oracle.com/cloud/observability/audit/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Audit/Concepts/auditoverview.htm",
     "cloudflare": "Audit Logs",
-    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/setup/account/audit-logs/",
+    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/account/account-security/audit-logs/",
     "description": {
       "en": "Audit and compliance logging",
       "es": "Registro de auditoría y cumplimiento"
@@ -54,7 +54,7 @@
     "gcp": "Cloud Operations",
     "gcpUrl": "https://cloud.google.com/products/operations",
     "oracle": "OS Management",
-    "oracleUrl": "https://www.oracle.com/cloud/systems-management/os-management/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/os-management/home.htm",
     "cloudflare": "—",
     "description": {
       "en": "Operations management service",

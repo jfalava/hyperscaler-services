@@ -29,7 +29,7 @@
     "aws": "NAT Gateway",
     "awsUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html",
     "azure": "NAT Gateway",
-    "azureUrl": "https://azure.microsoft.com/en-us/products/nat-gateway/",
+    "azureUrl": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-overview",
     "gcp": "Cloud NAT",
     "gcpUrl": "https://cloud.google.com/nat",
     "oracle": "NAT Gateway",
@@ -179,8 +179,8 @@
     "gcpUrl": "https://cloud.google.com/dns",
     "oracle": "Traffic Management",
     "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/TrafficManagement/Concepts/overview.htm",
-    "cloudflare": "Traffic",
-    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/reference/traffic/",
+    "cloudflare": "Load Balancing (Traffic Steering)",
+    "cloudflareUrl": "https://developers.cloudflare.com/load-balancing/understand-basics/traffic-steering/",
     "description": {
       "en": "DNS-level traffic routing",
       "es": "Enrutamiento de tráfico a nivel de DNS"
@@ -220,9 +220,9 @@
     "gcp": "Cloud CDN",
     "gcpUrl": "https://cloud.google.com/cdn",
     "oracle": "CDN",
-    "oracleUrl": "https://www.oracle.com/cloud/networking/cdn/",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/TrafficManagement/Concepts/overview.htm",
     "cloudflare": "CDN",
-    "cloudflareUrl": "https://developers.cloudflare.com/cdn/",
+    "cloudflareUrl": "https://developers.cloudflare.com/cache/",
     "description": {
       "en": "Content delivery network",
       "es": "Red de distribución de contenido"
@@ -241,7 +241,7 @@
     "gcp": "Private Service Connect",
     "gcpUrl": "https://cloud.google.com/vpc/docs/private-service-connect",
     "oracle": "Private Endpoint",
-    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/privateaccess.htm",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/servicegateway.htm",
     "cloudflare": "—",
     "description": {
       "en": "Private connectivity to PaaS",

@@ -9,8 +9,8 @@
     "awsUrl": "https://aws.amazon.com/cloudformation/",
     "azure": "ARM Templates",
     "azureUrl": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/",
-    "gcp": "Deployment Manager",
-    "gcpUrl": "https://cloud.google.com/deployment-manager",
+    "gcp": "Infrastructure Manager",
+    "gcpUrl": "https://cloud.google.com/infrastructure-manager/docs/overview",
     "oracle": "Resource Manager",
     "oracleUrl": "https://www.oracle.com/devops/resource-manager/",
     "cloudflare": "Terraform",
@@ -35,7 +35,7 @@
     "oracle": "Console",
     "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/console.htm",
     "cloudflare": "Dashboard",
-    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/setup/account/account-dashboard/",
+    "cloudflareUrl": "https://developers.cloudflare.com/fundamentals/concepts/accounts-and-zones/",
     "description": {
       "en": "Web-based management interface",
       "es": "Interfaz de gestión basada en web"

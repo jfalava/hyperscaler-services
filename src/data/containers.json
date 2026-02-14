@@ -25,6 +25,27 @@
       "en": "Containers",
       "es": "Contenedores"
     },
+    "aws": "Fargate",
+    "awsUrl": "https://aws.amazon.com/fargate/",
+    "azure": "Container Apps",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/container-apps/",
+    "gcp": "Cloud Run",
+    "gcpUrl": "https://cloud.google.com/run",
+    "oracle": "Container Instances",
+    "oracleUrl": "https://www.oracle.com/cloud/cloud-native/container-instances/",
+    "cloudflare": "Containers",
+    "cloudflareUrl": "https://developers.cloudflare.com/containers/",
+    "description": {
+      "en": "Serverless container runtime for running containerized apps",
+      "es": "Runtime serverless de contenedores para ejecutar aplicaciones contenedorizadas"
+    }
+  },
+  {
+    "category": "containers",
+    "categoryName": {
+      "en": "Containers",
+      "es": "Contenedores"
+    },
     "aws": "ECR",
     "awsUrl": "https://aws.amazon.com/ecr/",
     "azure": "Container Registry",
