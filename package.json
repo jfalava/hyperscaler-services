@@ -1,6 +1,6 @@
 {
   "name": "@jfalava/hyperscaler-services",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "type": "module",
   "scripts": {
     "build": "tsgo --noEmit && oxlint --type-aware && vite build",
@@ -9,12 +9,15 @@
     "deploy": "tsgo --noEmit && oxlint --type-aware && vite build && wrangler deploy",
     "dev": "wrangler types && vite dev",
     "format": "oxfmt",
-    "lint": "bun run cf-typegen && oxlint --type-aware",
+    "lint": "wrangler types && oxlint --type-aware",
+    "lint:fix": "wrangler types && oxlint --type-aware --fix",
     "preview": "vite preview",
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
+    "@base-ui/react": "^1.2.0",
     "@cloudflare/vite-plugin": "^1.25.0",
+    "@hugeicons/core-free-icons": "^3.1.1",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-slot": "^1.2.4",
@@ -30,6 +33,7 @@
     "lucide-react": "^0.564.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "shadcn": "^3.8.4",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
