@@ -39,6 +39,7 @@
     "worker-configuration.d.ts",
     "src/routeTree.gen.ts",
     ".wrangler/",
-    "node_modules/"
+    "node_modules/",
+    "bun.lock"
   ]
 }
