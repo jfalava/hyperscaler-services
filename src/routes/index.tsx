@@ -122,6 +122,26 @@ const normalizeString = (str: string): string => {
     .replace(/[\u0300-\u036f]/g, "");
 };
 
+/**
+ * Detects if a target element accepts text input.
+ *
+ * @param target - Event target element
+ * @returns True when keyboard events should be ignored for pagination shortcuts
+ */
+const isInputElement = (target: HTMLElement): boolean => {
+  const tagName = target.tagName;
+  if (tagName === "INPUT" || tagName === "TEXTAREA" || tagName === "SELECT") {
+    return true;
+  }
+  if (target.contentEditable === "true") {
+    return true;
+  }
+  if (target.getAttribute("role") === "textbox") {
+    return true;
+  }
+  return false;
+};
+
 export const Route = createFileRoute("/")({
   validateSearch: (search: Record<string, unknown>) => {
     const langValue = search.lang;
@@ -182,8 +202,7 @@ function Home() {
 
   useEffect(() => {
     pagination.setCurrentPage(page);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, pagination.setCurrentPage]);
+  }, [page, pagination]);
 
   /**
    * Filters services based on the search query across all text fields.
@@ -218,8 +237,7 @@ function Home() {
 
   useEffect(() => {
     pagination.setTotalItems(filteredServices.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filteredServices.length, pagination.setTotalItems]);
+  }, [filteredServices.length, pagination]);
 
   useEffect(() => {
     updateURL({ page: 1 });
@@ -230,20 +248,6 @@ function Home() {
   const startIndex = (currentPageClamped - 1) * pagination.itemsPerPage;
   const endIndex = startIndex + pagination.itemsPerPage;
   const paginatedServices = filteredServices.slice(startIndex, endIndex);
-
-  const isInputElement = (target: HTMLElement): boolean => {
-    const tagName = target.tagName;
-    if (tagName === "INPUT" || tagName === "TEXTAREA" || tagName === "SELECT") {
-      return true;
-    }
-    if (target.contentEditable === "true") {
-      return true;
-    }
-    if (target.getAttribute("role") === "textbox") {
-      return true;
-    }
-    return false;
-  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
