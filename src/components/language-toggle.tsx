@@ -31,7 +31,7 @@ export function LanguageToggle({ currentLang, variant = "desktop" }: LanguageTog
       search: (prev) => ({
         lang,
         page: prev.page ?? 1,
-        wrapText: prev.wrapText ?? false,
+        wrapText: prev.wrapText ?? true,
       }),
       replace: true,
     });

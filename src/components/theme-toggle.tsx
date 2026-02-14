@@ -36,10 +36,10 @@ export function ThemeToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" aria-label="Toggle theme">
-          {getThemeIcon()}
-        </Button>
+      <DropdownMenuTrigger
+        render={<Button variant="outline" size="icon" aria-label="Toggle theme" />}
+      >
+        <span className="flex items-center justify-center">{getThemeIcon()}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>

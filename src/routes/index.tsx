@@ -1,11 +1,13 @@
 import { createFileRoute, useSearch, useNavigate } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { WrapTextIcon } from "lucide-react";
+import { MonitorIcon, MoonIcon, SearchIcon, SunIcon, WrapTextIcon, XIcon } from "lucide-react";
 import { useState, useEffect, useMemo, useCallback } from "react";
 
 import { FloatingButtons } from "@/components/floating-buttons";
+import { LanguageToggle } from "@/components/language-toggle";
 import { ServicesTable } from "@/components/services-table";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Pagination,
   PaginationContent,
@@ -17,8 +19,9 @@ import {
 } from "@/components/ui/pagination";
 import { importServices } from "@/data/services";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { usePaginationHotkeys } from "@/hooks/use-pagination-hotkeys";
 import { usePaginationStore } from "@/hooks/use-pagination";
+import { usePaginationHotkeys } from "@/hooks/use-pagination-hotkeys";
+import { useTheme, type ThemeMode } from "@/hooks/use-theme";
 
 /**
  * Server function to load services data on the server side.
@@ -41,6 +44,9 @@ interface PageTranslations {
   title: string;
   subtitle: string;
   searchPlaceholder: string;
+  categoriesLabel: string;
+  clearFilters: string;
+  allCategories: string;
   awsColumn: string;
   azureColumn: string;
   gcpColumn: string;
@@ -63,6 +69,9 @@ const translations: Record<LanguageCode, PageTranslations> = {
     subtitle:
       "Compare equivalent services between AWS, Azure, Google Cloud, Oracle Cloud, and Cloudflare",
     searchPlaceholder: "Search services...",
+    categoriesLabel: "Categories",
+    clearFilters: "Clear filters",
+    allCategories: "All",
     awsColumn: "AWS",
     azureColumn: "Azure",
     gcpColumn: "GCP",
@@ -83,6 +92,9 @@ const translations: Record<LanguageCode, PageTranslations> = {
     subtitle:
       "Compara servicios equivalentes entre AWS, Azure, Google Cloud, Oracle Cloud y Cloudflare",
     searchPlaceholder: "Buscar servicios...",
+    categoriesLabel: "Categorías",
+    clearFilters: "Limpiar filtros",
+    allCategories: "Todas",
     awsColumn: "AWS",
     azureColumn: "Azure",
     gcpColumn: "GCP",
@@ -143,7 +155,8 @@ export const Route = createFileRoute("/")({
 
     // Validate wrapText parameter
     const wrapTextValue = search.wrapText;
-    const validWrapText = wrapTextValue === true || wrapTextValue === "true";
+    const validWrapText =
+      wrapTextValue === undefined ? true : wrapTextValue === true || wrapTextValue === "true";
 
     return {
       lang: validLang as LanguageCode,
@@ -166,8 +179,10 @@ function Home() {
   const navigate = useNavigate({ from: "/" });
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string>("");
   const pagination = usePaginationStore();
   const isMobile = useIsMobile();
+  const { theme, setTheme } = useTheme();
 
   /**
    * Updates URL search parameters with provided changes.
@@ -188,15 +203,49 @@ function Home() {
     pagination.setCurrentPage(page);
   }, [page, pagination]);
 
+  const categoryOptions = useMemo(() => {
+    const categorySet = new Set<string>();
+    for (const service of services) {
+      categorySet.add(service.categoryName[currentLang]);
+    }
+    const collator = new Intl.Collator(currentLang);
+    const sortedCategories: string[] = [];
+    for (const category of categorySet) {
+      const insertionIndex = sortedCategories.findIndex(
+        (existingCategory) => collator.compare(category, existingCategory) < 0,
+      );
+      if (insertionIndex === -1) {
+        sortedCategories.push(category);
+      } else {
+        sortedCategories.splice(insertionIndex, 0, category);
+      }
+    }
+    return sortedCategories;
+  }, [services, currentLang]);
+
+  const cycleTheme = useCallback(() => {
+    const themes: ThemeMode[] = ["light", "dark", "system"];
+    const currentIndex = themes.indexOf(theme);
+    const nextTheme = themes[(currentIndex + 1) % themes.length];
+    setTheme(nextTheme);
+  }, [theme, setTheme]);
+
+  const getThemeIcon = () => {
+    if (theme === "dark") {
+      return <MoonIcon className="h-4 w-4" />;
+    }
+    if (theme === "system") {
+      return <MonitorIcon className="h-4 w-4" />;
+    }
+    return <SunIcon className="h-4 w-4" />;
+  };
+
   /**
    * Filters services based on the search query across all text fields.
    */
   const filteredServices = useMemo(() => {
-    if (!searchQuery.trim()) {
-      return services;
-    }
-
     const searchNormalized = normalizeString(searchQuery.trim());
+    const categoryNormalized = normalizeString(activeCategory);
 
     return services.filter((service) => {
       const category = normalizeString(service.categoryName[currentLang]);
@@ -207,17 +256,20 @@ function Home() {
       const cloudflare = normalizeString(service.cloudflare);
       const description = normalizeString(service.description[currentLang]);
 
-      return (
+      const matchesSearch =
+        searchNormalized.length === 0 ||
         category.includes(searchNormalized) ||
         aws.includes(searchNormalized) ||
         azure.includes(searchNormalized) ||
         gcp.includes(searchNormalized) ||
         oracle.includes(searchNormalized) ||
         cloudflare.includes(searchNormalized) ||
-        description.includes(searchNormalized)
-      );
+        description.includes(searchNormalized);
+      const matchesCategory = categoryNormalized.length === 0 || category === categoryNormalized;
+
+      return matchesSearch && matchesCategory;
     });
-  }, [services, searchQuery, currentLang]);
+  }, [services, searchQuery, currentLang, activeCategory]);
 
   useEffect(() => {
     pagination.setTotalItems(filteredServices.length);
@@ -226,6 +278,10 @@ function Home() {
   useEffect(() => {
     updateURL({ page: 1 });
   }, [searchQuery, updateURL]);
+
+  useEffect(() => {
+    updateURL({ page: 1 });
+  }, [activeCategory, updateURL]);
 
   const totalPages = Math.max(1, Math.ceil(filteredServices.length / pagination.itemsPerPage));
   const currentPageClamped = Math.max(1, Math.min(pagination.currentPage, totalPages));
@@ -333,81 +389,138 @@ function Home() {
     return items;
   };
 
+  const hasActiveFilters = searchQuery.trim().length > 0 || activeCategory.length > 0;
+  const clearFilters = () => {
+    setSearchQuery("");
+    setActiveCategory("");
+  };
+
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-6 sm:py-8">
-      <FloatingButtons
-        currentLang={currentLang}
-        wrapText={wrapText}
-        onWrapTextChange={(newWrapText) => updateURL({ wrapText: newWrapText })}
-      />
+    <div className="relative mx-auto max-w-7xl px-4 py-6 sm:py-8">
+      {isMobile && (
+        <FloatingButtons
+          currentLang={currentLang}
+          wrapText={wrapText}
+          onWrapTextChange={(newWrapText) => updateURL({ wrapText: newWrapText })}
+        />
+      )}
 
-      <header className="mb-6 sm:mb-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div className="space-y-1">
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {t.title}
-            </h1>
-            <p className="max-w-2xl text-base text-muted-foreground sm:text-lg">{t.subtitle}</p>
+      <header className="space-y-4 sm:space-y-5">
+        <div className="rounded-xl border border-border/70 bg-card/80 p-4 shadow-sm backdrop-blur-sm sm:p-5">
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="space-y-1">
+              <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                {t.title}
+              </h1>
+              <p className="max-w-3xl text-sm text-muted-foreground sm:text-base">{t.subtitle}</p>
+            </div>
+            <div className="hidden items-center gap-2 md:flex">
+              <LanguageToggle currentLang={currentLang} />
+              <Button variant="outline" size="icon" onClick={cycleTheme} aria-label="Toggle theme">
+                {getThemeIcon()}
+              </Button>
+              <Button
+                variant={wrapText ? "default" : "outline"}
+                size="sm"
+                onClick={() => updateURL({ wrapText: !wrapText })}
+                className="gap-2"
+              >
+                <WrapTextIcon className="h-4 w-4" />
+                {t.wrapText}
+              </Button>
+            </div>
           </div>
-        </div>
 
-        <div className="relative">
-          <input
-            type="text"
-            id="search"
-            placeholder={t.searchPlaceholder}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="mt-1 w-full rounded-lg border border-input bg-background px-4 py-2 pl-12 text-foreground placeholder-muted-foreground transition-colors focus:border-transparent focus:ring-2 focus:ring-ring"
-          />
-          <svg
-            className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-muted-foreground"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          <div className="relative mt-4">
+            <SearchIcon className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="search"
+              type="text"
+              placeholder={t.searchPlaceholder}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-10 rounded-lg border-border bg-background/80 pl-10 pr-10 text-sm md:text-sm"
             />
-          </svg>
+            {searchQuery.length > 0 && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute top-1/2 right-1 h-8 w-8 -translate-y-1/2"
+                onClick={() => setSearchQuery("")}
+                aria-label={t.clearFilters}
+              >
+                <XIcon className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              {t.categoriesLabel}
+            </span>
+            <Button
+              variant={activeCategory.length === 0 ? "default" : "outline"}
+              size="sm"
+              className="h-7 rounded-full px-3 text-xs"
+              onClick={() => setActiveCategory("")}
+            >
+              {t.allCategories}
+            </Button>
+            {categoryOptions.slice(0, 8).map((category) => (
+              <Button
+                key={category}
+                variant={activeCategory === category ? "default" : "outline"}
+                size="sm"
+                className="h-7 rounded-full px-3 text-xs"
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
         </div>
       </header>
 
-      <div className="relative overflow-hidden rounded-lg border border-border bg-card shadow-md">
-        {!isMobile && filteredServices.length > 0 && (
-          <div className="sticky top-0 z-10 flex justify-end border-b border-border bg-card/95 p-3 backdrop-blur-sm">
-            <Button
-              variant={wrapText ? "default" : "outline"}
-              size="sm"
-              onClick={() => updateURL({ wrapText: !wrapText })}
-              className="gap-2"
-              title={t.wrapText}
-            >
-              <WrapTextIcon className="h-4 w-4" />
-              <span className="hidden sm:inline">{t.wrapText}</span>
+      <section className="mt-5 rounded-xl border border-border/70 bg-card/80 p-3 shadow-sm backdrop-blur-sm sm:p-4">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-muted-foreground">
+            {t.showing}{" "}
+            <span className="font-semibold text-foreground">{filteredServices.length}</span> {t.of}{" "}
+            <span className="font-semibold text-foreground">{services.length}</span> {t.services}
+          </p>
+          {hasActiveFilters && (
+            <Button variant="ghost" size="sm" className="h-8 px-2.5 text-xs" onClick={clearFilters}>
+              <XIcon className="mr-1.5 h-3.5 w-3.5" />
+              {t.clearFilters}
             </Button>
-          </div>
-        )}
-        {filteredServices.length === 0 ? (
-          <div className="p-8 text-center text-muted-foreground">{t.noResults}</div>
-        ) : (
-          <ServicesTable
-            services={paginatedServices}
-            translations={t}
-            currentLang={currentLang}
-            wrapText={wrapText}
-          />
-        )}
-      </div>
+          )}
+        </div>
 
-      {totalPages > 1 && (
-        <Pagination className="mt-4">
-          <PaginationContent>{generatePaginationItems()}</PaginationContent>
-        </Pagination>
-      )}
+        <div className="relative overflow-hidden rounded-lg border border-border/80 bg-card shadow-sm">
+          {filteredServices.length === 0 ? (
+            <div className="space-y-3 p-10 text-center">
+              <p className="text-sm text-muted-foreground">{t.noResults}</p>
+              <Button variant="outline" size="sm" onClick={clearFilters}>
+                {t.clearFilters}
+              </Button>
+            </div>
+          ) : (
+            <ServicesTable
+              services={paginatedServices}
+              translations={t}
+              currentLang={currentLang}
+              wrapText={wrapText}
+            />
+          )}
+        </div>
+
+        {totalPages > 1 && (
+          <Pagination className="mt-4">
+            <PaginationContent>{generatePaginationItems()}</PaginationContent>
+          </Pagination>
+        )}
+      </section>
     </div>
   );
 }

@@ -183,7 +183,7 @@ export function FloatingButtons({
       search: (prev) => ({
         lang: newLang,
         page: prev.page ?? 1,
-        wrapText: prev.wrapText ?? false,
+        wrapText: prev.wrapText ?? true,
       }),
       replace: true,
     });

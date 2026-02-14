@@ -74,30 +74,72 @@ export function ServicesTable({
    */
   const getCellClasses = (baseClasses: string) =>
     cn(baseClasses, wrapText && "break-words whitespace-normal");
+  const providerColumns = [
+    {
+      key: "aws",
+      label: translations.awsColumn,
+      iconPath: "/icons/aws.svg",
+    },
+    {
+      key: "azure",
+      label: translations.azureColumn,
+      iconPath: "/icons/azure.svg",
+    },
+    {
+      key: "gcp",
+      label: translations.gcpColumn,
+      iconPath: "/icons/gcp.svg",
+    },
+    {
+      key: "oracle",
+      label: translations.oracleColumn,
+      iconPath: "/icons/ocl.svg",
+    },
+    {
+      key: "cloudflare",
+      label: translations.cloudflareColumn,
+      iconPath: "/icons/cloudflare.svg",
+    },
+  ] satisfies Array<{
+    key: string;
+    label: string;
+    iconPath: string;
+  }>;
+
   return (
     <div className="overflow-x-auto">
-      <Table>
+      <Table className="min-w-[980px]">
+        <colgroup>
+          <col className="w-[12%]" />
+          <col className="w-[14%]" />
+          <col className="w-[14%]" />
+          <col className="w-[14%]" />
+          <col className="w-[14%]" />
+          <col className="w-[14%]" />
+          <col className="w-[18%]" />
+        </colgroup>
         <TableHeader>
           <TableRow>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
+            <TableHead className="sticky top-0 z-20 border-b border-border/80 bg-muted/80 px-4 py-3 text-left text-xs font-semibold tracking-wide text-foreground uppercase backdrop-blur-sm">
               {translations.categoryColumn}
             </TableHead>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-              {translations.awsColumn}
-            </TableHead>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-              {translations.azureColumn}
-            </TableHead>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-              {translations.gcpColumn}
-            </TableHead>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-              {translations.oracleColumn}
-            </TableHead>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-              {translations.cloudflareColumn}
-            </TableHead>
-            <TableHead className="px-6 py-4 text-left text-sm font-semibold text-foreground">
+            {providerColumns.map((column) => (
+              <TableHead
+                key={column.key}
+                className="sticky top-0 z-20 border-b border-border/80 bg-muted/80 px-4 py-3 text-left text-xs font-semibold tracking-wide text-foreground uppercase backdrop-blur-sm"
+              >
+                <span className="inline-flex items-center rounded-md border border-border/80 bg-background/80 px-2 py-0.5 text-[11px] font-semibold tracking-normal text-foreground">
+                  <img
+                    src={column.iconPath}
+                    alt={`${column.label} logo`}
+                    className="mr-1.5 h-3.5 w-3.5 object-contain"
+                    loading="lazy"
+                  />
+                  {column.label}
+                </span>
+              </TableHead>
+            ))}
+            <TableHead className="sticky top-0 z-20 border-b border-border/80 bg-muted/80 px-4 py-3 text-left text-xs font-semibold tracking-wide text-foreground uppercase backdrop-blur-sm">
               {translations.descriptionColumn}
             </TableHead>
           </TableRow>
@@ -106,43 +148,53 @@ export function ServicesTable({
           {services.map((service, index) => (
             <TableRow
               key={index}
-              className="border-b border-border transition-colors hover:bg-accent/50"
+              className="border-b border-border/60 odd:bg-background even:bg-muted/10 transition-colors hover:bg-accent/35"
             >
               <TableCell
-                className={getCellClasses("px-6 py-4 text-sm font-medium text-muted-foreground")}
+                className={getCellClasses(
+                  "px-4 py-3 align-top text-xs font-medium tracking-wide text-muted-foreground uppercase",
+                )}
               >
                 {service.categoryName[currentLang]}
               </TableCell>
               <TableCell
-                className={getCellClasses("px-6 py-4 text-sm text-foreground font-medium")}
+                className={getCellClasses(
+                  "px-4 py-3 align-top text-sm font-medium text-foreground",
+                )}
               >
                 <ServiceLink name={service.aws} url={service.awsUrl} />
               </TableCell>
               <TableCell
-                className={getCellClasses("px-6 py-4 text-sm text-foreground font-medium")}
+                className={getCellClasses(
+                  "px-4 py-3 align-top text-sm font-medium text-foreground",
+                )}
               >
                 <ServiceLink name={service.azure} url={service.azureUrl} />
               </TableCell>
               <TableCell
-                className={getCellClasses("px-6 py-4 text-sm text-foreground font-medium")}
+                className={getCellClasses(
+                  "px-4 py-3 align-top text-sm font-medium text-foreground",
+                )}
               >
                 <ServiceLink name={service.gcp} url={service.gcpUrl} />
               </TableCell>
               <TableCell
                 className={cn(
-                  "px-6 py-4 text-sm font-medium text-foreground",
-                  wrapText ? "wrap-break-word whitespace-normal" : "",
+                  "px-4 py-3 align-top text-sm font-medium text-foreground",
+                  wrapText ? "break-words whitespace-normal" : "",
                 )}
               >
                 <ServiceLink name={service.oracle} url={service.oracleUrl} />
               </TableCell>
               <TableCell
-                className={getCellClasses("px-6 py-4 text-sm text-foreground font-medium")}
+                className={getCellClasses(
+                  "px-4 py-3 align-top text-sm font-medium text-foreground",
+                )}
               >
                 <ServiceLink name={service.cloudflare} url={service.cloudflareUrl} />
               </TableCell>
               <TableCell
-                className={getCellClasses("px-6 py-4 text-sm text-foreground font-medium")}
+                className={getCellClasses("px-4 py-3 align-top text-sm text-muted-foreground")}
               >
                 {service.description[currentLang]}
               </TableCell>
