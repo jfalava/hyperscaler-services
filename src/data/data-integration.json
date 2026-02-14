@@ -80,5 +80,26 @@
       "en": "Workflow orchestration service",
       "es": "Servicio de orquestación de flujos de trabajo"
     }
+  },
+  {
+    "category": "data-integration",
+    "categoryName": {
+      "en": "Data Integration",
+      "es": "Integración de Datos"
+    },
+    "aws": "EventBridge Pipes",
+    "awsUrl": "https://aws.amazon.com/eventbridge/pipes/",
+    "azure": "Event Grid",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/event-grid/",
+    "gcp": "Eventarc",
+    "gcpUrl": "https://cloud.google.com/eventarc",
+    "oracle": "Events",
+    "oracleUrl": "https://www.oracle.com/cloud/events/",
+    "cloudflare": "Workflows",
+    "cloudflareUrl": "https://developers.cloudflare.com/workflows/",
+    "description": {
+      "en": "Point-to-point event integration",
+      "es": "Integración de eventos punto a punto"
+    }
   }
 ]

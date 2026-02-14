@@ -205,5 +205,26 @@
       "en": "Complete identity platform",
       "es": "Plataforma de identidad completa"
     }
+  },
+  {
+    "category": "security",
+    "categoryName": {
+      "en": "Security & Identity",
+      "es": "Seguridad e Identidad"
+    },
+    "aws": "WAF Bot Control",
+    "awsUrl": "https://aws.amazon.com/waf/features/bot-control/",
+    "azure": "Bot Manager",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/web-application-firewall/",
+    "gcp": "reCAPTCHA Enterprise",
+    "gcpUrl": "https://cloud.google.com/recaptcha-enterprise",
+    "oracle": "Bot Management",
+    "oracleUrl": "https://www.oracle.com/cloud/security/waf/",
+    "cloudflare": "Turnstile",
+    "cloudflareUrl": "https://developers.cloudflare.com/turnstile/",
+    "description": {
+      "en": "Bot detection and mitigation without CAPTCHA",
+      "es": "Detección y mitigación de bots sin CAPTCHA"
+    }
   }
 ]

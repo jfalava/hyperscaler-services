@@ -186,5 +186,26 @@
       "en": "High-performance Redis-compatible store",
       "es": "Almacén compatible con Redis de alto rendimiento"
     }
+  },
+  {
+    "category": "database",
+    "categoryName": {
+      "en": "Database",
+      "es": "Base de Datos"
+    },
+    "aws": "RDS Proxy",
+    "awsUrl": "https://aws.amazon.com/rds/proxy/",
+    "azure": "Flexible Server",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/postgresql/",
+    "gcp": "Cloud SQL Proxy",
+    "gcpUrl": "https://cloud.google.com/sql/docs/mysql/sql-proxy",
+    "oracle": "Connection Pooling",
+    "oracleUrl": "https://www.oracle.com/database/",
+    "cloudflare": "Hyperdrive",
+    "cloudflareUrl": "https://developers.cloudflare.com/hyperdrive/",
+    "description": {
+      "en": "Database connection pooling and optimization",
+      "es": "Pool de conexiones y optimización de bases de datos"
+    }
   }
 ]

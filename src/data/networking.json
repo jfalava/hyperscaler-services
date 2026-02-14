@@ -328,5 +328,26 @@
       "en": "Network traffic monitoring",
       "es": "Monitoreo de tráfico de red"
     }
+  },
+  {
+    "category": "networking",
+    "categoryName": {
+      "en": "Networking",
+      "es": "Redes"
+    },
+    "aws": "API Gateway",
+    "awsUrl": "https://aws.amazon.com/api-gateway/",
+    "azure": "API Management",
+    "azureUrl": "https://azure.microsoft.com/en-us/products/api-management/",
+    "gcp": "API Gateway",
+    "gcpUrl": "https://cloud.google.com/api-gateway",
+    "oracle": "API Gateway",
+    "oracleUrl": "https://www.oracle.com/cloud/api-gateway/",
+    "cloudflare": "API Shield",
+    "cloudflareUrl": "https://developers.cloudflare.com/api-shield/",
+    "description": {
+      "en": "API management and security",
+      "es": "Gestión y seguridad de APIs"
+    }
   }
 ]

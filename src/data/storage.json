@@ -259,5 +259,26 @@
       "en": "Petabyte-scale data transport",
       "es": "Transporte de datos a escala de petabytes"
     }
+  },
+  {
+    "category": "storage",
+    "categoryName": {
+      "en": "Storage",
+      "es": "Almacenamiento"
+    },
+    "aws": "S3 Object Lambda",
+    "awsUrl": "https://aws.amazon.com/s3/features/object-lambda/",
+    "azure": "Blob Index",
+    "azureUrl": "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to",
+    "gcp": "Object Lifecycle Management",
+    "gcpUrl": "https://cloud.google.com/storage/docs/lifecycle",
+    "oracle": "Object Storage Policies",
+    "oracleUrl": "https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usinglifecyclepolicies.htm",
+    "cloudflare": "Images",
+    "cloudflareUrl": "https://developers.cloudflare.com/images/",
+    "description": {
+      "en": "Image optimization and transformation",
+      "es": "Optimización y transformación de imágenes"
+    }
   }
 ]
