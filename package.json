@@ -7,7 +7,7 @@
     "cf-typegen": "wrangler types",
     "check": "wrangler types && tsgo --noEmit && oxlint --type-aware --fix",
     "deploy": "tsgo --noEmit && oxlint --type-aware && vite build && wrangler deploy",
-    "dev": "wrangler types && vite dev",
+    "dev": "wrangler types && vite dev --port 3000",
     "format": "oxfmt",
     "lint": "wrangler types && oxlint --type-aware",
     "lint:fix": "wrangler types && oxlint --type-aware --fix",
@@ -34,7 +34,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "shadcn": "^3.8.4",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "vaul-base": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.2.3",

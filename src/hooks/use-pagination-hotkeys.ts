@@ -1,5 +1,4 @@
-import { useHotkey } from "@tanstack/react-hotkeys";
-import { useCallback } from "react";
+import { useEffect } from "react";
 
 /**
  * Props for the usePaginationHotkeys hook.
@@ -24,31 +23,26 @@ export const usePaginationHotkeys = ({
   totalPages,
   onPageChange,
 }: UsePaginationHotkeysProps) => {
-  /**
-   * Navigates to the previous page if not on the first page.
-   */
-  const handlePreviousPage = useCallback(() => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
     }
-  }, [currentPage, onPageChange]);
 
-  /**
-   * Navigates to the next page if not on the last page.
-   */
-  const handleNextPage = useCallback(() => {
-    if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-    }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft" && currentPage > 1) {
+        event.preventDefault();
+        onPageChange(currentPage - 1);
+      }
+
+      if (event.key === "ArrowRight" && currentPage < totalPages) {
+        event.preventDefault();
+        onPageChange(currentPage + 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [currentPage, totalPages, onPageChange]);
-
-  // Register ArrowLeft for previous page navigation
-  useHotkey("ArrowLeft", handlePreviousPage, {
-    preventDefault: true,
-  });
-
-  // Register ArrowRight for next page navigation
-  useHotkey("ArrowRight", handleNextPage, {
-    preventDefault: true,
-  });
 };

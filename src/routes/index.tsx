@@ -3,8 +3,8 @@ import { createServerFn } from "@tanstack/react-start";
 import { MonitorIcon, MoonIcon, SearchIcon, SunIcon, WrapTextIcon, XIcon } from "lucide-react";
 import { useState, useEffect, useMemo, useCallback } from "react";
 
-import { FloatingButtons } from "@/components/floating-buttons";
 import { LanguageToggle } from "@/components/language-toggle";
+import { MobileHomeView } from "@/components/mobile-home-view";
 import { ServicesTable } from "@/components/services-table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -61,6 +61,11 @@ interface PageTranslations {
   previous: string;
   next: string;
   wrapText: string;
+  filters: string;
+  settings: string;
+  compareView: string;
+  cardView: string;
+  loadMore: string;
 }
 
 const translations: Record<LanguageCode, PageTranslations> = {
@@ -86,6 +91,11 @@ const translations: Record<LanguageCode, PageTranslations> = {
     previous: "Previous",
     next: "Next",
     wrapText: "Wrap text",
+    filters: "Filters",
+    settings: "Settings",
+    compareView: "Compare",
+    cardView: "Cards",
+    loadMore: "Load more",
   },
   es: {
     title: "Servicios de Hyperscalers",
@@ -109,6 +119,11 @@ const translations: Record<LanguageCode, PageTranslations> = {
     previous: "Anterior",
     next: "Siguiente",
     wrapText: "Ajustar texto",
+    filters: "Filtros",
+    settings: "Configuración",
+    compareView: "Comparar",
+    cardView: "Tarjetas",
+    loadMore: "Cargar más",
   },
 };
 
@@ -128,8 +143,8 @@ const getTranslations = (currentLang: string): PageTranslations => {
  * @param str - String to normalize
  * @returns Normalized string in lowercase without diacritics, or empty string if input is null/undefined
  */
-const normalizeString = (str: string | null | undefined): string => {
-  if (str === null || str === undefined) {
+const normalizeString = (str: unknown): string => {
+  if (typeof str !== "string") {
     return "";
   }
   return str
@@ -180,7 +195,7 @@ function Home() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("");
-  const pagination = usePaginationStore();
+  const { currentPage, itemsPerPage, setCurrentPage, setTotalItems } = usePaginationStore();
   const isMobile = useIsMobile();
   const { theme, setTheme } = useTheme();
 
@@ -200,8 +215,8 @@ function Home() {
   );
 
   useEffect(() => {
-    pagination.setCurrentPage(page);
-  }, [page, pagination]);
+    setCurrentPage(page);
+  }, [page, setCurrentPage]);
 
   const categoryOptions = useMemo(() => {
     const categorySet = new Set<string>();
@@ -272,8 +287,8 @@ function Home() {
   }, [services, searchQuery, currentLang, activeCategory]);
 
   useEffect(() => {
-    pagination.setTotalItems(filteredServices.length);
-  }, [filteredServices.length, pagination]);
+    setTotalItems(filteredServices.length);
+  }, [filteredServices.length, setTotalItems]);
 
   useEffect(() => {
     updateURL({ page: 1 });
@@ -283,10 +298,10 @@ function Home() {
     updateURL({ page: 1 });
   }, [activeCategory, updateURL]);
 
-  const totalPages = Math.max(1, Math.ceil(filteredServices.length / pagination.itemsPerPage));
-  const currentPageClamped = Math.max(1, Math.min(pagination.currentPage, totalPages));
-  const startIndex = (currentPageClamped - 1) * pagination.itemsPerPage;
-  const endIndex = startIndex + pagination.itemsPerPage;
+  const totalPages = Math.max(1, Math.ceil(filteredServices.length / itemsPerPage));
+  const currentPageClamped = Math.max(1, Math.min(currentPage, totalPages));
+  const startIndex = (currentPageClamped - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
   const paginatedServices = filteredServices.slice(startIndex, endIndex);
 
   // Register pagination keyboard shortcuts using TanStack Hotkeys
@@ -395,16 +410,31 @@ function Home() {
     setActiveCategory("");
   };
 
+  if (isMobile) {
+    return (
+      <MobileHomeView
+        currentLang={currentLang}
+        translations={t}
+        services={services}
+        filteredServices={filteredServices}
+        searchQuery={searchQuery}
+        onSearchQueryChange={setSearchQuery}
+        activeCategory={activeCategory}
+        onActiveCategoryChange={setActiveCategory}
+        categoryOptions={categoryOptions}
+        hasActiveFilters={hasActiveFilters}
+        clearFilters={clearFilters}
+        wrapText={wrapText}
+        onWrapTextChange={(value) => updateURL({ wrapText: value })}
+        onCycleTheme={cycleTheme}
+        themeIcon={getThemeIcon()}
+        pageSize={itemsPerPage}
+      />
+    );
+  }
+
   return (
     <div className="relative mx-auto max-w-7xl px-4 py-6 sm:py-8">
-      {isMobile && (
-        <FloatingButtons
-          currentLang={currentLang}
-          wrapText={wrapText}
-          onWrapTextChange={(newWrapText) => updateURL({ wrapText: newWrapText })}
-        />
-      )}
-
       <header className="space-y-4 sm:space-y-5">
         <div className="rounded-xl border border-border/70 bg-card/80 p-4 shadow-sm backdrop-blur-sm sm:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">

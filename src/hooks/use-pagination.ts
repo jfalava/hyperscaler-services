@@ -131,6 +131,9 @@ export const usePaginationStore = () => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
       const validPage = Number.isFinite(page) && page > 0 ? Math.min(page, totalPages) : 1;
+      if (validPage === prev.currentPage) {
+        return prev;
+      }
       return { ...prev, currentPage: validPage };
     });
   }, []);
@@ -145,6 +148,9 @@ export const usePaginationStore = () => {
       const validTotal = Number.isFinite(total) && total >= 0 ? total : 0;
       const totalPages = getTotalPages(validTotal, prev.itemsPerPage);
       const adjustedPage = Math.min(prev.currentPage, totalPages);
+      if (validTotal === prev.totalItems && adjustedPage === prev.currentPage) {
+        return prev;
+      }
       return { ...prev, totalItems: validTotal, currentPage: adjustedPage };
     });
   }, []);
@@ -155,9 +161,13 @@ export const usePaginationStore = () => {
   const nextPage = useCallback(() => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
+      const next = Math.min(prev.currentPage + 1, totalPages);
+      if (next === prev.currentPage) {
+        return prev;
+      }
       return {
         ...prev,
-        currentPage: Math.min(prev.currentPage + 1, totalPages),
+        currentPage: next,
       };
     });
   }, []);
@@ -166,10 +176,16 @@ export const usePaginationStore = () => {
    * Navigates to the previous page if available.
    */
   const previousPage = useCallback(() => {
-    setState((prev) => ({
-      ...prev,
-      currentPage: Math.max(1, prev.currentPage - 1),
-    }));
+    setState((prev) => {
+      const next = Math.max(1, prev.currentPage - 1);
+      if (next === prev.currentPage) {
+        return prev;
+      }
+      return {
+        ...prev,
+        currentPage: next,
+      };
+    });
   }, []);
 
   /**
@@ -180,7 +196,11 @@ export const usePaginationStore = () => {
   const goToPage = useCallback((page: number) => {
     setState((prev) => {
       const totalPages = getTotalPages(prev.totalItems, prev.itemsPerPage);
-      return { ...prev, currentPage: Math.max(1, Math.min(page, totalPages)) };
+      const next = Math.max(1, Math.min(page, totalPages));
+      if (next === prev.currentPage) {
+        return prev;
+      }
+      return { ...prev, currentPage: next };
     });
   }, []);
 
