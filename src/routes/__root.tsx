@@ -18,9 +18,6 @@ const queryClient = new QueryClient({
   },
 });
 
-const themeInitScript =
-  '!function(){try{var t=localStorage.getItem("theme")||"system",e="dark"===t||"system"===t&&window.matchMedia("(prefers-color-scheme: dark)").matches,a=document.documentElement;e?(a.classList.add("dark"),a.style.colorScheme="dark"):(a.classList.remove("dark"),a.style.colorScheme="light")}catch(t){var e=window.matchMedia("(prefers-color-scheme: dark)").matches,a=document.documentElement;e?(a.classList.add("dark"),a.style.colorScheme="dark"):a.style.colorScheme="light"}}();';
-
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -100,7 +97,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script>{themeInitScript}</script>
+        <script src="/theme-init.js"></script>
         <HeadContent />
       </head>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground transition-colors duration-200">
