@@ -1,13 +1,15 @@
+import { useHotkey } from "@tanstack/react-hotkeys";
 import { createFileRoute, useSearch, useNavigate } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { MonitorIcon, MoonIcon, SearchIcon, SunIcon, WrapTextIcon, XIcon } from "lucide-react";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { MobileHomeView } from "@/components/mobile-home-view";
 import { ServicesTable } from "@/components/services-table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import {
   Pagination,
   PaginationContent,
@@ -43,6 +45,7 @@ type LanguageCode = "en" | "es";
 interface PageTranslations {
   title: string;
   subtitle: string;
+  dataQualityNotice: string;
   searchPlaceholder: string;
   categoriesLabel: string;
   clearFilters: string;
@@ -73,6 +76,8 @@ const translations: Record<LanguageCode, PageTranslations> = {
     title: "Hyperscaler Services",
     subtitle:
       "Compare equivalent services between AWS, Azure, Google Cloud, Oracle Cloud, and Cloudflare",
+    dataQualityNotice:
+      "This catalog is still a work in progress. Some entries are miscategorized or poorly described. But rest assured: the naming of the services and their links are correct.",
     searchPlaceholder: "Search services...",
     categoriesLabel: "Categories",
     clearFilters: "Clear filters",
@@ -101,6 +106,8 @@ const translations: Record<LanguageCode, PageTranslations> = {
     title: "Servicios de Hyperscalers",
     subtitle:
       "Compara servicios equivalentes entre AWS, Azure, Google Cloud, Oracle Cloud y Cloudflare",
+    dataQualityNotice:
+      "Este catálogo sigue en progreso. Algunas entradas pueden seguir mal categorizadas o mal descritas. Hemos confirmado que los nombres de los servicios y sus enlaces son correctos.",
     searchPlaceholder: "Buscar servicios...",
     categoriesLabel: "Categorías",
     clearFilters: "Limpiar filtros",
@@ -198,6 +205,8 @@ function Home() {
   const { currentPage, itemsPerPage, setCurrentPage, setTotalItems } = usePaginationStore();
   const isMobile = useIsMobile();
   const { theme, setTheme } = useTheme();
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const [searchModifierKey, setSearchModifierKey] = useState<"Ctrl" | "⌘">("Ctrl");
 
   /**
    * Updates URL search parameters with provided changes.
@@ -217,6 +226,15 @@ function Home() {
   useEffect(() => {
     setCurrentPage(page);
   }, [page, setCurrentPage]);
+
+  useEffect(() => {
+    if (typeof navigator === "undefined") {
+      return;
+    }
+
+    const platform = navigator.platform.toLowerCase();
+    setSearchModifierKey(platform.includes("mac") ? "⌘" : "Ctrl");
+  }, []);
 
   const categoryOptions = useMemo(() => {
     const categorySet = new Set<string>();
@@ -309,6 +327,12 @@ function Home() {
     currentPage: currentPageClamped,
     totalPages,
     onPageChange: (page) => updateURL({ page }),
+  });
+
+  useHotkey("Mod+K", (event) => {
+    event.preventDefault();
+    searchInputRef.current?.focus();
+    searchInputRef.current?.select();
   });
 
   /**
@@ -419,6 +443,7 @@ function Home() {
         filteredServices={filteredServices}
         searchQuery={searchQuery}
         onSearchQueryChange={setSearchQuery}
+        searchInputRef={searchInputRef}
         activeCategory={activeCategory}
         onActiveCategoryChange={setActiveCategory}
         categoryOptions={categoryOptions}
@@ -435,6 +460,9 @@ function Home() {
 
   return (
     <div className="relative mx-auto max-w-7xl px-4 py-6 sm:py-8">
+      <div className="mb-4 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-900 dark:text-amber-100">
+        {t.dataQualityNotice}
+      </div>
       <header className="space-y-4 sm:space-y-5">
         <div className="rounded-xl border border-border/70 bg-card/80 p-4 shadow-sm backdrop-blur-sm sm:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -464,13 +492,22 @@ function Home() {
           <div className="relative mt-4">
             <SearchIcon className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
+              ref={searchInputRef}
               id="search"
               type="text"
               placeholder={t.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-10 rounded-lg border-border bg-background/80 pl-10 pr-10 text-sm md:text-sm"
+              className="h-10 rounded-lg border-border bg-background/80 pr-24 pl-10 text-sm md:text-sm"
             />
+            {searchQuery.length === 0 && (
+              <div className="pointer-events-none absolute top-1/2 right-2 -translate-y-1/2">
+                <KbdGroup>
+                  <Kbd>{searchModifierKey}</Kbd>
+                  <Kbd>K</Kbd>
+                </KbdGroup>
+              </div>
+            )}
             {searchQuery.length > 0 && (
               <Button
                 type="button"

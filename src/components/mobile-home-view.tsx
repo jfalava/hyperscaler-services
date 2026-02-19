@@ -6,7 +6,7 @@ import {
   WrapTextIcon,
   XIcon,
 } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode, type RefObject } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { MobileServicesList } from "@/components/mobile-services-list";
@@ -25,6 +25,7 @@ import type { ServiceMapping } from "@/data/services";
 interface MobileHomeTranslations {
   title: string;
   subtitle: string;
+  dataQualityNotice: string;
   searchPlaceholder: string;
   categoriesLabel: string;
   clearFilters: string;
@@ -55,6 +56,7 @@ interface MobileHomeViewProps {
   filteredServices: ServiceMapping[];
   searchQuery: string;
   onSearchQueryChange: (value: string) => void;
+  searchInputRef: RefObject<HTMLInputElement | null>;
   activeCategory: string;
   onActiveCategoryChange: (value: string) => void;
   categoryOptions: string[];
@@ -80,6 +82,7 @@ export function MobileHomeView({
   filteredServices,
   searchQuery,
   onSearchQueryChange,
+  searchInputRef,
   activeCategory,
   onActiveCategoryChange,
   categoryOptions,
@@ -109,17 +112,21 @@ export function MobileHomeView({
         <div className="mb-2">
           <h1 className="text-xl font-bold tracking-tight text-foreground">{translations.title}</h1>
           <p className="mt-1 text-xs text-muted-foreground">{translations.subtitle}</p>
+          <div className="mt-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[11px] leading-relaxed text-amber-900 dark:text-amber-100">
+            {translations.dataQualityNotice}
+          </div>
         </div>
 
         <div className="relative">
           <SearchIcon className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
+            ref={searchInputRef}
             id="mobile-search"
             type="text"
             placeholder={translations.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => onSearchQueryChange(e.target.value)}
-            className="h-10 rounded-lg border-border bg-background pl-10 pr-10 text-sm"
+            className="h-10 rounded-lg border-border bg-background pr-10 pl-10 text-sm"
           />
           {searchQuery.length > 0 && (
             <Button

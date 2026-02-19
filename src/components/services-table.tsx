@@ -148,7 +148,7 @@ export function ServicesTable({
           {services.map((service, index) => (
             <TableRow
               key={index}
-              className="border-b border-border/60 odd:bg-background even:bg-muted/10 transition-colors hover:bg-accent/35"
+              className="border-b border-border/60 transition-colors odd:bg-background even:bg-muted/10 hover:bg-accent/35"
             >
               <TableCell
                 className={getCellClasses(

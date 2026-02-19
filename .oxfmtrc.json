@@ -17,7 +17,6 @@
     "internalPattern": ["@/"],
     "sortSideEffects": false,
     "groups": [
-      ["side-effect"],
       ["builtin"],
       ["external", "type-external"],
       ["internal", "type-internal"],
@@ -28,7 +27,7 @@
     ]
   },
   "experimentalTailwindcss": {
-    "stylesheet": "./src/styles/global.css",
+    "stylesheet": "./src/styles/globals.css",
     "attributes": ["class", "className"],
     "functions": ["clsx", "cn", "cva", "twMerge"],
     "preserveDuplicates": false,
@@ -38,8 +37,8 @@
     "cloudflare-env.d.ts",
     "worker-configuration.d.ts",
     "src/routeTree.gen.ts",
-    ".wrangler/",
-    "node_modules/",
+    ".wrangler/**",
+    "node_modules/**",
     "bun.lock"
   ]
 }
