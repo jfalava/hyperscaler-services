@@ -25,7 +25,7 @@ export const usePaginationHotkeys = ({
 }: UsePaginationHotkeysProps) => {
   useEffect(() => {
     if (typeof window === "undefined") {
-      return;
+      return undefined;
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {

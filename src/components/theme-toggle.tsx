@@ -31,6 +31,8 @@ export function ThemeToggle() {
         return <Moon className="h-5 w-5" />;
       case "system":
         return <Monitor className="h-5 w-5" />;
+      default:
+        return <Monitor className="h-5 w-5" />;
     }
   };
 

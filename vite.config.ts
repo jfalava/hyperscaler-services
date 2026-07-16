@@ -5,7 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import viteTsConfigPaths from "vite-tsconfig-paths";
 
 /**
  * Vite configuration for the hyperscaler services application.
@@ -13,12 +12,10 @@ import viteTsConfigPaths from "vite-tsconfig-paths";
  *
  * @returns Vite configuration object
  */
+
 export default defineConfig({
   plugins: [
     cloudflare({ viteEnvironment: { name: "ssr" } }),
-    viteTsConfigPaths({
-      projects: ["./tsconfig.json"],
-    }),
     tailwindcss(),
     tanstackStart(),
     viteReact(),
@@ -27,5 +24,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),
     },
+    tsconfigPaths: true,
   },
 });

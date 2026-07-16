@@ -12,7 +12,7 @@ export function useIsMobile(): boolean {
 
   React.useEffect(() => {
     if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-      return;
+      return undefined;
     }
 
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);

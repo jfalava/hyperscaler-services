@@ -64,7 +64,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      return;
+      return undefined;
     }
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

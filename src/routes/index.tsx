@@ -40,6 +40,14 @@ const getServices = createServerFn({
 type LanguageCode = "en" | "es";
 
 /**
+ * Checks whether a value is a supported language code.
+ *
+ * @param value - Value to validate
+ * @returns Whether the value is a supported language code
+ */
+const isLanguageCode = (value: unknown): value is LanguageCode => value === "en" || value === "es";
+
+/**
  * Interface for page translation strings.
  */
 interface PageTranslations {
@@ -140,8 +148,8 @@ const translations: Record<LanguageCode, PageTranslations> = {
  * @param currentLang - Current language code
  * @returns Translation object with all UI strings
  */
-const getTranslations = (currentLang: string): PageTranslations => {
-  return translations[currentLang as LanguageCode] ?? translations.en;
+const getTranslations = (currentLang: LanguageCode): PageTranslations => {
+  return translations[currentLang];
 };
 
 /**
@@ -164,7 +172,7 @@ export const Route = createFileRoute("/")({
   validateSearch: (search: Record<string, unknown>) => {
     const langValue = search.lang;
     // Validate and clamp to allowed values
-    const validLang = langValue === "en" || langValue === "es" ? langValue : "en";
+    const validLang = isLanguageCode(langValue) ? langValue : "en";
 
     // Validate page parameter
     const pageValue =
@@ -181,7 +189,7 @@ export const Route = createFileRoute("/")({
       wrapTextValue === undefined ? true : wrapTextValue === true || wrapTextValue === "true";
 
     return {
-      lang: validLang as LanguageCode,
+      lang: validLang,
       page: validPage,
       wrapText: validWrapText,
     };
@@ -326,7 +334,7 @@ function Home() {
   usePaginationHotkeys({
     currentPage: currentPageClamped,
     totalPages,
-    onPageChange: (page) => updateURL({ page }),
+    onPageChange: (nextPage) => updateURL({ page: nextPage }),
   });
 
   useHotkey("Mod+K", (event) => {
