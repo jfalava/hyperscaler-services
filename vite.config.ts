@@ -79,7 +79,7 @@ export default defineConfig({
       browser: true,
       es2024: true,
     },
-    ignorePatterns: ["worker-configuration.d.ts", "cloudflare-env.d.ts", "**/*.d.ts", "public/**"],
+    ignorePatterns: ["*.d.ts", "**/*.d.ts", "public/**"],
     rules: {
       "typescript/no-explicit-any": "error",
       "typescript/no-unsafe-assignment": "error",
