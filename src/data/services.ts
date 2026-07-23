@@ -37,6 +37,38 @@ export interface ServiceMapping {
   description: ServiceTranslations;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function hasStringProperties(value: Record<string, unknown>, properties: string[]): boolean {
+  return properties.every((property) => typeof value[property] === "string");
+}
+
+function isServiceTranslations(value: unknown): value is ServiceTranslations {
+  return isRecord(value) && hasStringProperties(value, ["en", "es"]);
+}
+
+function isOptionalString(value: unknown): value is string | undefined {
+  return value === undefined || typeof value === "string";
+}
+
+function isServiceMapping(value: unknown): value is ServiceMapping {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  const serviceProperties = ["category", "aws", "azure", "gcp", "oracle", "cloudflare"];
+  const urlProperties = ["awsUrl", "azureUrl", "gcpUrl", "oracleUrl", "cloudflareUrl"];
+
+  return (
+    hasStringProperties(value, serviceProperties) &&
+    isServiceTranslations(value.categoryName) &&
+    urlProperties.every((property) => isOptionalString(value[property])) &&
+    isServiceTranslations(value.description)
+  );
+}
+
 /**
  * Fetch cloud service mappings from JSON file or API.
  *
@@ -56,7 +88,12 @@ export async function fetchServices(baseUrl: string): Promise<ServiceMapping[]> 
   if (!response.ok) {
     throw new Error(`Failed to fetch services: ${response.statusText}`);
   }
-  const data = (await response.json()) as ServiceMapping[];
+  const data = await response.json();
+
+  if (!Array.isArray(data) || !data.every(isServiceMapping)) {
+    throw new Error("Failed to fetch services: response has an invalid structure");
+  }
+
   return data;
 }
 
